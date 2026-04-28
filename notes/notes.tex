@@ -1,0 +1,157 @@
+\documentclass[a4paper, 12pt, reqno]{amsart}
+
+\usepackage[margin = 0.75in]{geometry}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\begin{document}
+
+\title{The Hilbert series of the focused arc algebra}
+\author{Diego Salazar}
+\date{\today}
+\maketitle
+
+An \emph{$\mathbb{N}$-graded ring} is a ring $R$ together with a family $(R_n)_{n \in \mathbb{N}}$ of additive subgroups of $R_n$ such that $R = \bigoplus_{n \in \mathbb{N}} R_n$ and $R_mR_n \subseteq R_{m + n}$.
+Let $k$ be a field.
+A \emph{$k$-algebra} is a commutative unital ring $A$ together with a ring homomorphism $k \to A$.
+An \emph{$\mathbb{N}$-graded $k$-algebra} is a $k$-algebra $A$ such that $A$ is an $\mathbb{N}$-graded ring and each additive subgroup $A_n$ is a subspace of $A$.
+
+Let $A$ be an $\mathbb{N}$-graded $k$-algebra.
+The \emph{Hilbert series of $A$} is defined by
+\begin{equation*}
+  H_A(t) = \sum_{n \in \mathbb{N}}\dim_k(A_n)t^n \in \mathbb{C}[[t]].
+\end{equation*}
+If each $A_n$ is finite dimensional, then $H_A(t) \in \mathbb{N}[[t]]$.
+
+A \emph{differential $k$-algebra} is a $k$-algebra $A$ together with a $k$-linear derivation $\partial: A \to A$.
+An \emph{$\mathbb{N}$-graded differential $k$-algebra} is a differential $k$-algebra $A$ that is also an $\mathbb{N}$-graded $k$-algebra satisfying $\partial(A_n) \subseteq A_{n + 1}$.
+
+Let $k$ be a field and $A$ a $k$-algebra.
+Let $JA$ be the jet algebra of $A$.
+We have a natural monomorphism $A \to JA$, so we can consider $A$ as a subset of $JA$, and we have $(A)_{\partial} = JA$.
+We define
+\begin{equation*}
+  (JA)_n = span_k\{(\partial^{n_1}a_1)\dots(\partial^{n_s}a_s) \mid s, n_1, \dots, n_s \in \mathbb{N}, a_1, \dots, a_s \in A, n_1 + \dots + n_s = n\}.
+\end{equation*}
+Then
+\begin{equation*}
+  JA = \bigoplus_{n \in \mathbb{N}}(JA)_n,
+\end{equation*}
+and $JA$ becomes an $\mathbb{N}$-graded differential $k$-algebra.
+
+Let $\mathfrak{p} \in Spec(A)$.
+Then $A_{\mathfrak{p}}$ is a local ring with maximal ideal $\mathfrak{p}A_{\mathfrak{p}}$, and the quotient $\kappa(\mathfrak{p}) = A_{\mathfrak{p}}/\mathfrak{p}A_{\mathfrak{p}}$ is the \emph{residue field of $A$ at $\mathfrak{p}$}.
+We have a natural homomorphism $A \to \kappa(\mathfrak{p})$ which makes $\kappa(\mathfrak{p})$ into an $A$-algebra.
+We can also view $JA$ as an $A$-algebra. 
+The \emph{focused arc algebra of $A$ at $\mathfrak{p}$} is the $\mathbb{N}$-graded $\kappa(\mathfrak{p})$-algebra
+\begin{align*}
+  J^{\mathfrak{p}}A &= JA \otimes_A \kappa(\mathfrak{p}), \\
+  (a\otimes x)(b\otimes y) &= (ab)\otimes(xy), \\
+  (J^{\mathfrak{p}}A)_n &= (JA)_n \otimes_A \kappa(\mathfrak{p}).
+\end{align*}
+We note that $\dim_{\kappa(\mathfrak{p})}((J^{\mathfrak{p}}A)_0) = 1$ because the tensor product is over $A$, not over $k$.
+
+We are interested in the case where $A = k[X_1, \dots, X_n]/(F_1, \dots, F_m)$ satisfies $0 = F_r(0, \dots, 0)$, and $\mathfrak{p} = (X_1 + (F_1, \dots, F_m), \dots, X_n + (F_1, \dots, F_m))$ is a maximal ideal.
+In this case, the residue field is $\kappa(\mathfrak{p}) = k$ and the natural homomorphism $A \to k$ is just evaluation at $(0, \dots, 0)$.
+We can think of $JA$ as being the following set of solutions
+\begin{align*}
+  JA &= \{x(t) \in k[[t]]^n \mid 0 = F_1(x(t)) = F_2(x(t)) = \dots \}, \\
+  \partial(t^i) &= t^{i + 1}.
+\end{align*}
+It is good to compare $JA$ to the usual definition of $A$ as
+\begin{equation*}
+  A = \{x \in k^n \mid 0 = F_1(x) = F_2(x) = \dots\}.
+\end{equation*}
+
+More precisely, we write
+\begin{equation*}
+  F_r(X_1^{(0)} + X_1^{(1)}t + \dots, \dots, X_n^{(0)} + X_n^{(1)}t + \dots) = G_r^{(0)} + G_r^{(1)}t + \dots,
+\end{equation*}
+where $G_r^{(i)} \in k[X^{(i)}_j]$.
+Then
+\begin{equation*}
+  JA = \frac{k[X^{(i)}_j]}{(G^{(i)}_r)}.
+\end{equation*}
+Setting
+\begin{equation*}
+  H^{(i)}_r = G_r^{(i)}|_{X^{(0)}_j = 0} \in k[X^{(i)}_j \mid i \in \mathbb{Z}_+], 
+\end{equation*}
+we have
+\begin{equation*}
+  J^0A = J^{\mathfrak{p}}A = JA \otimes_A k = \frac{k[X^{(i)}_j \mid i \in \mathbb{Z}_+]}{(H^{(i)}_r)}.
+\end{equation*}
+
+\begin{example}
+  \label{exa:1}
+  For $A = k[X]$, we have
+  \begin{equation*}
+    J^0A = \prod_{i \in \mathbb{Z}_+}\frac{1}{1 - t^i}.
+  \end{equation*}
+\end{example}
+
+\begin{example}
+  \label{exa:2}
+  For $A = k[X]/(X^2)$, we have
+  \begin{equation*}
+    J^0A = \prod_{i \in \mathbb{Z}_+, i \equiv 1, 4 \mod 5}\frac{1}{1 - t^i}.
+  \end{equation*}
+\end{example}
+
+CONJECTURE: $A = k[X]/F(X)$, where $F(X) = X^k + a_{k - 1}X^{k - 1} + \dots + a_iX^i$, $i \ge 1$.
+\begin{equation*}
+  J^0A = \text{identity of Gordon-Ramanujan-Poincare with k, i} 
+\end{equation*}
+
+$X$ $k$-scheme ($X \to Spec(k)$) (not necessarily of finite type).
+$k \to K$ a extension of $k$.
+The set of $K$-valued points is
+\begin{equation*}
+  X(K) = Hom_k(Spec(K), X) = \{(x, i) \mid x \in X, i: k(x) \to K\}.
+\end{equation*}
+Given $f \in \Gamma(X, \mathcal{O}_X)$, we define
+\begin{align*}
+  f_K: X(K) &\to K, \\
+  f_K(x, i) &= i(f(x)),
+\end{align*}
+where
+\begin{align*}
+  \Gamma(X, \mathcal{O}_X) \to &\mathcal{O}_{X, x} \to k(x), \\
+  f \mapsto &f_x \mapsto f(x).
+\end{align*}
+
+Let $X$ be a $k$-scheme of finite type.
+Then $J_{\infty}X$ is a $k$-scheme (not generally of finite type) satisfying
+\begin{equation*}
+  J_{\infty}X(K) = Hom_k(Spec(K), J_{\infty}X) = Hom_k(Spec(K[[t]]), X)
+\end{equation*}
+for any extension $k \to K$ of $k$.
+
+Given $\lambda \in K$, we have an endomorphism of $k$-algebras
+\begin{align*}
+  \varphi_{\lambda}: K[[t]] &\to K[[t]], \\
+  \varphi_{\lambda}(t) &= \lambda t.
+\end{align*}
+We define an action
+\begin{align*}
+  K \times Hom_k(Spec(K[[t]]), X) &\to Hom_k(Spec(K[[t]]), X), \\
+  (\lambda, \gamma) &\mapsto \lambda\cdot\gamma = \gamma \circ Spec(\varphi_{\lambda}).
+\end{align*}
+
+Finally, $f \in \Gamma(J_{\infty}X, \mathcal{O}_{J_{\infty}X})$ is homogeneous of weight $d$ if
+\begin{equation*}
+  f_K(\lambda\cdot(x, i)) = \lambda^df_K(x, i) \in K,
+\end{equation*}
+for all extensions $k \to K$ of $k$, $\lambda \in K$ and $(x, i) \in X(K)$.
+
+Maybe a better way of writing that is the following: if $x(t) \in Hom_k(Spec(K[[t]]), X)$
+\begin{equation*}
+  f_K(x(\lambda t)) = \lambda^df_K(x(t)).
+\end{equation*}
+\end{document}

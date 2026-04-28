@@ -1,0 +1,7 @@
+{
+    "python.defaultInterpreterPath": "/home/bashi/miniforge3/envs/sage/bin/python",
+    "python.terminal.activateEnvironment": true,
+    "terminal.integrated.env.linux": {
+        "PATH": "/home/bashi/miniforge3/envs/sage/bin:${env:PATH}"
+    }
+}

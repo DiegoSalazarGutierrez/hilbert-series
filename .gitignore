@@ -1,0 +1,14 @@
+docs/
+scratch/
+misc/
+*.aux
+*.bbl
+*.log
+*.out
+*.synctex.gz
+*.pdf
+*~
+#*#
+auto/
+
+*.py
