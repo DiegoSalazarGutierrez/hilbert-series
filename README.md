@@ -11,13 +11,13 @@ hilbert series/
 ├── .vscode/                 # VS Code settings
 ├── docs/                    # Research documents
 ├── misc/                    # Miscellaneous files
-├── notes/                   # Personal math notes / proofs
+├── notes/                   # .tex math notes
 ├── scratch/                 # AI-generated content & prompt logs
 ├── src/                     # LaTeX files compiled directly in here
 │   ├── bibliography.bib     # BibTeX references
 │   └── main.tex             # Main paper
 ├── tests/                   # SageMath / Mathematica experiments
-├── .gitignore               # Ignores all LaTeX auxiliary files
+├── .gitignore               # Ignores all LaTeX auxiliary files and some folders
 ├── AGENTS.md                # Instructions/notation conventions for LLMs
 ├── LICENSE.md               # Licensing for your text and code
 └── README.md                # Project overview and goals
