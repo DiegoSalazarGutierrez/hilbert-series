@@ -1,0 +1,186 @@
+\documentclass[a4paper,10pt]{amsart}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{hyperref}
+
+%%% standard math
+%sets
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\A}{\ensuremath{\mathbb{A}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+%maps
+\newcommand{\im}{\ensuremath{\textnormal{im}}}
+\newcommand{\id}{\ensuremath{\textnormal{id}}}
+\newcommand{\la}{\leftarrow}
+\newcommand{\ra}{\ensuremath{\rightarrow}}
+\newcommand{\lra}{\ensuremath{\longrightarrow}}
+\newcommand{\coker}{\ensuremath{\textnormal{coker}}}
+
+%%% commutative algebra
+\newcommand{\lc}{\ensuremath{\textnormal{lc}}}
+\newcommand{\lm}{\ensuremath{\textnormal{lm}}}
+\newcommand{\lt}{\ensuremath{\textnormal{lt}}}
+\newcommand{\supp}{\ensuremath{\textnormal{supp}}}
+\newcommand{\wt}{\ensuremath{\textnormal{wt}}}
+\newcommand{\ord}{\ensuremath{\textnormal{ord}}}
+\DeclareMathOperator{\HP}{HP}
+
+%%% general algebraic geometry defs
+\newcommand{\m}{\ensuremath{\mathfrak{m}}}
+\newcommand{\pe}{\ensuremath{\mathfrak{p}}}
+\newcommand{\Oo}{\ensuremath{\mathcal{O}}}
+\newcommand{\p}{\ensuremath{\partial}}
+\newcommand{\red}{\ensuremath{\textnormal{red}}}
+\newcommand{\sing}{\ensuremath{\textnormal{sing}}}
+\newcommand{\reg}{\ensuremath{\textnormal{reg}}}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Spf}{Spf}
+\DeclareMathOperator{\Hom}{Hom}
+\newcommand{\Quot}{\ensuremath{\textnormal{Quot}}}
+\newcommand{\isom}{\ensuremath{\cong}}
+\newcommand{\codim}{\ensuremath{\textnormal{codim}}} 
+	
+
+%%% special for Jet Algebras
+\newcommand{\Hh}{\ensuremath{\mathbb{H}}}
+
+
+%%% Theorems, Definitions, Remarks,...
+\newtheorem{Thm}{Theorem}[section]
+\newtheorem*{Thm*}{Theorem}
+\newtheorem{Def}[Thm]{Definition}
+\newtheorem{Prop}[Thm]{Proposition}
+\newtheorem*{Prop*}{Proposition}
+\newtheorem{Lem}[Thm]{Lemma}
+\newtheorem*{Lem*}{Lemma}
+\newtheorem{Cor}[Thm]{Corollary}
+\newtheorem*{Cor*}{Corollary}
+\newtheorem{Conj}[Thm]{Conjecture}
+\newtheorem{Conj*}{Conjecture}
+\newtheorem{Quest}[Thm]{Question}
+
+\theoremstyle{remark}
+\newtheorem*{Rem}{Remark}
+\newtheorem*{Rems}{Remarks}
+\newtheorem{Ex}[Thm]{Example}
+\newtheorem*{Ex*}{Example}
+\newtheorem*{Exs}{Examples}
+\newtheorem*{Alg}{Algorithm}
+
+%\setlength{\baselineskip}{1.5pt}
+%\renewcommand{\baselinestretch}{1.5}
+\parindent=0mm
+
+
+%opening
+\title{Arc Spaces and Rogers-Ramanujan Identities}
+
+%    author one information
+\author[Clemens Bruschek]{Clemens Bruschek$^*$}
+\address{University of Vienna, Nordbergstr. 15, 1090 Vienna, Austria}
+\email{Clemens.Bruschek@univie.ac.at}
+\thanks{$^*$FWF project P21461 and I382}
+
+%    author two information
+\author{Hussein Mourtada}
+\address{Universit\'{e} de Versailles Saint-Quentin-en-Yvelines, 45
+  Avenue des \'{E}tats-Unis, 78035, Cedex Versailles}
+\email{Hussein.Mourtada@math.uvsq.fr}
+\thanks{}
+
+%    author three information
+\author[Jan Schepers]{Jan Schepers$^{\dagger}$}
+\address{K.U.Leuven, Celestijnenlaan 200B, 3001 Leuven, Belgium}
+\email{janschepers1@gmail.com}
+\thanks{$^{\dagger}$Postdoctoral Fellow of the Research Foundation - Flanders (FWO)\\ \indent \textit{MSC2010 Subject Classification:} 14B05, 11P84, 05A17, 13P10.}
+
+%\date{\today}
+
+\begin{document}
+
+
+%\begin{abstract}
+%  Arc spaces have been introduced as objects of algebraic geometry but
+%  they show strong connections with combinatorics as well. We
+%  introduce the Hilbert-Poincar\'{e} seris of the defining algebra of
+%  the arc space above a point of a variety as a mean to study
+%  singularities. Computing this series in the case of the double point
+%  makes use of the Rogers-Ramanujan Identities. In turn, using simple
+%  commutative algebra methods we obtain an alternative approach to
+%  these well-known identities.
+%\end{abstract}
+
+\begin{abstract}
+  Arc spaces have been introduced in algebraic geometry as a tool to study
+  singularities but they show strong connections with combinatorics as
+  well. Exploiting these relations we obtain a new approach to the
+  classical Rogers-Ramanujan Identities. The linking object is the
+  Hilbert-Poincar\'{e} series of the arc space over a point of the
+  base variety. In the case of the double point this is precisely the
+  generating series for the integer partitions without equal or
+  consecutive parts.
+\end{abstract}
+
+\maketitle
+% Arc spaces have been introduced in algebraic geometry as a tool to study
+%>   singularities. We show here a connection  with combinatorics, relating  
+%> the arc space  of the double point to the famous Rogers-Ramanujan  
+%> Identities. The linking object is the Arc Hilbert-Poincar\'{e} series,  
+%> which is the Hilbert-Poicaré series of the algebra (or ring of sections  
+%> you choose) of the space of arcs centered in  a point of the base  
+%> variety.
+
+
+% section 1: Introduction
+\normalsize
+\input{./section_1_ArcsAndRogersRamanujanIdentities}
+
+% section 2: Jet and arc algebras
+\input{./section_2_ArcsAndRogersRamanujanIdentities}
+
+% section 3: The Hilbert-Poincare series of the arc algebra
+\input{./section_3_ArcsAndRogersRamanujanIdentities}
+
+% section 4: The Rogers-Ramanujan Identities
+\input{./section_4_ArcsAndRogersRamanujanIdentities}
+
+% section 5: The Poincare series of $y^2=0$ and Rogers-Ramanujan
+\input{./section_5_ArcsAndRogersRamanujanIdentities}
+
+% section 6: Gordons's Generalizations???
+%\input{}
+
+% appendix
+\input{./appendix_ArcsAndRogersRamanujanIdentities}
+
+
+
+% BIBLIOGRAPHY
+%\addcontentsline{toc}{chapter}{\bibname}
+\bibliographystyle{alpha}
+\bibliography{./ArcsAndRogersRamanujanIdentities_bib}
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

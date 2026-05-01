@@ -1,0 +1,42 @@
+\section{Jet schemes and arc spaces}\label{sec:section_2}
+
+Let $k$ be a field. Let $X=\Spec \bigl(k[x_1, \ldots ,x_n] / (g_1, \ldots ,g_r)\bigr)$ be an affine scheme of finite type over $k$. For $l\in \{1, \ldots ,r\}$, and $j\in \{0, \ldots ,m\}$, we define the polynomial $G_l^{(j)} \in k[x_s^{(i)}; 1\leq s\leq n, 0\leq i\leq m]$ as the coefficient of $t^j$ in the expansion of
+\begin{equation}
+  g_l( x_1^{(0)}+x_1^{(1)}t+  \cdots  + x_1^{(m)} t^m, \ldots, x_n^{(0)}+x_n^{(1)} t+  \cdots  + x_n^{(m)}t^m ) . 
+ \end{equation}
+Then the \textit{$m$th jet scheme} $X_m$ of $X$ is
+\[ X_m := \Spec\left(\frac{k[x_s^{(i)}; 1\leq s\leq n, 0\leq i\leq m]}{(G_l^{(j)}; 1\leq l \leq r , 0\leq j \leq m) } \right). \]
+In particular, we have that $X_0=X$. Of course, we do not need to fix $m$ in advance, and we can define $G_l^{(j)} \in k[x_s^{(i)}; 1\leq s\leq n, i\in \mathbb{N}]$ for all $j\in \mathbb{N}$ as above. Here $\mathbb{N} = \{0,1,\ldots\}$. Then the \textit{arc space} $X_{\infty}$ of $X$ is
+\[ X_{\infty} := \Spec\left(\frac{k[x_s^{(i)}; 1\leq s\leq n, i\in \mathbb{N}]}{(G_l^{(j)}; 1\leq l \leq r , j\in \mathbb{N}) } \right). \]
+The functorial definition is also useful. Let $X$ be a scheme of finite type over $k$ and let $m \in \mathbb{N}$. The functor 
+\[ \mathcal{F}_m : k\text{-Schemes} \rightarrow \text{Sets} \]
+which to an affine scheme defined by a $k$-algebra $A$ associates 
+\[ \mathcal{F}_m(\Spec(A))= \Hom_k\bigr(\Spec\bigl(A[t]/(t^{m+1}) \bigr) ,X\bigr) \]
+is representable by the $k$-scheme $X_m$ (see for example \cite{ishii_intro,vojta}). The arc space $X_{\infty}$ represents the functor $\mathcal{F}_{\infty}$ that associates to a $k$-algebra $A$ the set $\Hom_k\bigr( \Spf(A[[t]]) ,X\bigr)$, where $\Spf$ denotes the formal spectrum. 
+
+For $m,p \in \mathbb{N}, m > p$, the truncation homomorphism $A[t]/(t^{m+1}) \rightarrow A[t]/(t^{p+1})$ induces
+a canonical projection $\pi_{m,p}: X_m \rightarrow X_p.$ These morphisms clearly verify $\pi_{m,p}\circ \pi_{q,m}=\pi_{q,p}$
+for $p<m<q$. We denote the canonical projection $\pi_{m,0}:X_m\rightarrow X_0$ by $\pi_{m}$. For $m\in \mathbb{N}$ we also have the truncation morphism $A[[t]] \rightarrow A[t]/(t^{m+1})$. It gives rise to a canonical morphism $\psi_{m}: X_{\infty} \longrightarrow X_m$.
+
+Assume now that $k$ has characteristic zero. In that case we can explicitly determine the ideals defining the jet schemes and the arc space. Let $S=k[x_1, \ldots ,x_n]$ and
+$S_{m}=k[x_s^{(i)}; 1\leq s \leq n, 0\leq i\leq m]$. Let $D$ be the $k$-derivation on $S_m$ defined by $D(x_s^{(i)}):= x_s^{(i+1)}$ if $0\leq i <m$, and $D(x_s^{(m)}):= 0$. We embed $S$ in $S_m$ by mapping $x_i$ to $x_i^{(0)}$.
+
+\begin{Prop}\label{prop:equations_by_deriving} 
+Let $X=\Spec\bigl(S/(g_1, \ldots ,g_r)\bigr)$ and let $J_m(X)$ be the coordinate ring of $X_m$. Then
+$$J_m(X) = \frac{S_m}{(D^j(g_l) ; 1\leq l\leq r, 0\leq j\leq m)}.$$
+\end{Prop}
+ 
+\begin{proof}
+Since $k$ has characteristic zero, we may equally well replace $x_i$ by
+\[ \frac{x_i^{(0)}}{0!} + \frac{x_i^{(1)}}{1!} t + \cdots + \frac{x_i^{(m)}}{m!} t^m \]
+to obtain the equations of the jet space. For $g\in S$ we denote then
+\[ \phi(g) := g\biggl( \frac{x_1^{(0)}}{0!} + \frac{x_1^{(1)}}{1!} t + \cdots + \frac{x_1^{(m)}}{m!} t^m ,\ldots , \frac{x_n^{(0)}}{0!} + \frac{x_n^{(1)}}{1!} t + \cdots + \frac{x_n^{(m)}}{m!} t^m \biggr).\]
+Then we have
+$$ \tau_m\bigl(\phi(g)\bigr) = \sum_{j=0}^m \frac{D^j(g)}{j!}\, t^j,$$
+where $\tau_m$ means truncation at degree $m$. To see this, it is sufficient to remark that it is true for $g=x_i$, and that both sides of the
+equality are additive and multiplicative in $g$ (after truncating at degree $m$). The proposition follows.
+\end{proof}
+
+Similarly, the coordinate ring $J_{\infty}(X)$ of $X_{\infty}$ is given by 
+\[ J_{\infty}(X) = \frac{k[x_s^{(i)}; 1\leq s \leq n, i\in \mathbb{N}]}{(D^j(g_l) ; 1\leq l\leq r, j\in \mathbb{N})} .\] 
+Here $D(x_s^{(i)}) = x_s^{(i+1)}$ for all $i\in \mathbb{N}$. For further understanding of the equations of the jet schemes and their relation with Bell polynomials, see \cite{bruschek_thesis,bruschek_JetAndBell}.

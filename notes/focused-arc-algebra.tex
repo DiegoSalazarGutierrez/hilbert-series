@@ -50,54 +50,77 @@ Then
   JA = \bigoplus_{n \in \mathbb{N}}(JA)_n,
 \end{equation*}
 and $JA$ becomes an $\mathbb{N}$-graded differential $k$-algebra.
+We note that $(JA)_0 = A$.
 
 Let $\mathfrak{p} \in Spec(A)$.
 Then $A_\mathfrak{p}$ is a local ring with maximal ideal $\mathfrak{p}A_\mathfrak{p}$, and the quotient $\kappa(\mathfrak{p}) = A_\mathfrak{p}/\mathfrak{p}A_\mathfrak{p}$ is the \defterm{residue field of $A$ at $\mathfrak{p}$}.
 We have a natural homomorphism $A \to \kappa(\mathfrak{p})$ which makes $\kappa(\mathfrak{p})$ into an $A$-algebra.
 We can also view $JA$ as an $A$-algebra. 
 The \defterm{focused arc algebra of $A$ at $\mathfrak{p}$} is the $\mathbb{N}$-graded $\kappa(\mathfrak{p})$-algebra
-\begin{align*}
-  J^\mathfrak{p}A &= JA \otimes_A \kappa(\mathfrak{p}), \\
-  (a\otimes x)(b\otimes y) &= (ab)\otimes(xy), \\
-  (J^\mathfrak{p}A)_n &= (JA)_n \otimes_A \kappa(\mathfrak{p}).
-\end{align*}
-We note that $\dim_{\kappa(\mathfrak{p})}((J^\mathfrak{p}A)_0) = 1$ because the tensor product is over $A$, not over $k$.
+\begin{equation}
+  \label{eq:1}
+  J^\mathfrak{p}A = JA \otimes_A \kappa(\mathfrak{p})
+\end{equation}
+with operation given by
+\begin{equation*}
+  (a\otimes x)(b\otimes y) = (ab)\otimes(xy)
+\end{equation*}
+and with $\mathbb{N}$-grading given by
+\begin{equation*}
+(J^\mathfrak{p}A)_n = (JA)_n \otimes_A \kappa(\mathfrak{p}).
+\end{equation*}
+We note that $\dim_{\kappa(\mathfrak{p})}((J^\mathfrak{p}A)_0) = 1$ because $(J^\mathfrak{p}A)_0 = A \otimes_A \kappa(\mathfrak{p}) = \kappa(\mathfrak{p})$.
 
-We are interested in the case where $A = k[X_1, \dots, X_n]/(F_1, \dots, F_m)$ satisfies $0 = F_r(0, \dots, 0)$, and $\mathfrak{p} = (X_1 + (F_1, \dots, F_m), \dots, X_n + (F_1, \dots, F_m))$ is a maximal ideal.
+We are interested in the case where
+\begin{equation}
+  \label{eq:2}
+  A = k[X_1, \dots, X_n]/(F_1, \dots, F_m)
+\end{equation}
+satisfies
+\begin{equation}
+  \label{eq:3}
+  0 = F_r(0, \dots, 0), \qquad r = 1, \dots, m,
+\end{equation}
+and $\mathfrak{p} = (X_1 + (F_1, \dots, F_m), \dots, X_n + (F_1, \dots, F_m))$ is a maximal ideal.
 In this case, the residue field is $\kappa(\mathfrak{p}) = k$, and the natural homomorphism $A \to k$ is just evaluation at $(0, \dots, 0)$.
 We can think of $JA$ as being the following set of solutions
-\begin{align*}
-  JA &= \{x(t) \in k[[t]]^n \mid 0 = F_1(x(t)) = F_2(x(t)) = \dots \}, \\
-  \partial(t^i) &= t^{i + 1}.
-\end{align*}
+\begin{align}
+  \label{eq:4}
+  JA &= \{x(t) \in k[[t]]^n \mid 0 = F_r(x(t)), r = 1, \dots, m \}, \\
+  \label{eq:5}
+  \partial(t^i) &= t^{i + 1}, \qquad i \in \mathbb{N}.
+\end{align}
 It is good to compare $JA$ to the usual definition of $A$ as
-\begin{equation*}
-  A = \{x \in k^n \mid 0 = F_1(x) = F_2(x) = \dots\}.
-\end{equation*}
+\begin{equation}
+  \label{eq:6}
+  A = \{x \in k^n \mid 0 = F_r(x), r = 1, \dots, m\}.
+\end{equation}
 
 More precisely, we write
 \begin{equation*}
-  F_r(X_1^{(0)} + X_1^{(1)}t + \dots, \dots, X_n^{(0)} + X_n^{(1)}t + \dots) = G_r^{(0)} + G_r^{(1)}t + \dots,
+  F_r(X_1^{(0)} + X_1^{(1)}t + \dots, \dots, X_n^{(0)} + X_n^{(1)}t + \dots) = G_r^{(0)} + G_r^{(1)}t + \dots, \qquad r = 1, \dots, m,
 \end{equation*}
-where $G_r^{(i)} \in k[X^{(i)}_j]$.
+where $G_r^{(i)} \in k[X^{(i)}_j \mid i \in \mathbb{N}, j = 1, \dots, n], i \in \mathbb{N}, r = 1 \dots, m$.
 Then
-\begin{equation*}
-  JA = \frac{k[X^{(i)}_j]}{(G^{(i)}_r)}.
-\end{equation*}
+\begin{equation}
+  \label{eq:7}
+  JA = \frac{k[X^{(i)}_j \mid i \in \mathbb{N}, j = 1, \dots, n]}{(G^{(i)}_r \mid i \in \mathbb{N}, r = 1 \dots, m)}.
+\end{equation}
 Setting
 \begin{equation*}
-  H^{(i)}_r = G_r^{(i)}|_{X^{(0)}_j = 0} \in k[X^{(i)}_j \mid i \in \mathbb{Z}_+], 
+  H^{(i)}_r = G_r^{(i)}|_{X^{(0)}_j = 0, j = 1 \dots, n} \in k[X^{(i)}_j \mid i \in \mathbb{Z}_+, j = 1, \dots, n], \qquad i \in \mathbb{Z}_+, r = 1 \dots, m,
 \end{equation*}
 we have
-\begin{equation*}
-  J^0A = J^\mathfrak{p}A = JA \otimes_A k = \frac{k[X^{(i)}_j \mid i \in \mathbb{Z}_+]}{(H^{(i)}_r)}.
-\end{equation*}
+\begin{equation}
+  \label{eq:8}
+  J^0A = J^\mathfrak{p}A = JA \otimes_A k = \frac{k[X^{(i)}_j \mid i \in \mathbb{Z}_+, j = 1, \dots, n]}{(H^{(i)}_r \mid i \in \mathbb{Z}_+, r = 1, \dots, n)}.
+\end{equation}
 
 \begin{example}
   \label{exa:1}
   For $A = k[X]$, we have
   \begin{equation*}
-    J^0A = \prod_{i \in \mathbb{Z}_+}\frac{1}{1 - t^i}.
+    H_{J^0A}(t) = \prod_{i \in \mathbb{Z}_+}\frac{1}{1 - t^i}.
   \end{equation*}
 \end{example}
 
@@ -105,7 +128,7 @@ we have
   \label{exa:2}
   For $A = k[X]/(X^2)$, we have
   \begin{equation*}
-    J^0A = \prod_{i \in \mathbb{Z}_+, i \equiv 1, 4 \bmod 5}\frac{1}{1 - t^i}.
+    H_{J^0A}(t) = \prod_{i \in \mathbb{Z}_+, i \equiv 1, 4 \bmod 5}\frac{1}{1 - t^i}.
   \end{equation*}
 \end{example}
 

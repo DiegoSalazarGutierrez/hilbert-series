@@ -1,0 +1,190 @@
+\section{Introduction}\label{sec:section_1}
+
+Arc spaces describe formal power series solutions (in one variable) to 
+polynomial equations. They first appeared in the work of Nash (published later as \cite{nash}), who investigated their relation to some intrinsic data of a resolution of singularities of a fixed algebraic variety. He asked whether there is a bijection between the irreducible components of the arc space based at the singular locus and the set of essential divisors. While this so-called `Nash problem' is still actively studied (see for instance the recent papers \cite{monique_ana,plenat_spivakovsky,pe,fernandez} and the overview \cite{ishii_intro}), in the last decade arc spaces have gained much interest from algebraic geometers, through their role in motivic integration and their utility in birational geometry.
+Arc spaces show strong relations with combinatorics as well. In the present text we
+indicate how to exploit this connection both for geometric as well as
+combinatorial benefit. In particular, we expose a surprising connection with the well-known
+Rogers-Ramanujan identities.\\
+
+Let us emphasize the main algebraic and combinatorial aspects
+presented here. First, we suggest to study local algebro-geometric
+properties of algebraic (or analytic) varieties via natural
+Hilbert-Poincar\'{e} series attached to arc spaces. In contrast to
+already existing such series this one is sensitive to the
+non-reduced structure of the arc space. Second, we propose
+to derive identities between partitions by looking at suitable ideals
+in a polynomial ring in countably many variables endowed with a
+natural grading. Connecting both ideas will demand handling
+Gr\"{o}bner basis in countably many variables, a problem which has
+been successfully dealt with in different contexts over the last
+years (see \cite{hillar_sullivant,draisma}). In the present situation -- that is for very specific ideals --
+salvation from the natural obstruction of being infinitely generated
+comes in the shape of a derivation making the respective ideals
+differential.\\
+
+We briefly indicate the connection between arc spaces and
+partitions. Let $f\in k[x_1,\ldots, x_n]$ be a polynomial in $n$ variables $x_1,\ldots, x_n$
+with coefficients in a field $k$. We denote the formal power series ring in one
+variable $t$ over the field $k$ by $k[[t]]$. The \emph{arc
+ space} $X_\infty$ of the algebraic variety $X$ defined by $f$ is the set of
+power series solutions \begin{math} x(t)=(x_1(t),\ldots, x_n(t))\in k[[t]]^n
+\end{math} to the equation $f(x(t))=0$. This set
+turns out to be eventually algebraic in the sense that it is given by
+polynomial equations (though there are countably many of
+them). Indeed, expanding $f(x(t))$ as a power series in $t$
+gives 
+\begin{displaymath}
+  f(x(t)) = F_0 + F_1t + F_2t^2 + \cdots
+\end{displaymath}
+where the $F_i$ are polynomials in the coefficients of $t$ in $x(t)$. Therefore, a given vector of formal
+power series $a(t)\in k[[t]]^n$ is an element of the arc space
+$X_\infty$ if and only if its coefficients fulfill
+the equations $F_0,F_1,\dots$. Algebraically the corresponding set of
+solutions is described by its \emph{coordinate algebra}
+\begin{displaymath}
+  J_\infty(X)= k[x_j^{(i)}; 1\leq j \leq n, i\in \N]/(F_0,F_1,\ldots),
+\end{displaymath}
+where $\mathbb{N}=\{0,1,2,\ldots \}$. The variable $x_j^{(i)}$ corresponds to the coefficient of $t^i$
+in $x_j(t)$. We will mostly be interested in the case where $a(0)$
+is a point on $X$ (without loss of generality we may assume that this is the origin). The resulting algebra, obtained from $J_\infty(X)$
+by substituting $x_j^{(0)}=0$, is called the \emph{focussed
+  arc algebra} and denoted by $J_\infty^0(X)$; we write $f_i$ for
+the image of $F_i$ under this substitution:
+\begin{displaymath}
+  J_\infty^0(X)=k[x_j^{(i)}; 1\leq j \leq n, i\geq 1]/(f_1,f_2,\ldots).
+\end{displaymath}
+This algebra is naturally graded by the
+weight function $\wt\, x_j^{(i)}=i$ since $f_{\ell}$ is homogeneous of weight $\ell$. In
+the special case of $n=1$ we will write $y_i$ instead of
+$x_1^{(i)}$. Integer partitions arise naturally when computing weights
+of monomials in $J^0_\infty(\A^1)$. Recall that a \emph{partition} of
+$m\in \N$ is an $r$-tuple of positive integers
+$\lambda_1 \leq \lambda_2\leq \cdots \leq \lambda_r$ with $\lambda_1 +
+\cdots + \lambda_r =m$. The $\lambda_i$ are the \emph{parts of the
+  partition} and $r$ is its \emph{length}. A monomial
+$y_1^{\alpha_1}\cdots y_e^{\alpha_e}$ has
+weight $\alpha_1\cdot 1 + \cdots + \alpha_e\cdot
+e$. Asking for the number of monomials (up to coefficients) of some
+weight $m$ is thus asking for the number of partitions of $m$. This is 
+precisely what we capture when computing the Hilbert-Poincar\'{e} series of
+$J_\infty^0(\A^1)$. In general, the Hilbert-Poincar\'{e} series of $J_{\infty}^0(X)$ is defined as
+\begin{displaymath}
+  \HP_{J_\infty^0(X)}(t) = \sum_{j=0}^\infty \dim_k
+  \left(J_\infty^0(X) \right)_j\cdot t^j,
+\end{displaymath}
+where $\left(J_\infty^0(X) \right)_j$ denotes the $j$th homogeneous
+component of $J_\infty^0(X)$. In the simple case of $X=\A^1$ we may use the generating function for partitions to represent
+$\HP_{J_\infty^0(\A^1)}(t)$ by 
+\begin{displaymath}
+  \mathbb{H} := \prod_{i\geq 1} \frac{1}{1-t^i}.
+\end{displaymath}  
+
+By the general theory of Gr\"{o}bner basis $\HP_{J_\infty^0(X)}(t)$ is identical with the Hilbert-Poincar\'{e} series of the algebra 
+\begin{displaymath}
+  k[x_j^{(i)}; 1\leq j \leq n, i\geq 1]/L(I),
+\end{displaymath}
+where $L(I)$ denotes the \emph{leading ideal} of $I=(f_0,f_1,\ldots)$ (with respect to 
+a chosen monomial ordering). The leading ideal is much simpler since
+it is generated by monomials. Computing the Hilbert-Poincar\'{e}
+series of the respective algebra corresponds to counting partitions, leaving out
+those coming from weights of monomials in $L(I)$. In the simple
+example of $f=y^2$, these will be all partitions without repeated or
+consecutive parts. Such partitions are part of the well-known
+\emph{Rogers-Ramanujan identity}: the number of partitions of $n$ into
+parts congruent to 1 or 4 modulo 5 is equal to the number of
+partitions of $n$ into parts that are neither repeated nor
+consecutive (see \cite{andrews_partitions}). This gives:
+
+\begin{Thm*}
+Let $k$ be field of characteristic $0$. For $X\colon y^2=0$ we compute
+\begin{displaymath}
+ \HP_{J_{\infty}^{0}(X)}(t) = \prod_{\substack{i\geq 1 \\ i\equiv
+    1,4 \bmod 5}} \frac{1}{1-t^i}.
+\end{displaymath}
+\end{Thm*}
+
+More generally, we obtain using Gordon's generalizations of the
+Rogers-Ramanujan identities for $X\colon y^n=0$, $n\geq 2$:
+
+\begin{samepage}
+\begin{Thm*}
+\begin{displaymath}
+\HP_{J_\infty^0(X)}(t)=\Hh\cdot
+  \prod_{\substack{i\geq 1\\ i \equiv 0, n,n+1 \\ \bmod 2n+1}} (1-t^i).
+\end{displaymath}
+\end{Thm*}
+\end{samepage}
+
+The computation of $L(I)$ in these rather simple
+looking cases is nontrivial. It is carried out in Section
+\ref{sec:section_5}.\\
+
+
+Moreover, standard techniques from commutative algebra allow to compute a recursion for the
+Hilbert-Poincar\'{e} series in the case of $X\colon y^2=0$:
+
+\begin{Prop*}
+The generating series $\HP_{J_{\infty}^{0}(X)}(t)$ is the $t$-adic limit of the sequence of formal power series $A_d$ defined by:
+$$A_1=A_2=1, \quad \text{and} \quad A_d = A_{d-1}+t^{d-2} A_{d-2}\text{ for } d\geq 3.$$
+\end{Prop*}
+
+The above proposition was first found in an empirical way in
+\cite{andrews_baxter}, and it leads to the Rogers-Ramanujan
+identities (see Section \ref{sec:section_5}).\\
+
+
+Returning to the geometric aspect of the series attached to arc spaces, we
+compute them in other interesting cases: for smooth
+points, for rational double points of surfaces, and for normal
+crossings singularities. In these cases the simple geometry of the jet
+schemes permits to compute the Hilbert-Poincar\'{e} series defined
+above, and we find the following (see
+Propositions~\ref{prop:smooth_case}, \ref{cor:rational_double_point}
+and \ref{prop:normal_crossings}).
+
+\begin{Prop*} With the above introduced notation, we have:
+\begin{itemize}
+\item[(1)] If $\mathfrak{p}$ is a smooth point on a variety $X$ of dimension $d$, then 
+\[ \HP_{J_{\infty}^{\mathfrak{p}}(X)} = \left(\prod_{i\geq 1} \frac{1}{1-t^i}\right)^d, \]
+\item[(2)] if $X$ is a surface with a rational double point at $\mathfrak{p}$ then 
+\[ \HP_{J_{\infty}^{\mathfrak{p}}(X)}(t) =  \left(\frac{1}{1-t}\right)^{3} \left(\prod_{i\geq 2} \frac{1}{1-t^i}\right)^2, \]
+\item[(3)] if $X= \{ x_1\cdots x_{d+1} = 0\} \subset \mathbb{A}^{d+1}_k$, and $\mathfrak{p}$ is a point in the intersection of precisely $e$ components, then 
+\[ \HP_{J_{\infty}^{\mathfrak{p}}(X)}(t) =  \left(\prod_{i=1}^{e-1} \frac{1}{1-t^i}\right)^{d+1} \left(\prod_{i\geq e} \frac{1}{1-t^i}\right)^d. \]
+\end{itemize}
+\end{Prop*}
+
+In the past several generating series have been associated to
+the arc space of a (singular) variety by Denef and Loeser (see
+\cite{denef_loeser,denef_loeser_definable_sets}), in analogy with the
+$p$-adic case. All those series are defined in the motivic setting and
+take values in a power series ring with coefficients in (a
+localization of) a Grothendieck ring. They are rational. Some of those
+series encode more information about the singularities than
+others. For a comparison between them see
+\cite{nicaise_manuscripta,nicaise,helena_pedro}. While those series
+are concerned with the reduced structure of the arc space, our series
+is \emph{sensitive to the non-reduced structure} as well, although it is not
+rational in general. We discuss more geometric motivation for introducing the above Hilbert-Poincar\'{e} series in Section~\ref{sec:section_3} (after Definition~\ref{def:arc_Hilbert}).\\
+
+The structure of the paper is as follows: in Section~\ref{sec:section_2}, we define jet schemes and arc spaces and recall some basic facts about them.
+In Section~\ref{sec:section_3} we introduce the arc
+Hilbert-Poincar\'{e} series, we discuss its properties and we compute
+it in particular cases. Section~\ref{sec:section_4} recalls basic
+facts about partitions and the Rogers-Ramanujan
+identities. Section~\ref{sec:section_5} is devoted to the main
+theorem. For the convenience of the reader, we recall the facts about
+Hilbert-Poincar\'{e} series and Gr\"obner bases that we use in the
+paper in an appendix (Section~\ref{appendix}).
+
+\subsection*{Acknowledgements} 
+The authors thank the organizers of YMIS for preparing the ground for
+this joint research. The first named author expresses his gratitude to
+Herwig Hauser, Georg Regensburger and Josef Schicho for many useful
+discussions on these topics; the second named author is grateful to
+Monique Lejeune-Jalabert for introducing him to Hilbert-Poincar\'{e}
+series; the third named author thanks Johannes Nicaise for explaining 
+him several facts about arc spaces in detail and he thanks the
+Institut des Hautes \'{E}tudes Scientifiques, where part of this work
+was done, for hospitality.\\
+

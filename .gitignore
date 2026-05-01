@@ -1,6 +1,7 @@
 docs/
-scratch/
 misc/
+scratch/*
+!scratch/reviews/
 *.aux
 *.bbl
 *.log
@@ -10,5 +11,4 @@ misc/
 *~
 #*#
 auto/
-
 *.py

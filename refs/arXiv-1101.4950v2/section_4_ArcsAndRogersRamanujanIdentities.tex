@@ -1,0 +1,52 @@
+\section{Partitions and the Rogers-Ramanujan identities}\label{sec:section_4}
+
+A {\it partition (of length $r$)} of a postive integer $n$ is a
+non-decreasing sequence $\lambda=(\lambda_1,\ldots, \lambda_r)$ of
+positive integers $\lambda_i$, $1\leq i \leq r$, such that $$\lambda_1+
+\cdots + \lambda_r =n.$$ The integers $\lambda_i$ are called the {\it
+  parts of the partition $\lambda$}. We will denote the number of partitions of
+$n$ by $p(n)$, with $p(0):=1$. In the
+following we collect a few facts about integer partitions which will
+be used in the subsequent sections. For an introduction to this topic
+we refer for example to \cite{wilf_lecturesonis}; an extensive
+treatment can be found in \cite{andrews_partitions}.
+
+\begin{Prop}\label{prop:generatingfunction_partitions}
+  The generating series of the partition function $p$ has the
+  following infinite product representation: $$\sum_{i=0}^\infty p(n)t^n = \prod_{i\geq
+    1}\frac{1}{1-t^i}.$$
+\end{Prop}
+
+Note, that this is precisely the series $\Hh$ which we have obtained as the
+Hilbert-Poincar\'{e} series of the graded algebra $k[y_1, y_2,
+\ldots]$ where the grading is given by $\wt\, y_i =i$. More generally,
+the arc Hilbert-Poincar\'{e} series of an $d$-dimensional variety at a smooth point was given by
+$\Hh^d$. This leads us to expect a connection between the
+Hilbert-Poincar\'{e} series of arc algebras and partitions.\\
+
+The following result is known in the literature as the {\it (first)
+ Rogers-Ramanujan identity}. For a classical proof and an account of
+its history, see Chpt.\ 7 of \cite{andrews_partitions}.
+
+\begin{Thm}[Rogers-Ramanujan identity]\label{thm:rogersramanujan}
+  The number of partitions of $n$ into parts congruent to 1 or 4 modulo 5
+  is equal to the number of partitions of $n$ into parts that are neither
+  repeated nor consecutive.
+\end{Thm}
+
+Many proofs of this identity can be found in the literature. See for instance \cite{andrews_proofs} for an overview of some of them. The Rogers-Ramanujan identity was generalized by Gordon. The statement that we need is the following, see Theorem 7.5 from \cite{andrews_partitions}.
+
+\begin{Thm}\label{thm:gordon}
+Let $k\geq 2$. Let $B_k(n)$ denote the number of partitions of $n$ of the form $(\lambda_1,\ldots,\lambda_r)$, where $\lambda_j - \lambda_{j+k-1}\geq 2$ for all $j \in \{ 1, \ldots, r-k+1\}$. Let $A_k(n)$ denote the number of partitions of $n$ into parts which are not congruent to $0, k$ or $k+1$ modulo $2k+1$. Then $A_k(n) = B_k(n)$ for all $n$.
+\end{Thm}
+
+The analytic counterpart of Theorem~\ref{thm:rogersramanujan} can be formulated as (see Corollary 7.9 in \cite{andrews_partitions}):
+
+\begin{Cor}[Rogers-Ramanujan identity, analytic
+  form]\label{cor:rogersramanujan_analytic}
+Theorem~\ref{thm:rogersramanujan} is equivalent to the identity
+$$1 + \frac{t}{1-t} + \frac{t^4}{(1-t)(1-t^2)} +
+\frac{t^9}{(1-t)(1-t^2)(1-t^3)} + \cdots = \prod_{\substack{i\geq 1\\i\equiv 1,4\bmod 5}}\frac{1}{(1-t^i)}.$$
+\end{Cor}
+
+The analytic analogue of Theorem~\ref{thm:gordon} is somewhat more involved and we will not formulate it here. The interested reader can find it in Andrews' book.

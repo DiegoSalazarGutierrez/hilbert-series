@@ -11,8 +11,10 @@ hilbert series/
 ├── .vscode/                 # VS Code settings
 ├── docs/                    # Research documents
 ├── misc/                    # Miscellaneous files
-├── notes/                   # .tex math notes
+├── notes/                   # .tex math notes to write down definitions, proofs, ideas, conjectures, etc.
+├── refs/                    # .tex math papers used as references.
 ├── scratch/                 # AI-generated content & prompt logs
+│   └── reviews/             # reviews of the notes/ and src/ files
 ├── src/                     # LaTeX files compiled directly in here
 │   ├── bibliography.bib     # BibTeX references
 │   └── main.tex             # Main paper
