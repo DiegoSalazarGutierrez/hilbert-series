@@ -1,0 +1,32 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Sage File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}.py",
+            "console": "integratedTerminal",
+            "python": "/home/bashi/miniforge3/envs/sage/bin/python",
+            "env": {
+                "PATH": "/home/bashi/miniforge3/envs/sage/bin:${env:PATH}"
+            },
+            "preLaunchTask": "Preparse Sage File",
+            "justMyCode": true
+        },
+        {
+            "name": "Debug Sage File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}.py",
+            "console": "integratedTerminal",
+            "python": "/home/bashi/miniforge3/envs/sage/bin/python",
+            "env": {
+                "PATH": "/home/bashi/miniforge3/envs/sage/bin:${env:PATH}"
+            },
+            "preLaunchTask": "Preparse Sage File",
+            "justMyCode": true,
+            "stopOnEntry": false
+        }
+    ]
+}

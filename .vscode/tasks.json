@@ -17,6 +17,20 @@
                 "panel": "shared"
             },
             "problemMatcher": []
+        },
+        {
+            "label": "Preparse Sage File",
+            "type": "shell",
+            "command": "/home/bashi/miniforge3/envs/sage/bin/sage",
+            "args": [
+                "--preparse",
+                "${file}"
+            ],
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared"
+            },
+            "problemMatcher": []
         }
     ]
 }
