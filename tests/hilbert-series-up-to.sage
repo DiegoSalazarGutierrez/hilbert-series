@@ -1,5 +1,5 @@
-def weighted_deg(exponents, N):
-    return sum(exponents[k]*(k%(N - 1) + 1) for k in range(len(exponents)))
+def weighted_deg(exponents, n):
+    return sum(exponents[k] * (k // n + 1) for k in range(len(exponents)))
 
 def hilbert_series_focused_jet_algebra(R, F, N):
     n = len(R.gens())
@@ -15,12 +15,18 @@ def hilbert_series_focused_jet_algebra(R, F, N):
     hilbert_series = 0
     for d in range(N):
         for b in B0[d]:
-            if weighted_deg(b.exponents()[0], N) < N:
-                hilbert_series += t^weighted_deg(b.exponents()[0], N)
+            if weighted_deg(b.exponents()[0], n) < N:
+                hilbert_series += t^weighted_deg(b.exponents()[0], n)
     return hilbert_series
 
-R.<x> = PolynomialRing(QQ)
-F = x^2
-N = 25
+def rogers_ramanujan(n, N):
+    T.<t> = PowerSeriesRing(QQ, default_prec=N)
+    H = prod((1 - t^i)^(-1) for i in range(1, N))
+    return (H * prod((1 - t^i) for i in range(1, N) if i % (2*n + 1) in [0, n, n + 1])).polynomial()
 
+R.<x> = PolynomialRing(QQ)
+F = x^4
+N = 17
+
+print(rogers_ramanujan(4, N))
 print(hilbert_series_focused_jet_algebra(R, F, N))

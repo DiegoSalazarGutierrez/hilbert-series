@@ -6,7 +6,7 @@
 ## Directory Structure
 
 ```
-hilbert series/
+hilbert-series/
 ├── .git/                    # Git repository
 ├── .vscode/                 # VS Code settings
 ├── docs/                    # Research documents
