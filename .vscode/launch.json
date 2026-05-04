@@ -11,7 +11,6 @@
             "env": {
                 "PATH": "/home/bashi/miniforge3/envs/sage/bin:${env:PATH}"
             },
-
             "justMyCode": true
         },
         {
@@ -24,7 +23,6 @@
             "env": {
                 "PATH": "/home/bashi/miniforge3/envs/sage/bin:${env:PATH}"
             },
-
             "justMyCode": true,
             "stopOnEntry": false
         }

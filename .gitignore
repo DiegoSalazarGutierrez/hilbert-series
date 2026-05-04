@@ -4,6 +4,10 @@ scratch/*
 !scratch/reviews/
 *.aux
 *.bbl
+*.blg
+*.idx
+*.ilg
+*.ind
 *.log
 *.out
 *.synctex.gz
