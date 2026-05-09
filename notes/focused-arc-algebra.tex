@@ -26,6 +26,7 @@ An \defterm{$\mathbb{N}$-graded ring} is a ring $R$ together with a family $(R_n
 Let $k$ be a field.
 A \defterm{$k$-algebra} is a commutative unital ring $A$ together with a ring homomorphism $k \hookrightarrow A$.
 An \defterm{$\mathbb{N}$-graded $k$-algebra} is a $k$-algebra $A = \bigoplus_{n \in \mathbb{N}}A_n$ such that $A$ is an $\mathbb{N}$-graded ring, and each additive subgroup $A_n$ is a subspace of $A$.
+If $a \in A_n$, we say $a$ has \defterm{weight} $n$.
 This automatically implies $1 \in A_0$.
 
 Let $A$ be an $\mathbb{N}$-graded $k$-algebra.
@@ -33,7 +34,7 @@ The \defterm{Hilbert-Poincaré series of $A$} is defined by
 \begin{equation*}
   HP_A(t) = \sum_{n \in \mathbb{N}}\dim_k(A_n)t^n.
 \end{equation*}
-If each $A_n$ is finite dimensional, then $H_A(t) \in \mathbb{N}[[t]]$.
+If each $A_n$ is finite dimensional, then $HP_A(t) \in \mathbb{N}[[t]]$.
 
 A \defterm{differential $k$-algebra} is a $k$-algebra $A$ together with a $k$-linear derivation $\partial: A \to A$.
 An \defterm{$\mathbb{N}$-graded differential $k$-algebra} is a differential $k$-algebra $A$ that is also an $\mathbb{N}$-graded $k$-algebra satisfying $\partial(A_n) \subseteq A_{n + 1}$.
@@ -225,7 +226,7 @@ Finally, $f \in \Gamma(J_\infty X, \mathcal{O}_{J_\infty X})$ is homogeneous of 
 \begin{equation*}
   f_K(\lambda\cdot(x, i)) = \lambda^df_K(x, i) \in K,
 \end{equation*}
-for all extensions $k \to K$ of $k$, $\lambda \in K$ and $(x, i) \in X(K)$.
+for all extensions $k \to K$ of $k$, $\lambda \in K$ and $(x, i) \in J_\infty X(K)$.
 
 Maybe a better way of writing that is the following: if $x(t) \in Hom_k(Spec(K[[t]]), X)$
 \begin{equation*}
@@ -236,6 +237,18 @@ CONJECTURE: $A = k[X]/F(X)$, where $F(X) = X^k + a_{k - 1}X^{k - 1} + \dots + a_
 \begin{equation*}
   J^0A = \text{identity of Gordon-Ramanujan-Poincare with k, i} 
 \end{equation*}
+
+\subsection*{Summary (The functor of points)}
+\label{sec:summary-the-functor}
+
+In algebraic geometry, a scheme is not just its points over $k$.
+It is defined by its points over all possible $k$-algebras $k \to K$.
+\begin{enumerate}
+\item Two polynomials $f, g \in k[X_1, \dots, X_n]$ are algebraically identical if and only if $f(x) = g(x)$ for all points $x \in K^n$ and all extensions $K$.
+\item A polynomial is algebraically homogeneous of degree $d$ if and only if $f(\lambda x) = \lambda^df(x)$ for all extensions $K$, all $x \in K^n$, and all $\lambda \in K$.
+\end{enumerate}
+By using all extensions $K$, the paper's definition of weight grading is completely watertight and works for every field in existence, finite or infinite!
+However, it'd be better to write $\lambda \in K$ because $\lambda \in k^\times$ is not enough in general and if they already assume $char(k) = 0$, then $K$ is not needed at all!
 
 \printindex
 

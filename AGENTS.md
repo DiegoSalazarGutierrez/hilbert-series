@@ -8,4 +8,5 @@ The following rules are listed in descending order of priority, from most to lea
 * The content of the `refs/` directory is meant to be used as references, not to be edited
 * The content of the `notes/` directory is informal and does not need references, but the math should be correct
 * The content of the `src/` directory is for the main paper, should be formal and needs references
+* Links in `.md` files must use relative paths (e.g., `../../notes/file.tex#L42`), not absolute `file:///` URIs
 * The workflow is write → commit → review → correct → commit → write → commit → ...
