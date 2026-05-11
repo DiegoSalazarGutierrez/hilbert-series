@@ -1,167 +1,145 @@
-# Review of `focused-arc-algebra.tex` (Full Document)
+# Review: `focused-arc-algebra.tex`
 
-**Date**: 2026-05-02  
-**References used**: `refs/boundary-minimal-models.tex`, `refs/arXiv-1101.4950v2/` (Bruschek–Mourtada–Schepers)
-
----
-
-## Overview
-
-The document has two main parts:
-
-1. **Lines 25–137**: Algebraic definitions → jet algebra → focused arc algebra → coordinate presentation → two examples → a conjecture.
-2. **Lines 140–184**: Scheme-theoretic perspective on arc spaces, $K$-valued points, the reparametrization action $t \mapsto \lambda t$, and the intrinsic definition of the weight grading.
-
-The previous review (conversation `f1c113e4`) covered lines 25–137. This review covers the **entire document**, incorporating the previous findings and adding analysis of lines 140–184 against both references.
+**Date:** 2026-05-09  
+**File:** [focused-arc-algebra.tex](../../notes/focused-arc-algebra.tex)  
+**Reference:** [BMS (arXiv:1101.4950v2)](../../refs/arXiv-1101.4950v2)
 
 ---
 
-## Part I: Algebra and Examples (L25–137)
+## Overall Assessment
 
-### 1. Definitions (L25–39)
-
-| Line | Status | Notes |
-|------|--------|-------|
-| L25 | ✅ | $\mathbb{N}$-graded ring definition correct. |
-| L27 | ✅ | $k \hookrightarrow A$ convention (faithful $k$-algebra) is fine. |
-| L28–29 | ✅ | "$1 \in A_0$ is automatic" — correct and good addition. |
-| L38–39 | ✅ | $\partial(A_n) \subseteq A_{n+1}$ consistent with arc space convention. |
-
-### 2. Jet Algebra and Focused Arc Algebra (L41–72)
-
-| Line | Issue | Severity |
-|------|-------|----------|
-| L42 | $JA$ introduced without definition or reference. Should reference the universal property construction: for any differential algebra $B$ and algebra map $A \to B$, there is a unique differential algebra map $JA \to B$. See `boundary-minimal-models.tex` Appendix B (L1282–1307) or Arakawa's construction. | 🟡 Missing def |
-| L43 | $(A)_\partial = JA$ — notation $(A)_\partial$ undefined. Means "smallest differential subalgebra containing $A$". Cf. `boundary-minimal-models.tex` Remark 4 (L1309–1315). | 🟡 Missing def |
-| L46 | Grading definition correct: weight = sum of derivative orders. Consistent with both references. | ✅ |
-| L53 | $(JA)_0 = A$ — correct. | ✅ |
-| L59–63 | $J^{\mathfrak{p}}A = JA \otimes_A \kappa(\mathfrak{p})$ — matches Definition 3.1 of arXiv paper exactly: "$J_\infty(X) \otimes_{J_0(X)} \kappa(\mathfrak{p})$". | ✅ |
-| L72 | $\dim((J^{\mathfrak{p}}A)_0) = 1$ — correct, since $(JA)_0 = A$ and $A \otimes_A \kappa(\mathfrak{p}) \cong \kappa(\mathfrak{p})$. ArXiv paper confirms: "the weight zero part...is always a one-dimensional $\kappa(\mathfrak{p})$-vector space" (§3, after Def 3.1). | ✅ |
-
-### 3. Coordinate Presentation (L74–117)
-
-| Line | Issue | Severity |
-|------|-------|----------|
-| L77 | $A = k[X_1,\dots,X_n]/(F_1,\dots,F_m)$ with $F_r(0)=0$ — standard setup. | ✅ |
-| L86–92 | Identifying $JA$ with arcs $x(t) \in k[[t]]^n$ satisfying $F_r(x(t))=0$. This is the functorial description from arXiv §2 (Prop 2.1). The derivation $\partial(t^i) = t^{i+1}$ is multiplication by $t$, consistent with $D(y_i) = y_{i+1}$ in arXiv §5. | ✅ |
-| L93–97 | Writing $A = \{x \in k^n \mid F_r(x) = 0\}$ conflates the ring with its variety of $k$-points. Minor but could confuse. | 🟡 Expository |
-| L99–107 | Taylor expansion to get $JA = k[X_j^{(i)}]/(G_r^{(i)})$ — matches arXiv §2 exactly. | ✅ |
-| L103 | Subscript notation: $G_r^{(i)} \in k[X_j^{(i)} \mid i \in \mathbb{N}, j = 1,\dots,n]$. Both $i$ and $j$ vary, but same letter $i$ used for the superscript index and the running index. Could be clarified. | 🟡 Notation |
-| L116 | **Typo**: denominator has $r = 1,\dots,n$ but should be $r = 1,\dots,m$ (number of relations, not variables). | 🔴 Error |
-
-### 4. Examples (L119–133)
-
-#### Example 1 (L119–125): $A = k[X]$
-
-$H_{J^0A}(t) = \prod_{i \ge 1}(1-t^i)^{-1}$. Since $J^0(k[X]) = k[X^{(1)}, X^{(2)}, \dots]$ with $\deg(X^{(i)}) = i$, the Hilbert series is the partition generating function. **Correct.** Matches arXiv Prop 3.3 (smooth point, $d=1$).
-
-#### Example 2 (L127–133): $A = k[X]/(X^2)$
-
-$H_{J^0A}(t) = \prod_{i \equiv 1,4 \pmod{5}}(1-t^i)^{-1}$. This is the main theorem of arXiv-1101.4950v2 (Theorem 5.1) for $n=2$: $\HP_{J^0_\infty(X)}(t) = \prod_{i \not\equiv 0,2,3 \pmod{5}}(1-t^i)^{-1}$, which equals $\prod_{i \equiv 1,4 \pmod{5}}(1-t^i)^{-1}$. **Correct.**
-
-In the vertex algebra context (`boundary-minimal-models.tex`), this corresponds to $R_{\text{Vir}_{2,5}} \cong \mathbb{C}[L_{-2}]/(L_{-2}^2)$ (Example 6, L973), and the Hilbert series matches $\ch_{L(c_{2,5}, h_{1,1})}(q)$ (Lemma 4, L651–657).
-
-| Issue | Severity |
-|-------|----------|
-| **Missing characteristic assumption**: The relations in $J^0A$ for $X^2=0$ involve coefficients like $2y_1y_2$. Over $\text{char}(k) = 2$, these vanish, changing the Gröbner basis. The arXiv paper assumes $\text{char}(k) = 0$ throughout (§3). `boundary-minimal-models.tex` works over $\mathbb{C}$. The notes should state $\text{char}(k) = 0$. | 🟠 Missing hyp |
-| **Missing reference**: This deep result (first Rogers-Ramanujan identity via arc spaces) needs a citation. Primary: Bruschek–Mourtada–Schepers (arXiv:1101.4950). Vertex algebra side: `boundary-minimal-models.tex` Theorem 3. | 🟡 Missing ref |
-
-### 5. Conjecture (L135–138)
-
-> $A = k[X]/F(X)$, $F(X) = X^k + a_{k-1}X^{k-1} + \cdots + a_iX^i$, $i \ge 1$.
-> $J^0A = \text{identity of Gordon-Ramanujan-Poincaré with } k, i$
-
-**Analysis**: The arXiv paper proves the result for $F(X) = X^n$ (Theorem 5.1): $\HP_{J^0_\infty}(t) = \prod_{j \not\equiv 0, n, n+1 \pmod{2n+1}}(1-t^j)^{-1}$, which is Gordon's identity with parameters $s = n, i = 1$ (in the notation of `boundary-minimal-models.tex` eq. (1)).
-
-| Issue | Severity |
-|-------|----------|
-| Needs precise statement. "Gordon-Ramanujan-Poincaré identity" is not standard terminology. | 🟡 Clarify |
-| The conjecture is likely **not** true in full generality as stated. The Hilbert series of $J^0(k[X]/(F))$ depends on $F$, not just on $k$ and $i$. The arXiv paper only proves the case $F = X^n$ (pure power). | 🟠 Needs care |
+The document gives a self-contained development of focused arc algebras, starting from graded rings and building up to the jet algebra construction, the focused arc algebra via base change, and the scheme-theoretic weight grading. The mathematical content is largely correct and well-organized, but there are several issues ranging from notational bugs to incomplete sections. The document also reflects a productive working process — the final sections read as research notes rather than polished exposition.
 
 ---
 
-## Part II: Scheme-Theoretic Perspective (L140–184)
+## Issues Found
 
-This section develops the intrinsic/functorial viewpoint on arc spaces and the weight grading. It closely parallels Remark 3.2 of the arXiv paper.
-
-### 6. $K$-Valued Points (L140–155)
-
-| Line | Issue | Severity |
-|------|-------|----------|
-| L140 | "$X$ $k$-scheme ($X \to \text{Spec}(k)$) (not necessarily of finite type)" — fine as a note, but phrased telegraphically. | 🟡 Expository |
-| L141 | "$k \to K$ a extension" — typo: "an extension". | 🟡 Typo |
-| L144 | $X(K) = \text{Hom}_k(\text{Spec}(K), X) = \{(x, i) \mid x \in X, i: k(x) \to K\}$ — correct description of $K$-valued points. The letter $i$ clashes with the index $i$ used earlier; consider using $\iota$ or $\phi$ for the embedding $k(x) \to K$. | 🟡 Notation clash |
-| L146–155 | The evaluation map $f_K: X(K) \to K$ is correctly defined. The factorization through $\mathcal{O}_{X,x} \to k(x)$ is standard. | ✅ |
-
-### 7. Arc Space Functorial Definition (L157–162)
-
-| Line | Issue | Severity |
-|------|-------|----------|
-| L158,160 | Uses $\text{Spec}(K[[t]])$ but should use $\text{Spf}(K[[t]])$ (formal spectrum). The arXiv paper states: "The arc space $X_\infty$ represents the functor...that associates to a $k$-algebra $A$ the set $\text{Hom}_k(\text{Spf}(A[[t]]), X)$" (§2). Using $\text{Spec}$ includes the generic point of $K[[t]]$, which is incorrect for arcs. | 🔴 Error |
+### 1. Hilbert-Poincaré Series Notation Inconsistency (Line 36)
 
 > [!WARNING]
-> The distinction between $\text{Spec}$ and $\text{Spf}$ matters here. A morphism $\text{Spec}(K[[t]]) \to X$ is a $K[[t]]$-valued point of $X$ (which sees all primes of $K[[t]]$, including the generic point), while $\text{Spf}(K[[t]]) \to X$ is a formal arc (which only sees the maximal ideal $(t)$). The arc space parametrizes the latter.
+> **Bug:** The series is defined as $HP_A(t)$ on line 32 but then referenced as $H_A(t)$ on line 36.
 
-### 8. Reparametrization Action and Weight Grading (L164–184)
+```diff
+- If each $A_n$ is finite dimensional, then $H_A(t) \in \mathbb{N}[[t]]$.
++ If each $A_n$ is finite dimensional, then $HP_A(t) \in \mathbb{N}[[t]]$.
+```
 
-| Line | Issue | Severity |
-|------|-------|----------|
-| L164–168 | The endomorphism $\varphi_\lambda: K[[t]] \to K[[t]]$, $t \mapsto \lambda t$. Correct. Matches arXiv Remark 3.2 exactly. | ✅ |
-| L170–173 | The $K^\times$-action via $(\lambda, \gamma) \mapsto \gamma \circ \text{Spec}(\varphi_\lambda)$. Correct modulo the Spec/Spf issue above. | ✅ (modulo Spf) |
-| L175–179 | Homogeneity condition: $f_K(\lambda \cdot (x,i)) = \lambda^d f_K(x,i)$. This matches arXiv Remark 3.2. However, $f$ is on $J_\infty X$ and the points should be in $J_\infty X(K)$, not $X(K)$. The text at L179 writes $(x,i) \in X(K)$. | 🔴 Error |
-| L181–184 | Reformulation $f_K(x(\lambda t)) = \lambda^d f_K(x(t))$ — clearer and correct. | ✅ |
-| L181 | Missing punctuation after "the following". | 🟡 Typo |
+### 2. Jet Algebra Not Formally Defined (Lines 42–43)
 
----
+[Lines 42–43](../../notes/focused-arc-algebra.tex#L42-L43) introduce $JA$ as "the jet algebra of $A$" and claim $A \hookrightarrow JA$ with $(A)_\partial = JA$. But the jet algebra is not defined until [equations (9)/(11) on lines 144–184](../../notes/focused-arc-algebra.tex#L144-L184), and the universal property is never stated. This creates a forward-reference problem: the grading in [line 46](../../notes/focused-arc-algebra.tex#L46) and the claim $(JA)_0 = A$ on [line 53](../../notes/focused-arc-algebra.tex#L53) rely on properties that haven't been established yet.
 
-## Summary of Issues
+> [!TIP]
+> Consider restructuring so that the abstract characterization (lines 42–53) comes *after* the explicit coordinate construction (lines 96–148), or at minimum add a forward reference: "We will construct $JA$ explicitly below (see equation~\eqref{eq:9})."
 
-### Errors
+### 3. Weight vs. Degree Terminology (Lines 46, 52)
 
-| # | Location | Description |
-|---|----------|-------------|
-| 1 | L116 | Index range: $r = 1,\dots,n$ should be $r = 1,\dots,m$. |
-| 2 | L158,160,172 | $\text{Spec}(K[[t]])$ should be $\text{Spf}(K[[t]])$. |
-| 3 | L175,179 | Homogeneity domain: $(x,i)$ should be in $J_\infty X(K)$, not $X(K)$. |
+The grading defined in [line 46](../../notes/focused-arc-algebra.tex#L46) uses the total order of the derivation as the grading index (i.e., $n_1 + \dots + n_s = n$). This matches what BMS calls "weight" (see [section_3, line 5](../../refs/arXiv-1101.4950v2/section_3_ArcsAndRogersRamanujanIdentities.tex#L5): *"We prefer to use the terminology 'weight' instead of 'degree' here"*). The notes use "$\mathbb{N}$-grading" without explicitly calling it a weight grading. This is fine for notes, but worth being aware of for any future formalization.
 
-### Missing Hypotheses
+### 4. Missing `\theoremstyle{definition}` (Lines 9–16)
 
-| # | Location | Description |
-|---|----------|-------------|
-| 4 | Global | $\text{char}(k) = 0$ needed (both references assume this). |
+The document has `\theoremstyle{remark}` for remarks and examples, but there is no `\theoremstyle{definition}` — all of the initial material (graded rings, algebras, Hilbert series, etc.) is presented inline without numbered definition environments. This is a stylistic choice and fine for notes, but inconsistent with the use of numbered `example` environments later.
 
-### Missing Definitions / References
+### 5. The Two Derivation Conventions (Lines 96–101 vs. 176–188)
 
-| # | Location | Description |
-|---|----------|-------------|
-| 5 | L42 | $JA$ needs definition or reference (universal property). |
-| 6 | L43 | $(A)_\partial$ notation undefined. |
-| 7 | L127–133 | Example 2 needs reference (Bruschek–Mourtada–Schepers). |
-| 8 | L135–138 | Conjecture needs precise statement and caveats. |
+The document correctly presents two conventions:
 
-### Notation / Expository
+| Convention                                                              | Derivation                              | Equation                      |
+| :---------------------------------------------------------------------- | :-------------------------------------- | :---------------------------- |
+| "Divided power" ([eq. 4](../../notes/focused-arc-algebra.tex#L97-L100)) | $\partial X_j^{(i)} = (i+1)X_j^{(i+1)}$ | Requires $\text{char}(k) = 0$ |
+| "Simple" ([eq. 11](../../notes/focused-arc-algebra.tex#L178-L181))      | $\partial X_j^{(i)} = X_j^{(i+1)}$      | Works in any characteristic   |
 
-| # | Location | Description |
-|---|----------|-------------|
-| 9 | L93–97 | Ring vs $k$-points conflation. |
-| 10 | L103 | Letter $i$ ambiguity. |
-| 11 | L141 | "a extension" → "an extension". |
-| 12 | L144 | Letter $i$ for embedding clashes with index. Use $\iota$. |
-| 13 | L181 | Missing punctuation. |
+And correctly states the isomorphism $X_j^{(i)} \mapsto i! X_j^{(i)}$ in characteristic zero ([line 188](../../notes/focused-arc-algebra.tex#L188)).
 
----
-
-## Dictionary Across All Three Documents
-
-| `focused-arc-algebra.tex` | arXiv-1101.4950v2 | `boundary-minimal-models.tex` |
-|---|---|---|
-| $k$-algebra $A$ | coordinate ring of $X$ | Zhu $C_2$-algebra $R_V$ |
-| Jet algebra $JA$ | $J_\infty(X)$ | Jet algebra $JR_V$ |
-| Focused arc algebra $J^0A$ | $J^0_\infty(X)$ | $JR_V \otimes_{R_V} R_M$ |
-| $\partial$ with $\partial(A_n) \subseteq A_{n+1}$ | Derivation $D$, $D(y_i)=y_{i+1}$ | Translation $T$, $[H,T]=T$ |
-| $A = k[X]/(X^s)$ | $n$-fold point $y^s = 0$ | $R_{\text{Vir}_{2,2s+1}} = \mathbb{C}[L_{-2}]/(L_{-2}^s)$ |
-| $H_{J^0A}(t)$ | $\HP_{J^0_\infty(X)}(t)$ | $\ch(q)$, Andrews-Gordon product |
-| Reparametrization (L164–173) | Remark 3.2 ($k^\times$-action) | Hamiltonian $H$ with $[H,\partial]=\partial$ |
+**However:** BMS Section 2 uses the "simple" derivation $D(x_s^{(i)}) = x_s^{(i+1)}$ throughout (see [section_2, line 22](../../refs/arXiv-1101.4950v2/section_2_ArcsAndRogersRamanujanIdentities.tex#L22) and [line 42](../../refs/arXiv-1101.4950v2/section_2_ArcsAndRogersRamanujanIdentities.tex#L42)). Then in the proof of Proposition 2.1 (equations by deriving), they show that using the substitution $x_i \mapsto x_i^{(0)}/0! + x_i^{(1)}/1! \cdot t + \dots$ recovers the "divided power" coefficients.
 
 > [!NOTE]
-> The mathematical content is **solid overall**. The critical fixes are: (1) Spec → Spf, (2) the index typo at L116, and (3) the domain of the homogeneity condition at L175–179. The remaining issues are about missing context (definitions, references, characteristic).
+> The notes correctly explain why $\partial X_j^{(i)} = (i+1)X_j^{(i+1)}$ arises from requiring $\partial(F(X(t))) = \partial_t(F(X(t)))$. This motivation ([lines 103–117](../../notes/focused-arc-algebra.tex#L103-L117)) is one of the strongest parts of the document.
+
+### 6. Typo in Equation (11) (Line 180)
+
+```latex
+\partial X^{(i)}_j = X^{(i + 1)}_j
+```
+
+This is correct for the "simple" derivation. No issue here — just confirming consistency.
+
+### 7. Example 2: Rogers-Ramanujan Identity (Lines 168–174)
+
+The claim ([lines 168–174](../../notes/focused-arc-algebra.tex#L168-L174)) is:
+
+$$HP_{J^0A}(t) = \prod_{\substack{i \in \mathbb{Z}_+, \\ i \equiv 1, 4 \bmod 5}} \frac{1}{1-t^i}, \quad A = k[X]/(X^2).$$
+
+This is **correct** and matches [BMS Theorem 5.1](../../refs/arXiv-1101.4950v2/section_5_ArcsAndRogersRamanujanIdentities.tex#L384-L392) specialized to $n = 2$:
+
+$$HP_{J_\infty^0(X)}(t) = \prod_{\substack{i \ge 1 \\ i \not\equiv 0, 2, 3 \bmod 5}} \frac{1}{1-t^i}$$
+
+Since $i \not\equiv 0, 2, 3 \pmod{5}$ is equivalent to $i \equiv 1, 4 \pmod{5}$, the formulas agree. ✅
+
+### 8. The `f^{(l)}_r` Evaluation (Lines 151–158)
+
+The focused arc algebra is computed by setting $X_j^{(0)} = 0$ and working with $i \in \mathbb{Z}_+$ variables. The notation $f_r^{(l)} = F_r^{(l)}|_{X_j^{(0)}=0}$ matches BMS's notation exactly (see [section_3, line 19](../../refs/arXiv-1101.4950v2/section_3_ArcsAndRogersRamanujanIdentities.tex#L19)).
+
+> [!NOTE]
+> The constraint should be $l \in \mathbb{Z}_+$ (not $l \in \mathbb{N}$) for the generators of $J^0A$, because $f_r^{(0)} = F_r^{(0)}|_{X_j^{(0)}=0} = F_r(0, \dots, 0) = 0$ by assumption (eq. 3), so the $l=0$ generator is trivial. This is correctly handled: [line 152](../../notes/focused-arc-algebra.tex#L152) uses $l \in \mathbb{Z}_+$ and [line 157](../../notes/focused-arc-algebra.tex#L157) uses $l \in \mathbb{Z}_+$.
+
+### 9. Scheme-Theoretic Weight Grading (Lines 190–233)
+
+This section correctly presents the intrinsic definition of the weight grading via the $k^\times$-action on arc spaces. It matches [BMS Remark 3.2](../../refs/arXiv-1101.4950v2/section_3_ArcsAndRogersRamanujanIdentities.tex#L39-L43).
+
+**One issue:** BMS writes $\lambda \in k^\times$, whereas your notes write "for all extensions $k \to K$ of $k$, $\lambda \in K$" ([line 228](../../notes/focused-arc-algebra.tex#L228)). As your own exposition in [formal_vs_function_rings.md](../expositions/formal_vs_function_rings.md) establishes:
+
+- If $\text{char}(k) = 0$ (which is assumed throughout the jet algebra construction), then $\lambda \in k^\times$ suffices and no extensions are needed.
+- Extensions are only needed over finite fields.
+
+The notes' final paragraph ([lines 249–250](../../notes/focused-arc-algebra.tex#L249-L250)) correctly identifies this tension:
+
+> *"it'd be better to write $\lambda \in K$ because $\lambda \in k^\times$ is not enough in general and if they already assume $\text{char}(k) = 0$, then $K$ is not needed at all!"*
+
+> [!IMPORTANT]
+> Since the document assumes $\text{char}(k) = 0$ ([line 101](../../notes/focused-arc-algebra.tex#L101)), the definition on [lines 224–228](../../notes/focused-arc-algebra.tex#L224-L228) is **more general than necessary**. Consider either:
+> 1. Simplifying to $\lambda \in k^\times$ (since char 0 is assumed), or
+> 2. Keeping the general formulation but adding a remark that it simplifies in characteristic zero.
+
+### 10. Conjecture Section (Lines 235–238)
+
+This section is clearly a placeholder ([lines 235–238](../../notes/focused-arc-algebra.tex#L235-L238)):
+
+```latex
+CONJECTURE: $A = k[X]/F(X)$, where $F(X) = X^k + a_{k - 1}X^{k - 1} + \dots + a_iX^i$, $i \ge 1$.
+\begin{equation*}
+  J^0A = \text{identity of Gordon-Ramanujan-Poincare with k, i} 
+\end{equation*}
+```
+
+> [!WARNING]
+> **Variable clash:** The conjecture uses $k$ both as the base field and as the degree of $F(X)$. This should be changed to avoid ambiguity — perhaps use $d$ for the degree:
+> $F(X) = X^d + a_{d-1}X^{d-1} + \dots + a_iX^i$.
+
+The intended conjecture appears to be a generalization of [BMS Theorem 5.1](../../refs/arXiv-1101.4950v2/section_5_ArcsAndRogersRamanujanIdentities.tex#L384-L392), which handles $F(X) = X^n$ (where $a_{n-1} = \dots = a_1 = 0$ and $i = n$). For the general case, the "identity of Gordon-Ramanujan-Poincaré" would need to be stated precisely — presumably it involves Gordon's generalization with parameters depending on $d$ and $i$.
+
+### 11. Summary Section (Lines 240–250)
+
+This reads as working notes rather than polished exposition. The numbered list ([lines 245–248](../../notes/focused-arc-algebra.tex#L245-L248)) is accurate and valuable — it clearly summarizes why the functor-of-points approach is needed. However:
+
+- The final sentence ([line 250](../../notes/focused-arc-algebra.tex#L250)) mixes informal commentary with the mathematical content.
+- The exclamation mark at the end of [line 249](../../notes/focused-arc-algebra.tex#L249) and informal tone throughout suggest this section hasn't been revised.
+
+---
+
+## Summary of Required Fixes
+
+| #    | Severity   | Line(s)                                                  | Issue                                               |
+| :--- | :--------- | :------------------------------------------------------- | :-------------------------------------------------- |
+| 1    | **Bug**    | [36](../../notes/focused-arc-algebra.tex#L36)            | `H_A(t)` should be `HP_A(t)`                        |
+| 10   | **Bug**    | [235](../../notes/focused-arc-algebra.tex#L235)          | Variable clash: `k` used as both field and exponent |
+| 2    | Structure  | [42–53](../../notes/focused-arc-algebra.tex#L42-L53)     | Jet algebra used before defined                     |
+| 9    | Clarity    | [224–228](../../notes/focused-arc-algebra.tex#L224-L228) | Overly general definition for char 0 context        |
+| 10   | Incomplete | [235–238](../../notes/focused-arc-algebra.tex#L235-L238) | Conjecture is a placeholder                         |
+| 11   | Polish     | [240–250](../../notes/focused-arc-algebra.tex#L240-L250) | Summary section needs revision                      |
+
+## What's Working Well
+
+- **Motivation of the derivation** ([lines 103–117](../../notes/focused-arc-algebra.tex#L103-L117)): The explanation of *why* $\partial X_j^{(i)} = (i+1)X_j^{(i+1)}$ is the right definition is clear and rigorous.
+- **Two conventions** ([lines 176–188](../../notes/focused-arc-algebra.tex#L176-L188)): Presenting both conventions and their isomorphism is very useful.
+- **Focused arc algebra construction** ([lines 55–72](../../notes/focused-arc-algebra.tex#L55-L72), [150–158](../../notes/focused-arc-algebra.tex#L150-L158)): The base-change definition and its explicit coordinate realization are clean and match BMS exactly.
+- **Examples** ([lines 160–174](../../notes/focused-arc-algebra.tex#L160-L174)): Both examples are correct and give concrete anchor points.
