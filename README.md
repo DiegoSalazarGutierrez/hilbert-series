@@ -5,7 +5,7 @@ One of the most important results of [BMS](#references) is the demonstration of 
 In short, we have
 
 $$
-\mathrm{HP}_{J^0_{X^s}}(t) = \prod_{n = 1, n \not\equiv 0, n, n + 1 \bmod 2s + 1}^\infty\frac{1}{1 - t^n}.
+\mathrm{HP}_{J^0_{X^s}}(t) = \prod_{n = 1, n \not\equiv 0, s, s + 1 \bmod 2s + 1}^\infty\frac{1}{1 - t^n}.
 $$
 
 This identity depends only on a single parameter $s = 1, 2, \dots$, yet the full generalization by Andrews-Gordon of the Rogers-Ramanujan identity depends on two parameters $s = 1, 2, \dots, i = 1, \dots, s$.
