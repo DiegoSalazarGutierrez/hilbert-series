@@ -1,7 +1,6 @@
 docs/
 misc/
-scratch/*
-!scratch/reviews/
+scratch/
 *.aux
 *.bbl
 *.blg
@@ -13,6 +12,6 @@ scratch/*
 *.synctex.gz
 *.pdf
 *~
-#*#
+\#*#
 auto/
 *.py

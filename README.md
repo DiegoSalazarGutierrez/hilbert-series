@@ -35,7 +35,7 @@ hilbert-series/
 ├── refs/                    # .tex math papers used as references
 ├── scratch/                 # AI-generated content & prompt logs
 │   ├── explanations/        # Explanations curated by me
-│   └── reviews/             # Reviews of the notes/ and src/ files
+│   └── reviews/             # Reviews of the project, notes/ and src/ files
 ├── src/                     # main paper LaTeX files
 │   ├── bibliography.bib     # BibTeX references
 │   └── main.tex             # Main paper
