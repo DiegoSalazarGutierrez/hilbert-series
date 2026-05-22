@@ -86,11 +86,11 @@ and $\mathfrak{p} = (X_1 + (F_1, \dots, F_m), \dots, X_n + (F_1, \dots, F_m))$ i
 In this case, the residue field is $\kappa(\mathfrak{p}) = k$, and the natural homomorphism $A \to k$ is just evaluation at $(0, \dots, 0)$.
 Informally, we can think of $JA$ as being the following set of solutions
 \begin{equation*}
-  JA = \{x(t) \in k[[t]]^n \mid 0 = F_r(x(t)), r = 1, \dots, m \}
+  JA = \{(x_1(t), \dots, x_n(t)) \in k[[t]]^n \mid 0 = F_r(x_1(t), \dots, x_n(t)), r = 1, \dots, m\}
 \end{equation*}
 in the same way we can think of $A$ as
 \begin{equation*}
-  A = \{x \in k^n \mid 0 = F_r(x), r = 1, \dots, m\}.
+  A = \{(x_1, \dots, x_n) \in k^n \mid 0 = F_r(x_1, \dots, x_n), r = 1, \dots, m\}.
 \end{equation*}
 Of course, this is just an intuition because the $k$-algebra $A$ may be nonreduced.
 
@@ -123,7 +123,7 @@ Following our intuition, we write
   F_r(X_1(t), \dots, X_n(t)) = F_r^{(0)} + F_r^{(1)}t + \dots, \qquad r = 1, \dots, m,
 \end{equation}
 where $F_r^{(l)} \in k[X^{(i)}_j \mid i \in \mathbb{N}, j = 1, \dots, n], l \in \mathbb{N}, r = 1, \dots, m$.
-Then $(F^{(l)}_r \mid l \in \mathbb{N}, r = 1, \dots, m)$ is a differential ideal because $\partial(F_r(X(t))) = \partial_t(F_r(X(t))), r = 1, \dots, m$ implies
+Then $(F^{(l)}_r \mid l \in \mathbb{N}, r = 1, \dots, m)$ is a differential ideal because $\partial(F_r(X_1(t), \dots, X_n(t))) = \partial_t(F_r(X_1(t), \dots, X_n(t))), r = 1, \dots, m$ implies
 \begin{equation*}
   \partial(F_r^{(l)}) = (l + 1)F_r^{(l + 1)}, \qquad l \in \mathbb{N}, r = 1, \dots, m.
 \end{equation*}
