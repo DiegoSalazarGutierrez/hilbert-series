@@ -1,20 +1,20 @@
 # Hilbert Series and Rogers-Ramanujan Identities
 
 ## Project Overview
-One of the most important results of [BMS](#references) is the demonstration of the connection between the Hilbert series of the fat point $X^s = 0$ for $s = 1, 2, \dots$ to the Rogers-Ramanujan series.
+One of the most important results of [BMS](#references) is the demonstration of the connection between the Hilbert series of the fat point $X^n = 0$ for $n = 1, 2, \dots$ to the Rogers-Ramanujan series.
 In short, we have
 
 $$
-\mathrm{HP}_{J^0_{X^s}}(t) = \prod_{n = 1, n \not\equiv 0, s, s + 1 \bmod 2s + 1}^\infty\frac{1}{1 - t^n}.
+\mathrm{HP}_{J^0_{X^n}}(t) = \prod_{i = 1, i \not\equiv 0, n, n + 1 \bmod 2n + 1}^\infty\frac{1}{1 - t^i}.
 $$
 
-This identity depends only on a single parameter $s = 1, 2, \dots$, yet the full generalization by Andrews-Gordon of the Rogers-Ramanujan identity depends on two parameters $s = 1, 2, \dots, i = 1, \dots, s$.
+This identity depends only on a single parameter $n = 1, 2, \dots$, yet the full generalization by Andrews-Gordon of the Rogers-Ramanujan identity depends on two parameters $n = 1, 2, \dots, s = 1, \dots, n$.
 
 $$
-\sum_{k = (k_1, \dots, k_{s - 1}) \in \mathbb{N}^{s - 1}}t^{kB^{(s)}_{s - 1}}\frac{t^{\frac{1}{2}kG^{(s)}k^T + kB^{(s)}_{s - i}}}{(t)_{k_1}\dots(t)_{k_{s - 1}}} = \left(\prod^{\infty}_{n = 1, n \not\equiv 0, \pm i \mod 2s + 1}\frac{1}{1 - t^n}\right).
+\sum_{k = (k_1, \dots, k_{n - 1}) \in \mathbb{N}^{n - 1}}t^{kB^{(n)}_{n - 1}}\frac{t^{\frac{1}{2}kG^{(n)}k^T + kB^{(n)}_{n - s}}}{(t)_{k_1}\dots(t)_{k_{n - 1}}} = \left(\prod^{\infty}_{i = 1, i \not\equiv 0, \pm s \mod 2n + 1}\frac{1}{1 - t^i}\right).
 $$
 
-In other words, we have only used the generalization for $s = 1, 2, \dots$ and $i = s$.
+In other words, we have only used the generalization for $n = 1, 2, \dots$ and $s = n$.
 Our main goal is to 'complete' the results of [BMS](#references) by using the remaining identities.
 
 This probably involves understanding [BMS](#references) while generalizing some results to modules.
