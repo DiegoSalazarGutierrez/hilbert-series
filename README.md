@@ -51,10 +51,11 @@ hilbert-series/
 1. Fully understand the results in [BMS](#references)
 2. Verify all results in [BMS](#references) using SageMath or Mathematica
 3. Try to generalize some results to modules like jet modules or Gröbner bases for modules, or in other directions like curves in two variables $X, Y$
-4. Try to do educated guesses for the missing parts of the results
-5. Prove these generalized results
-6. Write a paper about these generalized results
-7. Try to publish the paper
+4. Introduce a second variable to the identities to fully capture the bi-graded Andrews-Gordon generalizations (where $s$ and $n$ both vary)
+5. Try to do educated guesses for the missing parts of the results
+6. Prove these generalized results
+7. Write a paper about these generalized results
+8. Try to publish the paper
 
 ## References
 

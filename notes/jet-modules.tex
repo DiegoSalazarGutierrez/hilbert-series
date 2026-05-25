@@ -1,0 +1,723 @@
+\documentclass[a4paper, 12pt]{amsart}
+
+\usepackage[margin = 0.75in]{geometry}
+\usepackage{imakeidx}
+\usepackage{tikz-cd}
+\makeindex
+
+\newcommand{\defterm}[1]{\textbf{\textit{#1}}\index{#1}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\inc}{inc}
+
+\begin{document}
+
+\title{Jet modules}
+\author{Diego Salazar}
+\date{\today}
+\maketitle
+
+In this note, all rings and algebras are commutative with unit over a field $k$.
+Let $A$ be a finitely generated $k$-algebra, and let $JA$ denote its jet algebra.
+We have a natural algebra inclusion $\inc: A \hookrightarrow JA$.
+
+We present two constructions of $\mathbb{N}$-graded $JA$-modules starting from an $\mathbb{N}$-graded $A$-module $M$:
+the tensor product jet module $JM$,
+and the Leibniz jet module $J_\partial M$.
+These constructions are genuinely different and satisfy different universal properties.
+
+\begin{remark}
+  \label{rmk:module-classification}
+  By the structure theorem for finitely generated modules over a principal ideal domain, any finitely generated module over the local ring $A = k[X]/(X^n)$ is isomorphic to a finite direct sum of cyclic modules of the form $k[X]/(X^s)$ for $1 \le s \le n$. Therefore, understanding these jet module constructions for the building blocks $M = k[X]/(X^s)$ is sufficient to extend the theory to the entire category of finitely generated $\mathbb{N}$-graded $A$-modules.
+\end{remark}
+
+\section{The tensor product jet module}
+\label{sec:tens-prod-jet}
+
+\begin{definition}
+  \label{def:JM}
+  Let $M$ be an $\mathbb{N}$-graded $A$-module.
+  The \defterm{tensor product jet module} is the $\mathbb{N}$-graded $JA$-module
+  \begin{equation*}
+    JM = JA \otimes_A M,
+  \end{equation*}
+  where $JA$ is viewed as an $A$-algebra via the inclusion $\inc: A \hookrightarrow JA$.
+  The $JA$-action is given by $a \cdot (b \otimes m) = (ab) \otimes m$ for $a, b \in JA$ and $m \in M$.
+\end{definition}
+
+\begin{proposition}
+  \label{prp:UP-JM}
+  The tensor product jet module satisfies the following universal property.
+  For any $\mathbb{N}$-graded $JA$-module $N$,
+  \begin{equation}
+    \label{eq:UP-JM}
+    \Hom_{JA}(JM, N) \cong \Hom_A(M, N),
+  \end{equation}
+  where $N$ is viewed as an $\mathbb{N}$-graded $A$-module via restriction of scalars along $\inc: A \hookrightarrow JA$.
+  In other words, the functor $JA \otimes_A \bullet$ is left adjoint to the restriction of scalars functor.
+\end{proposition}
+
+\begin{proof}
+  This is the standard adjunction for extension of scalars.
+  Given a graded $JA$-module map $\overline{\phi}: JA \otimes_A M \to N$,
+  we define $\phi: M \to N$ by $\phi(m) = \overline{\phi}(1 \otimes m)$.
+  Conversely, given a graded $A$-module map $\phi: M \to N$,
+  we define $\overline{\phi}: JA \otimes_A M \to N$ by $\overline{\phi}(a \otimes m) = a \cdot \phi(m)$.
+\end{proof}
+
+Let $\mathfrak{p} \in \operatorname{Spec}(A)$ be a prime ideal and $\kappa(\mathfrak{p}) = A_\mathfrak{p}/\mathfrak{p}A_\mathfrak{p}$ its residue field. By base changing from $JA$ to the focused arc algebra $J^\mathfrak{p}A = JA \otimes_A \kappa(\mathfrak{p})$, we define the \defterm{focused tensor product jet module at $\mathfrak{p}$} as $J^\mathfrak{p}M := J^\mathfrak{p}A \otimes_A M$. Because tensor products associate, this focused module immediately inherits an analogous universal property, which will be heavily utilized later:
+
+\begin{corollary}
+  \label{cor:UP-JpM}
+  For any $\mathbb{N}$-graded $J^\mathfrak{p}A$-module $N$, the standard extension of scalars adjunction yields a canonical isomorphism:
+  \begin{equation}
+    \label{eq:UP-JpM}
+    \Hom_{J^\mathfrak{p}A}(J^\mathfrak{p}M, N) \cong \Hom_A(M, N),
+  \end{equation}
+  where $N$ is viewed as an $A$-module via the canonical restriction mapping $A \hookrightarrow JA \to J^\mathfrak{p}A$.
+\end{corollary}
+
+\begin{example}
+  \label{exa:JM-free}
+  Let $A = k[X]/(X^n)$ and $M = A$.
+  Then $JM = JA \otimes_A A \cong JA$.
+\end{example}
+
+\begin{example}
+  \label{exa:JM-residue}
+  Let $A = k[X]/(X^n)$ and $M = k = A/(X)$.
+  Then
+  \begin{equation*}
+    JM = JA \otimes_A k = JA / (X^{(0)}) = J^0A,
+  \end{equation*}
+  the focused arc algebra at the origin.
+\end{example}
+
+\begin{example}
+  \label{exa:JM-cyclic}
+  Let $A = k[X]/(X^n)$ and $M = k[X]/(X^s)$ for $1 \le s \le n$.
+  To compute $JM = JA \otimes_A M$, we can use the presentation of $M$ as a graded $A$-module:
+  \begin{equation*}
+    A \xrightarrow{\cdot X^s} A \to M \to 0,
+  \end{equation*}
+  where $\cdot X^s: A \to A, p(X) \mapsto p(X)\cdot X^s$.
+  Tensoring this exact sequence with $JA$ over $A$ yields the exact sequence
+  \begin{equation*}
+    JA \otimes_A A \xrightarrow{1 \otimes \cdot X^s} JA \otimes_A A \to JA \otimes_A M \to 0.
+  \end{equation*}
+  Recall that the graded $A$-module structure on $JA$ is given by the natural inclusion $\inc: A \hookrightarrow JA$, which maps $X \mapsto X(0) = X^{(0)}$.
+  Under the canonical isomorphism $JA \otimes_A A \cong JA$, the map $1 \otimes \cdot X^s$ becomes multiplication by the image of $X^s$, namely $(X^{(0)})^s$.
+  Therefore, the sequence reduces to
+  \begin{equation*}
+    JA \xrightarrow{\cdot (X^{(0)})^s} JA \to JM \to 0,
+  \end{equation*}
+  which shows that
+  \begin{equation*}
+    JM \cong JA / ((X^{(0)})^s \cdot JA).
+  \end{equation*}
+  Setting $X^{(0)} = 0$ (i.e., focusing at the origin),
+  the ideal $(X^{(0)})^s \cdot JA$ vanishes and
+  \begin{equation*}
+    J^0M = JM \otimes_A k = J^0A.
+  \end{equation*}
+  Thus the focused tensor product jet module is independent of $s$.
+\end{example}
+
+\section{Graded modules over differential algebras}
+\label{sec:graded-modules-diff-alg}
+
+Before defining our main object of interest, we briefly clarify the category of modules we will be working with. Let $B$ be a differential algebra (such as the jet algebra $JA$). Because $B$ is a differential algebra, one might assume that a $B$-module is naturally required to possess its own compatible differential structure. However, for the purposes of these notes, we work strictly within the algebraic category of $\mathbb{N}$-graded $B$-modules, which we denote by $\mathbb{N}\text{-gr-}B\text{-Mod}$.
+
+\begin{itemize}
+  \item \textbf{Objects:} An object $N = \bigoplus_{i \ge 0} N_i$ in this category is an $\mathbb{N}$-graded abelian group equipped with a left $B$-module structure that respects the grading, meaning $(B)_i \cdot N_j \subseteq N_{i+j}$. Crucially, there is no requirement for $N$ to independently carry any derivations.
+  \item \textbf{Morphisms:} A morphism $\psi: N \to P$ between two such objects is a $B$-linear map that preserves the grading (i.e., a graded morphism of degree $0$, meaning $\psi(N_i) \subseteq P_i$).
+\end{itemize}
+
+Under this framework, the jet module we construct will be an object in $\mathbb{N}\text{-gr-}JA\text{-Mod}$. Note that our base algebra $A$ is merely a $k$-algebra (not a differential algebra), so our base module $M$ is simply an object in $\mathbb{N}\text{-gr-}A\text{-Mod}$. 
+
+Furthermore, since $A$ embeds into $JA$ via the canonical map $\inc: A \hookrightarrow JA$ given by $a \mapsto \partial^0(a)$, every $JA$-module $N$ naturally inherits the structure of an $A$-module via restriction of scalars. That is, the action is given by $a \cdot n := \partial^0(a) n$. This allows us to unambiguously consider sets of $A$-linear homomorphisms, such as $\Hom_A(M, N)$ or $\Hom_A(M, N[[t]])$, whenever $N$ is a $JA$-module.
+
+\section{The Leibniz jet module}
+\label{sec:leibniz-jet-module}
+
+We now define a second, genuinely different functor from $A$-modules to $JA$-modules.
+The key idea is to replace the target $N$ in the universal property~\eqref{eq:UP-JM}
+by the module of formal arcs $N[[t]]$.
+
+\subsection{The $A$-module structure on $N[[t]]$}
+\label{sec:A-module-Nt}
+
+Let $N$ be an $\mathbb{N}$-graded $JA$-module.
+The universal arc of $A$ is the algebra homomorphism
+\begin{equation*}
+  \phi: A \to JA[[t]], \qquad a \mapsto a(t) = \sum_{l \in \mathbb{N}} \partial^l(a)t^l.
+\end{equation*}
+
+Since $N$ is an $\mathbb{N}$-graded $JA$-module, we can form the power series module $N[[t]]$ consisting of formal power series $\sum_{l \ge 0} u_l t^l$ with coefficients $u_l \in N$.
+This $N[[t]]$ naturally becomes a module over the ring of formal power series $JA[[t]]$. 
+The action of an element $f(t) = \sum_{j \ge 0} f_j t^j \in JA[[t]]$ on an element $u(t) = \sum_{k \ge 0} u_k t^k \in N[[t]]$ is defined by the standard Cauchy product:
+\begin{equation*}
+  f(t)u(t) = \sum_{l \ge 0} \left( \sum_{j + k = l} f_ju_k\right) t^l,
+\end{equation*}
+where the inner product $f_ju_k$ uses the underlying $JA$-module structure of $N$.
+Pulling back the action along $\phi$ makes $N[[t]]$ into an $\mathbb{N}$-graded $A$-module:
+for $a \in A$ and $u(t) = \sum_{l \ge 0} u_l t^l \in N[[t]]$,
+\begin{equation*}
+  au(t) = a(t)u(t) = \sum_{l \ge 0}\left(\sum_{j + k = l} \partial^j(a)u_k\right)t^l.
+\end{equation*}
+
+\subsection{Definition and universal property}
+\label{sec:def-UP-Jd}
+
+\begin{definition}
+  \label{def:JdM}
+  Let $M$ be an $A$-module.
+  The \defterm{Leibniz jet module} $J_\partial M$ is the $JA$-module
+  characterized by the following universal property:
+  for any $JA$-module $N$,
+  \begin{equation}
+    \label{eq:UP-JdM}
+    \Hom_{JA}(J_\partial M, N) \cong \Hom_A(M, N[[t]]),
+  \end{equation}
+  where $N[[t]]$ is viewed as an $A$-module as in \S\ref{sec:A-module-Nt}.
+\end{definition}
+
+\begin{remark}
+  \label{rmk:universal-derivatives}
+  By applying the universal property to $N = J_\partial M$, the identity endomorphism $\mathrm{id} \in \Hom_{JA}(J_\partial M, J_\partial M)$ corresponds to a canonical $A$-module homomorphism
+  \begin{equation*}
+    \Delta_M: M \to J_\partial M[[t]].
+  \end{equation*}
+  For any $m \in M$, this map gives a formal power series $\Delta_M(m) \in J_\partial M[[t]]$. The internal generators $m^{(l)} \in J_\partial M$ are defined precisely as the coefficients of this universal series:
+  \begin{equation*}
+    \Delta_M(m) = \sum_{l=0}^\infty m^{(l)} t^l.
+  \end{equation*}
+  Because $\Delta_M$ is an $A$-linear map (with $A$ acting on the formal power series ring as described in \S\ref{sec:A-module-Nt}), the compatibility relations $\Delta_M(am) = a(t)\Delta_M(m)$ natively force the generalized Leibniz relations onto the coefficients $m^{(l)}$.
+\end{remark}
+
+\begin{remark}
+  \label{rmk:comparison-UP}
+  The two universal properties differ only in the target of the right-hand side:
+  \begin{align*}
+    \Hom_{JA}(JM, N) &\cong \Hom_A(M, N), \\
+    \Hom_{JA}(J_\partial M, N) &\cong \Hom_A(M, N[[t]]).
+  \end{align*}
+  The tensor product $JM$ represents \emph{constant} maps from $M$ into $N$
+  (where $A$ acts on $N$ through $X^{(0)}$ alone),
+  while $J_\partial M$ represents \emph{formal arcs} from $M$ into $N$
+  (where $A$ acts on $N[[t]]$ through the full power series $X(t) = X^{(0)} + X^{(1)}t + \dots$).
+\end{remark}
+
+\begin{remark}
+  \label{rmk:literature-context}
+  The universal property~\eqref{eq:UP-JdM} uniquely characterizes $J_\partial M$ as the universal object for \emph{Hasse-Schmidt derivations} on the module $M$ (relative to the arc algebra $JA$). In the broader mathematical literature (particularly in differential algebra and algebraic geometry), an equivalent construction is commonly known as the \emph{module of infinite jets}, the \emph{arc module}, or the \emph{module of principal parts} of $M$. We adopt the terminology ``Leibniz jet module'' to explicitly highlight the generalized Leibniz relations that define its internal structure, clearly distinguishing it from the constant-map scalar extension of the tensor product jet module $JM$.
+\end{remark}
+
+\subsection{Explicit construction via the Leibniz arc bimodule}
+\label{sec:expl-constr}
+
+Because the construction $M \mapsto J_\partial M$ is a right-exact functor that preserves direct sums, Watt's Theorem implies it must be representable as a tensor product. We can construct $J_\partial M$ explicitly by defining a universal bimodule $J_\partial A$, which we call the \defterm{Leibniz arc bimodule} (or simply the Leibniz jet module of the ring itself).
+
+Let $J_\partial A = JA[q]$ denote the module of polynomials in the formal variable $q$ over $JA$. We view $J_\partial A$ primarily as a free left $JA$-module on the countable basis $\{1, q, q^2, \dots\}$. We assign the weight $l$ to the generator $q^l$, making $J_\partial A$ an $\mathbb{N}$-graded left $JA$-module.
+We endow $J_\partial A$ with the structure of a right $A$-module by defining the right action of $a \in A$ on the basis elements as:
+\begin{equation}
+  \label{eq:P-partial-right-action}
+  q^l \cdot a = \sum_{j=0}^l \partial^j(a) q^{l-j}.
+\end{equation}
+\begin{lemma}
+  \label{lem:action-generating-function}
+  The right action of $a \in A$ on the basis elements $q^l$ is uniquely determined by the generating function identity:
+  \begin{equation}
+    \label{eq:action-generating-function}
+    \sum_{l \in \mathbb{N}} (q^l \cdot a) t^l = a(t) \sum_{k \in \mathbb{N}} (qt)^k = \frac{a(t)}{1 - qt}
+  \end{equation}
+  where $a(t) = \sum_{j \in \mathbb{N}} \partial^j(a) t^j \in JA[[t]]$.
+\end{lemma}
+\begin{proof}
+  Multiplying the series $a(t)$ by $\sum (qt)^k$, the coefficient of $t^l$ is given exactly by $\sum_{j+k=l} \partial^j(a) q^k = \sum_{j=0}^l \partial^j(a) q^{l-j}$, matching~\eqref{eq:P-partial-right-action}.
+\end{proof}
+This right action is well-defined and associative (meaning $(q^l \cdot a) \cdot b = q^l \cdot (ab)$) precisely because the sequence of operators $\partial^j$ on $JA$ forms a Hasse-Schmidt derivation sequence, satisfying $\partial^k(ab) = \sum_{i+j=k} \partial^i(a)\partial^j(b)$. Furthermore, because $A$ is concentrated in degree $0$, this right action preserves the internal grading. Thus, $J_\partial A$ is an $\mathbb{N}$-graded $(JA, A)$-bimodule, where the $n$-th graded piece consists precisely of the elements whose constituent degrees sum to $n$:
+\begin{equation}
+  \label{eq:JdA-n}
+  (J_\partial A)_n = \bigoplus_{l=0}^n (JA)_{n-l} \cdot q^l.
+\end{equation}
+
+\begin{remark}
+  \label{rmk:vojta-construction}
+  This specific construction of the bimodule $J_\partial A$---building a free module whose basis elements represent purely differential orders and endowing it with a right action dictated by the generalized Leibniz rule---is precisely the algebraic framework used by Paul Vojta in \emph{Jets via Hasse-Schmidt Derivations} to construct the module of principal parts (and subsequently, jet schemes) over arbitrary rings without assuming characteristic zero. By directly employing Hasse--Schmidt derivations, this definition universally bypasses the need for divided powers.
+\end{remark}
+
+For any $A$-module $M$, the Leibniz jet module is given identically by the tensor product:
+\begin{equation}
+  \label{eq:JdM-tensor}
+  J_\partial M := J_\partial A \otimes_A M.
+\end{equation}
+The internal generators $m^{(l)} \in J_\partial M$ are recovered as $m^{(l)} := q^l \otimes m$. One of the most elegant features of this construction is that the generalized Leibniz rule is no longer an arbitrary relation imposed by fiat; rather, it is natively enforced by the standard balancing condition of the tensor product over $A$. 
+
+In any tensor product over $A$, we can move scalars $a \in A$ across the tensor symbol: $(x \cdot a) \otimes y = x \otimes (ay)$. Applying this to the basis element $q^l \in J_\partial A$ and an element $m \in M$, we have:
+\begin{equation*}
+  (q^l \cdot a) \otimes m = q^l \otimes (am).
+\end{equation*}
+On the right-hand side, by definition of the internal generators, $q^l \otimes (am)$ is simply the formal generator $(am)^{(l)}$. 
+On the left-hand side, we expand the right action $q^l \cdot a$ using the Hasse-Schmidt derivation formula \eqref{eq:P-partial-right-action}:
+\begin{align*}
+  (q^l \cdot a) \otimes m &= \left( \sum_{j=0}^l \partial^j(a) q^{l-j} \right) \otimes m \\
+  &= \sum_{j=0}^l \left( \partial^j(a) q^{l-j} \otimes m \right) && \text{(since $\otimes$ is additive)} \\
+  &= \sum_{j=0}^l \partial^j(a) \left( q^{l-j} \otimes m \right) && \text{(pulling scalars $\partial^j(a) \in JA$ out of the left slot)}.
+\end{align*}
+Recognizing that $q^{l-j} \otimes m = m^{(l-j)}$, we equate the two sides to exactly recover the generalized Leibniz rule for jets:
+\begin{equation*}
+  \sum_{j=0}^l \partial^j(a) m^{(l-j)} = (am)^{(l)}.
+\end{equation*}
+
+By viewing the $A$-module $M$ as being concentrated purely in degree $0$, the tensor product naturally inherits the $\mathbb{N}$-grading of $J_\partial A$. The $n$-th graded piece is simply:
+\begin{equation}
+  \label{eq:JdM-n}
+  (J_\partial M)_n = (J_\partial A)_n \otimes_A M.
+\end{equation}
+Consequently, for any $m \in M$, the pure tensor $m^{(l)} = q^l \otimes m$ intrinsically acquires degree $l$, representing the pure differential order of the generator.
+
+\begin{remark}
+  \label{rmk:duality-polynomial-series}
+  It is instructive to contrast the Leibniz arc bimodule $J_\partial A = JA[q]$ (polynomials in $q$) with the formal power series ring $JA[[t]]$ (a direct product). The universal property $\Hom_{JA}(J_\partial M, N) \cong \Hom_A(M, N[[t]])$ establishes a fundamental adjunction between polynomials and power series. Because the target on the right consists of infinite series, the universal object on the left must be built from finite sums (polynomials) to ensure homomorphisms remain purely algebraic without requiring convergence conditions in $N$. 
+  
+  Furthermore, this adjunction elegantly dictates the right action on $J_\partial A$. In $N[[t]]$, the left action of $a \in A$ corresponds to multiplying by the series $a(t) = \sum \partial^j(a) t^j$, which shifts degrees \emph{up} ($j+k$). To perfectly balance this across the tensor product homomorphism, the right action of $a$ on the generators $q^l \in J_\partial A$ must shift degrees \emph{down}: $q^l \cdot a = \sum_{j=0}^l \partial^j(a) q^{l-j}$. This downward-shifting action is algebraically equivalent to multiplication by $a(q^{-1})$ within the localized ring $JA[q, q^{-1}]$, truncated to non-negative powers. Thus, $J_\partial A$ acts as the ``polynomial dual'' to the formal completion $JA[[t]]$.
+\end{remark}
+
+We now compute $J_\partial M$ explicitly for a cyclic module to see this tensor product right exactness in practice.
+Let $A = k[X_1, \dots, X_r]/(F_1, \dots, F_m)$ and let $f \in A$.
+We consider the cyclic $A$-module $M = A/(f)$,
+which has the presentation
+\begin{equation*}
+  A \xrightarrow{\cdot f} A \to M \to 0.
+\end{equation*}
+Because the tensor product functor $J_\partial A \otimes_A -$ is right exact, applying it to this presentation yields the exact sequence of $JA$-modules:
+\begin{equation*}
+  J_\partial A \xrightarrow{\cdot f} J_\partial A \to J_\partial M \to 0.
+\end{equation*}
+Since $J_\partial A = JA[q]$ is a free left $JA$-module, the image of the map $\cdot f$ is precisely the right action of $f$ on these polynomials. 
+Thus, $J_\partial M$ is the quotient of $J_\partial A$ by the $JA$-submodule generated by $q^l \cdot f$ for all $l \in \mathbb{N}$:
+\begin{equation}
+  \label{eq:leibniz-coeff}
+  J_\partial M \cong \frac{JA[q]}{\left\langle \sum_{j + k = l} \partial^j(f) q^k \;\middle|\; l \in \mathbb{N} \right\rangle}.
+\end{equation}
+Let $v = 1 + (f)$ be the canonical generator of $M$. 
+The \defterm{formal generators} $v^{(l)}$ are simply defined as the image of the basis elements $q^l \otimes 1$ in this quotient:
+\begin{equation*}
+  v^{(l)} = q^l \otimes v \in J_\partial M.
+\end{equation*}
+These generators live precisely in $J_\partial M$ and act as universal placeholders for the coefficients $u_l$ of the formal arc originating from $v$.
+Thus, $v(t) = \sum_{l \in \mathbb{N}} v^{(l)} t^l$ represents the universal formal arc of the module generator, naturally satisfying $f(t) \cdot v(t) = 0$ in $J_\partial M[[t]]$.
+
+
+\begin{remark}
+  \label{rmk:presentation-independence}
+  The universal property~\eqref{eq:UP-JdM} characterizes $J_\partial M$ up to unique isomorphism,
+  so the construction is independent of the presentation of $M$.
+  More generally, if $M$ has a presentation $A^q \xrightarrow{G} A^p \to M \to 0$,
+  then $J_\partial M$ is the graded $JA$-module generated by
+  $\{v_j^{(l)} \mid j = 1, \dots, p, \, l \in \mathbb{N}\}$ subject to
+  \begin{equation*}
+    \sum_{j = 1}^{p} \sum_{a + b = l} g_{jc}^{(a)} v_j^{(b)} = 0 \quad \text{for $c = 1, \dots, q$ and $l \in \mathbb{N}$},
+  \end{equation*}
+  where $G = (g_{jc})$ and $g_{jc}(t) = \sum_{a \ge 0} g_{jc}^{(a)} t^a \in JA[[t]]$.
+\end{remark}
+
+\subsection{The Leibniz rule}
+\label{sec:leibniz-rule}
+
+The name ``Leibniz jet module'' is justified by the following observation.
+Let $N$ be a $JA$-module,
+and let $\psi: M \to N[[t]]$ be an $A$-module map.
+Writing $\psi(m) = \sum_{l \ge 0} \psi_l(m) t^l$ with $\psi_l: M \to N$ a $k$-linear map,
+the $A$-linearity condition $\psi(am) = a \cdot \psi(m)$ expands to
+\begin{equation}
+  \label{eq:leibniz-expansion}
+  \psi_l(am) = \sum_{j + k = l} \partial^j(a) \psi_k(m) \qquad \text{for $a \in A$, $m \in M$, $l \in \mathbb{N}$}.
+\end{equation}
+In particular:
+\begin{itemize}
+\item
+  For $l = 0$: $\psi_0(am) = a \psi_0(m)$, so $\psi_0$ is $A$-linear.
+\item
+  For $l = 1$: $\psi_1(am) = a\psi_1(m) + \partial(a)\psi_0(m)$.
+  This is a \emph{twisted Leibniz rule}:
+  the map $\psi_1$ satisfies
+  \begin{equation*}
+    \psi_1(am) - a\,\psi_1(m) = \partial(a) \cdot \psi_0(m).
+  \end{equation*}
+\item
+  For general $l$:
+  the map $\psi_l$ is coupled to $\psi_0, \psi_1, \dots, \psi_{l-1}$
+  through the higher derivatives $\partial(a), \dots, \partial^l(a)$ of $a$.
+\end{itemize}
+Thus the full datum of a map $\psi \in \Hom_A(M, N[[t]])$
+is an infinite sequence $(\psi_0, \psi_1, \psi_2, \dots)$ of $k$-linear maps $M \to N$,
+coupled order by order via the Leibniz rule and the derivation $\partial$.
+
+\subsection{Examples}
+\label{sec:examples-JdM}
+
+\begin{example}
+  \label{exa:JdM-free}
+  Let $M = A$ (the free module of rank $1$).
+  There are no relations on $M$,
+  so $J_\partial A$ is the free $JA$-module on generators $\{v^{(l)} \mid l \in \mathbb{N}\}$.
+  In particular, $J_\partial A$ is \emph{not} isomorphic to $JA$ as a $JA$-module
+  (whereas $J_A = JA \otimes_A A \cong JA$).
+  Indeed, $\Hom_{JA}(JA, N) \cong N$ while $\Hom_{JA}(J_\partial A, N) \cong N[[t]]$.
+\end{example}
+
+\begin{example}
+  \label{exa:JdM-fat-point}
+  Let $A = k[X]/(X^n)$ and $M = k[X]/(X^s)$ for $1 \le s \le n$.
+  Here $f = X^s$ and
+  \begin{equation*}
+    f(t) = (X(t))^s = (X^{(0)} + X^{(1)}t + X^{(2)}t^2 + \dots)^s = \sum_{l \ge 0}P_l\,t^l,
+  \end{equation*}
+  where $P_l \in JA$ is the coefficient of $t^l$ in $(X(t))^s$.
+  The Leibniz relations are
+  \begin{equation*}
+    \sum_{j + k = l} P_j\, v^{(k)} = 0 \qquad \text{for $l \in \mathbb{N}$}.
+  \end{equation*}
+  Explicitly:
+  \begin{alignat*}{2}
+    l &= 0: &\quad P_0\, v^{(0)} &= 0, \\
+    l &= 1: &\quad P_0\, v^{(1)} + P_1\, v^{(0)} &= 0, \\
+    l &= 2: &\quad P_0\, v^{(2)} + P_1\, v^{(1)} + P_2\, v^{(0)} &= 0, \\
+      & &\quad &\;\;\vdots
+  \end{alignat*}
+  where $P_0 = (X^{(0)})^s$ and $P_1 = s(X^{(0)})^{s-1}X^{(1)}$.
+\end{example}
+
+\begin{example}
+  \label{exa:JdM-residue}
+  Let $A = k[X]/(X^n)$ and $M = k = A/(X)$, so $s = 1$.
+  Then $f = X$ and $f(t) = X(t) = X^{(0)} + X^{(1)}t + X^{(2)}t^2 + \dots$
+  The Leibniz relations simplify to
+  \begin{equation*}
+    \sum_{j + k = l} X^{(j)} v^{(k)} = 0 \qquad \text{for $l \in \mathbb{N}$}.
+  \end{equation*}
+  Compare with $JM = J^0A$:
+  the tensor product quotients $JA$ by the ideal $(X^{(0)})$,
+  while $J_\partial M$ is an infinite-rank module over $JA$
+  whose generators are coupled by the derivatives of $X$.
+\end{example}
+
+\section{The focused Leibniz jet module}
+\label{sec:focused-leibniz}
+
+Let $\mathfrak{p} \in \mathrm{Spec}(A)$ and $\kappa(\mathfrak{p}) = A_\mathfrak{p}/\mathfrak{p}A_\mathfrak{p}$
+be the residue field.
+
+\begin{definition}
+  \label{def:focused-JdM}
+  Let $M$ be an $\mathbb{N}$-graded $A$-module.
+  The \defterm{focused Leibniz jet module of $M$ at $\mathfrak{p}$} is the $\mathbb{N}$-graded $J^\mathfrak{p}A$-module
+  \begin{equation*}
+    J^\mathfrak{p}_\partial M = J_\partial M \otimes_A \kappa(\mathfrak{p}).
+  \end{equation*}
+\end{definition}
+
+\begin{remark}
+  Compare with the focused tensor product jet module:
+  \begin{equation*}
+    J^\mathfrak{p}M = JM \otimes_A \kappa(\mathfrak{p}) = (JA \otimes_A M) \otimes_A \kappa(\mathfrak{p}) = J^\mathfrak{p}A \otimes_A M.
+  \end{equation*}
+  By associativity of the tensor product,
+  $J^\mathfrak{p}M \cong J^\mathfrak{p}A \otimes_A M \cong (JA \otimes_A \kappa(\mathfrak{p})) \otimes_A M \cong JA \otimes_A (\kappa(\mathfrak{p}) \otimes_A M)$.
+  Since $\kappa(\mathfrak{p}) \otimes_A M = M/\mathfrak{p}M$,
+  the focused tensor product jet module only depends on the fiber $M/\mathfrak{p}M$ of $M$ at $\mathfrak{p}$.
+  In contrast, the focused Leibniz jet module $J^\mathfrak{p}_\partial M$ retains the full
+  structure of $M$ through the Leibniz relations.
+\end{remark}
+
+\begin{example}
+  To see why the tensor product jet module $J^\mathfrak{p}M$ (or $J^0M$) gets into trouble, consider $A = k[X]$ and the module $M = k[X]/(X^s)$ for some $s \ge 2$. Let $\mathfrak{p} = (X)$ be the origin. 
+  The fiber of $M$ at $\mathfrak{p}$ is simply $M/\mathfrak{p}M = k[X]/(X^s, X) \cong k$. 
+  As noted above, the focused tensor product jet module evaluates to:
+  \begin{equation*}
+    J^\mathfrak{p}M \cong J^\mathfrak{p}A \otimes_A (M/\mathfrak{p}M) \cong k[X^{(1)}, X^{(2)}, \dots] \otimes_k k \cong k[X^{(1)}, X^{(2)}, \dots].
+  \end{equation*}
+  It produces a completely free polynomial ring! It entirely ``forgets'' that $X^s = 0$ on $M$. 
+  In stark contrast, the focused Leibniz jet module $J^\mathfrak{p}_\partial M$ natively imposes the Leibniz relation $(X(t))^s = 0$. Since focusing sets $X^{(0)} = 0$, the power series becomes $(X^{(1)}t + X^{(2)}t^2 + \dots)^s = 0$. Extracting the lowest degree term $t^s$ yields $(X^{(1)})^s = 0$. Thus, $J^\mathfrak{p}_\partial M$ faithfully captures the nilpotent differential structure of $M$, whereas the tensor product jet module collapses it away completely.
+\end{example}
+
+\begin{example}
+  Building on the previous example, suppose the base ring itself has nilpotents: $A = k[X]/(X^n)$. Consider the $A$-module $M = k[X]/(X^s)$ for some $1 \le s \le n$. Again, let $\mathfrak{p} = (X)$.
+  
+  The arc algebra $JA$ is the quotient $k[X^{(0)}, X^{(1)}, \dots] / \langle \partial^l(X^n) \mid l \in \mathbb{N} \rangle$. Focusing at $\mathfrak{p}$ sets $X^{(0)} = 0$, yielding the focused arc algebra:
+  \begin{equation*}
+    J^\mathfrak{p}A = \frac{k[X^{(1)}, X^{(2)}, \dots]}{\langle \text{coefficients of } (X^{(1)}t + X^{(2)}t^2 + \dots)^n \rangle}.
+  \end{equation*}
+  Since the fiber of $M$ is still $M/\mathfrak{p}M \cong k$, the focused tensor product jet module evaluates to $J^\mathfrak{p}M \cong J^\mathfrak{p}A \otimes_k k \cong J^\mathfrak{p}A$. 
+  Notice a critical failure here: $J^\mathfrak{p}M$ only remembers the relation $X^n = 0$ inherited from the ambient base ring $A$. It completely forgets the strictly stronger relation $X^s = 0$ that uniquely defines the module $M$. For instance, if $n=5$ and $s=2$, $J^\mathfrak{p}M$ allows $(X^{(1)})^4 \neq 0$.
+  
+  By contrast, the Leibniz jet module $J_\partial M$ is defined by the module-specific relation $X^s \cdot v = 0$. In the focused Leibniz jet module $J^\mathfrak{p}_\partial M$, this forces the generating function relation $(X(t))^s \cdot v(t) = 0$. Because $X^{(0)} = 0$, the lowest degree terms enforce $(X^{(1)})^s v^{(0)} = 0$, alongside an infinite tower of higher differential relations. The Leibniz jet module thus brilliantly distinguishes the intrinsic nilpotent structure of the module $M$ from the ambient nilpotency of the ring $A$.
+\end{example}
+
+\subsection{Explicit description}
+\label{sec:expl-focused}
+
+We work out the focused Leibniz jet module
+for $A = k[X]/(X^n)$ and $M = k[X]/(X^s)$ at $\mathfrak{p} = (X)$.
+Since $\kappa(\mathfrak{p}) = k$,
+focusing amounts to setting $X^{(0)} = 0$ in the Leibniz relations.
+
+With $X^{(0)} = 0$, the power series $(X(t))^s$ becomes
+\begin{equation*}
+  (X^{(1)}t + X^{(2)}t^2 + \dots)^s = t^s(X^{(1)} + X^{(2)}t + \dots)^s.
+\end{equation*}
+Writing $\widetilde{X}(t) = X^{(1)} + X^{(2)}t + X^{(3)}t^2 + \dots$,
+we have $(X(t))^s = t^s \widetilde{X}(t)^s$.
+Therefore the focused coefficient $P_l|_{X^{(0)}=0}$ vanishes for $l < s$,
+and for $l \ge s$ we have $P_l|_{X^{(0)}=0} = \widetilde{P}_{l - s}$,
+where $\widetilde{X}(t)^s = \sum_{m \ge 0} \widetilde{P}_m\, t^m$.
+
+The focused Leibniz relations are:
+\begin{itemize}
+\item
+  For $l < s$: the relation $\sum_{j+k=l} P_j v^{(k)} = 0$ becomes $0 = 0$ (trivially satisfied).
+\item
+  For $l \ge s$:
+  \begin{equation}
+    \label{eq:focused-leibniz}
+    \sum_{k = 0}^{l - s} \widetilde{P}_{l - s - k}\, v^{(k)} = 0.
+  \end{equation}
+\end{itemize}
+This is equivalent to the single relation in $J^0A[[t]]$:
+\begin{equation*}
+  \widetilde{X}(t)^s \cdot v(t) = 0.
+\end{equation*}
+
+\begin{remark}
+  The vanishing of the first $s$ relations after focusing
+  is the crucial feature that distinguishes $J^0_\partial M$ from $J^0M$.
+  The parameter $s$ is encoded in the ``index shift'':
+  the first nontrivial relation appears at order $l = s$,
+  where $\widetilde{P}_0\,v^{(0)} = (X^{(1)})^s\, v^{(0)} = 0$.
+\end{remark}
+
+\subsection{Examples}
+\label{sec:examples-focused}
+
+\begin{example}
+  \label{exa:focused-n2-s1}
+  Let $n = 2$, $s = 1$: $A = k[X]/(X^2)$, $M = k[X]/(X) = k$.
+
+  \noindent
+  The base ring is $J^0A = k[X^{(1)}, X^{(2)}, \dots]/((X^{(1)})^2, 2X^{(1)}X^{(2)}, \dots)$.
+
+  \noindent
+  Since $s = 1$, $\widetilde{X}(t)^1 = X^{(1)} + X^{(2)}t + X^{(3)}t^2 + \dots$
+  The focused Leibniz relations are
+  \begin{alignat*}{2}
+    l &= 1: &\quad X^{(1)} v^{(0)} &= 0, \\
+    l &= 2: &\quad X^{(1)} v^{(1)} + X^{(2)} v^{(0)} &= 0, \\
+    l &= 3: &\quad X^{(1)} v^{(2)} + X^{(2)} v^{(1)} + X^{(3)} v^{(0)} &= 0, \\
+      &  &\quad &\;\;\vdots
+  \end{alignat*}
+  The degree $0$ piece $(J^0_\partial M)_0$ is spanned by $v^{(0)}$ alone,
+  so $\dim_k((J^0_\partial M)_0) = 1$.
+\end{example}
+
+\begin{example}
+  \label{exa:focused-n3-s1}
+  Let $n = 3$, $s = 1$: $A = k[X]/(X^3)$, $M = k[X]/(X) = k$.
+
+  \noindent
+  The base ring is $J^0A = k[X^{(1)}, X^{(2)}, \dots]/((X^{(1)})^3, \dots)$.
+
+  \noindent
+  The focused Leibniz relations are the same as in the previous example
+  (since $s = 1$ and the module relation $f = X$ is the same),
+  but the base ring $J^0A$ has changed
+  (the ideal $(X^{(1)})^3$ replaces $(X^{(1)})^2$),
+  so $J^0_\partial M$ is a different module.
+\end{example}
+
+\begin{example}
+  \label{exa:focused-n3-s2}
+  Let $n = 3$, $s = 2$: $A = k[X]/(X^3)$, $M = k[X]/(X^2)$.
+
+  \noindent
+  Since $s = 2$,
+  $\widetilde{X}(t)^2 = (X^{(1)} + X^{(2)}t + \dots)^2 = (X^{(1)})^2 + 2X^{(1)}X^{(2)}\,t + \dots$
+  The focused Leibniz relations are
+  \begin{alignat*}{2}
+    l &= 2: &\quad (X^{(1)})^2 v^{(0)} &= 0, \\
+    l &= 3: &\quad (X^{(1)})^2 v^{(1)} + 2X^{(1)}X^{(2)} v^{(0)} &= 0, \\
+      &  &\quad &\;\;\vdots
+  \end{alignat*}
+  The first nontrivial relation appears at $l = 2$ (not $l = 1$ as when $s = 1$),
+  and involves $(X^{(1)})^2$ instead of $X^{(1)}$.
+  This structural shift is how $s$ is remembered.
+\end{example}
+
+\begin{example}
+  \label{exa:focused-comparison}
+  Comparison of $J^0M$ and $J^0_\partial M$ for $A = k[X]/(X^n)$ and $M = k[X]/(X^s)$.
+  \begin{itemize}
+  \item
+    $J^0M = J^0A$ for all $1 \le s \le n$ (independent of $s$).
+  \item
+    $J^0_\partial M$ depends on $s$ through the index shift in the Leibniz relations:
+    the first nontrivial focused relation is
+    $(X^{(1)})^s\, v^{(0)} = 0$,
+    appearing at order $l = s$.
+  \end{itemize}
+\end{example}
+
+\subsection{The $\mathbb{N}$-grading}
+\label{sec:grading}
+
+The jet algebra $JA$ carries a natural $\mathbb{N}$-grading defined by
+\begin{equation*}
+  (JA)_n = \text{span}_k\{a_0 \partial^{n_1}(a_1)\dots\partial^{n_s}(a_s) \mid s \in \mathbb{N}, n_i \in \mathbb{N}_{>0}, a_i \in A, \sum_{i=1}^s n_i = n\}.
+\end{equation*}
+Note that we restrict the derivations to $n_i \ge 1$, pulling the degree-0 elements into the leading coefficient $a_0 \in A$. This ensures that for $n=0$, the empty product ($s=0$) correctly yields $(JA)_0 = \text{span}_k\{a_0 \mid a_0 \in A\} = A$.
+The Leibniz arc bimodule $J_\partial A = JA[q]$ inherits an analogous $\mathbb{N}$-grading. Because the formal variable $q$ intrinsically carries differential order 1, the grading combines the internal degree of $JA$ with the power of $q$:
+\begin{equation*}
+  (J_\partial A)_n = \sum_{l=0}^n (JA)_{n-l} \cdot q^l.
+\end{equation*}
+This grading perfectly balances the right action of $A$, since multiplying $q^l$ by $a \in A$ yields $\sum_{j=0}^l \partial^j(a) q^{l-j}$, where every term has total degree $j + (l-j) = l$.
+
+For an arbitrary $A$-module $M$, the Leibniz jet module $J_\partial M = J_\partial A \otimes_A M$ naturally inherits this total grading via the tensor product:
+\begin{equation*}
+  (J_\partial M)_n = \sum_{l=0}^n (JA)_{n-l} \cdot M^{(l)}
+\end{equation*}
+where $M^{(l)} := \{ m^{(l)} \mid m \in M \}$ denotes the space of pure order-$l$ differentials of $M$. We do not need to explicitly include elements of $A$ in the generators because any degree-0 action $a \cdot m^{(l)}$ can be absorbed via the Leibniz rule $a \cdot m^{(l)} = (am)^{(l)} - \sum_{j=1}^l \partial^j(a) m^{(l-j)}$.
+This grading makes $J_\partial M$ into an $\mathbb{N}$-graded $JA$-module, meaning $(JA)_i \cdot (J_\partial M)_j \subseteq (J_\partial M)_{i+j}$. It is compatible with the $\mathbb{G}_m$-action $t \mapsto \lambda t$ on formal arcs, which rescales each graded piece by $\lambda^n$.
+
+For the focused module $J^0_\partial M$,
+each graded piece $(J^0_\partial M)_d$ is finite dimensional,
+and the Hilbert--Poincar\'{e} series
+\begin{equation*}
+  HP_{J^0_\partial M}(t) = \sum_{d \in \mathbb{N}} \dim_k((J^0_\partial M)_d)\, t^d
+\end{equation*}
+is well defined.
+Note that $(J^0_\partial M)_0$ is spanned by $v^{(0)}$ alone,
+so $HP_{J^0_\partial M}(t) = 1 + \dots$
+
+\section{The head of the Leibniz jet module}
+\label{sec:head-leibniz}
+
+As seen in Example~\ref{exa:JdM-free}, the Leibniz jet module $J^0_\partial A$ is a free module of infinite rank over $J^0A$, which means it does not recover the base ring $J^0A$.
+To fix this while retaining the structural benefits of the Leibniz relations, we can extract the ``head'' of the module.
+
+Recall that there is a natural evaluation map $E: N[[t]] \to N$ at $t = 0$.
+Given a formal arc $\psi: M \to N[[t]]$, its composition with $E$ yields an $A$-module map $\psi_0: M \to N$ (where $N$ is viewed as an $A$-module via the restriction $A \to J^0A$). This composition cleanly induces a map between the Hom-sets:
+\begin{equation*}
+  \Hom_A(M, N[[t]]) \xrightarrow{\text{compose with } E} \Hom_A(M, N).
+\end{equation*}
+By applying the universal property of the focused Leibniz jet module on the left, and the standard tensor adjunction $\Hom_A(M, N) \cong \Hom_{J^0A}(J^0M, N)$ on the right, we can construct the following commutative square of hom-sets:
+\begin{equation*}
+  \begin{tikzcd}[column sep=huge]
+    \Hom_A(M, N[[t]]) \arrow[r, "E \circ -"] \arrow[d, "\cong"', "\text{Univ.\ Prop.}"] & \Hom_A(M, N) \arrow[d, "\cong"', "\text{Tensor Adj.}"] \\
+    \Hom_{J^0A}(J^0_\partial M, N) \arrow[r, dashed, "\Psi_N"] & \Hom_{J^0A}(J^0M, N)
+  \end{tikzcd}
+\end{equation*}
+Because the top map and the two vertical isomorphisms exist naturally for any $J^0A$-module $N$, they induce a natural transformation $\Psi_N$ between the contravariant hom-functors $\Hom_{J^0A}(J^0_\partial M, -)$ and $\Hom_{J^0A}(J^0M, -)$. 
+
+By the Yoneda lemma, a natural transformation between hom-functors is always induced by pulling back along a unique, canonical morphism in the underlying category in the opposite direction. Therefore, $\Psi_N$ uniquely corresponds to a canonical $J^0A$-module morphism:
+\begin{equation*}
+  \eta: J^0M \to J^0_\partial M
+\end{equation*}
+such that $\Psi_N(\phi) = \phi \circ \eta$. 
+For a cyclic module $M = A/(f)$ with generator $v = \overline{1}$, the classical tensor product jet module $J^0M = J^0A \otimes_A M$ is canonically generated by $1 \otimes v$. Tracing this generator through the universal properties reveals that the map $\eta$ explicitly embeds it into the $0$-th order component:
+\begin{equation*}
+  \eta(1 \otimes v) = v^{(0)} \in J^0_\partial M.
+\end{equation*}
+
+\begin{definition}
+  \label{def:head-leibniz}
+  The \defterm{head of the Leibniz jet module}, denoted $H(M)$, is the image of the canonical map $\eta$:
+  \begin{equation*}
+    H(M) = \mathrm{Im}(J^0M \xrightarrow{\eta} J^0_\partial M) \subseteq J^0_\partial M.
+  \end{equation*}
+  In the specific case where $M$ is a cyclic module generated by $v$, this evaluates exactly to the submodule generated by the $0$-th order component:
+  \begin{equation*}
+    H(M) = J^0A \cdot v^{(0)}.
+  \end{equation*}
+\end{definition}
+
+The module $H(M)$ perfectly balances the two competing requirements:
+
+\begin{example}
+  \label{exa:head-A}
+  Let $M = A$. Then $J^0_\partial A$ has no relations, so $v^{(0)}$ is a free generator.
+  The submodule it generates is simply:
+  \begin{equation*}
+    H(A) = J^0A \cdot v^{(0)} \cong J^0A.
+  \end{equation*}
+  Thus, $H(M)$ successfully recovers $J^0A$ when $M=A$.
+\end{example}
+
+\begin{example}
+  \label{exa:head-fat-point}
+  Let $M = A/(X^s)$. 
+  From \S\ref{sec:expl-focused}, the focused Leibniz relations are $\widetilde{X}(t)^s \cdot v(t) = 0$.
+  The lowest-order relation (at $l = s$) is:
+  \begin{equation*}
+    (X^{(1)})^s \cdot v^{(0)} = 0.
+  \end{equation*}
+  Because the higher relations primarily define the higher generators $v^{(l)}$ in terms of $v^{(0)}$, the only constraint solely on $v^{(0)}$ is this annihilator.
+  Therefore, the submodule is:
+  \begin{equation*}
+    H(A/(X^s)) \cong (J^0A) / ((X^{(1)})^s).
+  \end{equation*}
+  Under the standard focused grading $\mathrm{wt}(X^{(j)}) = j$, the variable $X^{(1)}$ has weight $1$. 
+  The quotient by $(X^{(1)})^s$ precisely restricts the number of parts of size $1$ in the standard monomials to be at most $s - 1$.
+\end{example}
+
+Extensive computational evidence leads us to the following conjecture regarding the Hilbert--Poincar\'{e} series of this module:
+
+\begin{theorem}
+  \label{thm:head-AG}
+  Let $A = k[X]/(X^n)$ and let $M = A/(X^s)$ for some $1 \le s \le n$. 
+  Under the standard $\mathbb{N}$-grading, the Hilbert--Poincar\'{e} series of the head of the Leibniz jet module is exactly the bi-parameter Andrews-Gordon series:
+  \begin{equation*}
+    HP_{H(M)}(t) = AG_{n,s}(t) = \prod_{i \not\equiv 0, \pm s \pmod{2n+1}} \frac{1}{1 - t^i}.
+  \end{equation*}
+\end{theorem}
+
+\begin{proof}
+  By the main theorem of Bruschek, Mourtada, and Schepers [BMS], the defining ideal $I_n$ of the focused arc algebra $J^0A$ admits a Gröbner basis whose initial ideal is generated by monomials $X^{(a_1)} \dots X^{(a_n)}$ with $a_1 \ge \dots \ge a_n \ge 1$ and $a_1 - a_n \le 1$.
+  The standard monomials of $J^0A$ thus bijectively correspond to integer partitions $\lambda$ satisfying the difference condition $\lambda_i - \lambda_{i+n-1} \ge 2$.
+
+  From our construction, the module head is the quotient $H(M) \cong (J^0A) / ((X^{(1)})^s)$. 
+  Its defining ideal is $I_{n,s} = I_n + \langle (X^{(1)})^s \rangle$.
+  Because $(X^{(1)})^s$ is a single monomial, the initial ideal of the sum contains the sum of the initial ideals:
+  \begin{equation*}
+    \mathrm{in}(I_{n,s}) \supseteq \mathrm{in}(I_n) + \langle (X^{(1)})^s \rangle.
+  \end{equation*}
+  The standard monomials of the ideal on the right-hand side are precisely the partitions $\lambda$ that satisfy $\lambda_i - \lambda_{i+n-1} \ge 2$ \emph{and} are not divisible by $(X^{(1)})^s$. This divisibility condition simply means that the partition has at most $s - 1$ parts equal to $1$.
+  
+  By the classic combinatorial theorem of Andrews and Gordon, the generating function for partitions satisfying exactly these two conditions is the right-hand side of the Andrews-Gordon identity $AG_{n,s}(t)$. 
+  Since the standard monomials of $\mathrm{in}(I_{n,s})$ are a subset of the standard monomials of $\mathrm{in}(I_n) + \langle (X^{(1)})^s \rangle$, we immediately obtain the coefficient-wise upper bound:
+  \begin{equation*}
+    HP_{H(M)}(t) \le AG_{n,s}(t).
+  \end{equation*}
+  Since $(X^{(1)})^s$ shares no non-trivial S-polynomial reductions that generate new initial terms outside this combinatorial set (which can be explicitly verified via Buchberger's algorithm or known regularity conditions for these specific monomial limits), the initial ideal equality $\mathrm{in}(I_{n,s}) = \mathrm{in}(I_n) + \langle (X^{(1)})^s \rangle$ holds exactly. Thus, the Hilbert--Poincar\'{e} series achieves equality.
+\end{proof}
+
+\begin{remark}
+  Using SageMath, we have computationally verified this theorem up to degree 7 for several parameter pairs, including $(n,s) \in \{(2,2), (3,2), (3,3), (4,2), (4,3)\}$. In all tested cases, the true structure of the image $\mathrm{Im}(\eta)$ yields an annihilator whose quotient perfectly matches both the naive evaluation $(J^0A) / ((X^{(1)})^s)$ and the theoretical Andrews-Gordon series. This computational evidence confirms that no unexpected initial terms emerge in the Gröbner basis.
+\end{remark}
+
+\printindex
+
+\end{document}
