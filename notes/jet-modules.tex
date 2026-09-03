@@ -603,14 +603,37 @@ where $M^{(l)} := \{ m^{(l)} \mid m \in M \}$ denotes the space of pure order-$l
 This grading makes $J_\partial M$ into an $\mathbb{N}$-graded $JA$-module, meaning $(JA)_i \cdot (J_\partial M)_j \subseteq (J_\partial M)_{i+j}$. It is compatible with the $\mathbb{G}_m$-action $t \mapsto \lambda t$ on formal arcs, which rescales each graded piece by $\lambda^n$.
 
 For the focused module $J^0_\partial M$,
-each graded piece $(J^0_\partial M)_d$ is finite dimensional,
-and the Hilbert--Poincar\'{e} series
+each graded piece $(J^0_\partial M)_n$ is finite dimensional,
+and the standard Hilbert--Poincar\'{e} series
 \begin{equation*}
-  HP_{J^0_\partial M}(t) = \sum_{d \in \mathbb{N}} \dim_k((J^0_\partial M)_d)\, t^d
+  HP_{J^0_\partial M}(t) = \sum_{n \in \mathbb{N}} \dim_k((J^0_\partial M)_n)\, t^n
 \end{equation*}
 is well defined.
 Note that $(J^0_\partial M)_0$ is spanned by $v^{(0)}$ alone,
 so $HP_{J^0_\partial M}(t) = 1 + \dots$
+
+\subsection{The bivariate Hilbert-Poincar\'{e} series}
+\label{sec:bivariate-series}
+
+The single $\mathbb{N}$-grading discussed above corresponds geometrically to the differential weight. However, when the base algebra $A$ is a cone (such as the fat point $A = k[X]/(X^n)$), the focused arc algebra natively admits a second, independent grading. 
+
+We can construct this bi-grading elegantly via a coordinate-free double torus action. An arc $\gamma(t)$ is naturally acted upon by $k^\times \times k^\times$:
+\begin{itemize}
+    \item \textbf{Source action} ($t \mapsto \lambda t$): This action scales the parameter of the arc, inducing the differential weight grading (which we track with the variable $t$). An element $f$ has weight $n$ if it scales by $\lambda^n$.
+    \item \textbf{Target action} ($x \mapsto \mu x$): The natural scaling action on the cone $X$ induces a second grading on the arc space, corresponding to the internal polynomial degree or ``word length'' (which we track with the variable $q$). An element $f$ has internal degree $s$ if it scales by $\mu^s$.
+\end{itemize}
+
+Algebraically, this internal polynomial grading is exactly the grading induced by restricting the differential word length to the augmentation ideal $\mathfrak{p} \subset A$. Because we are in the focused setting $J^0A = JA \otimes_A A/\mathfrak{p}$, the base ring collapses and $1^{(n)} = 0$. The algebra is generated strictly by the derivatives of the maximal ideal $\partial^n(x)$ for $x \in \mathfrak{p}$. We define the $s$-th internally graded piece simply as the span of products of exactly $s$ elements from the augmentation ideal:
+\begin{equation*}
+  (J^0A)^s = \operatorname{span}_k \{ (\partial^{n_1}a_1)\dots(\partial^{n_s}a_s) \mid a_i \in \mathfrak{p}, n_i \in \mathbb{N} \}.
+\end{equation*}
+Because the defining differential relations $\partial^m(X^n) = 0$ are homogeneous with respect to both the source weight $m$ and the target polynomial degree $n$, this bi-grading forms a true, strict direct sum $J^0A = \bigoplus_{s \in \mathbb{N}} (J^0A)^s$. 
+
+Letting $A^s_n = (J^0A)^s \cap (J^0A)_n$ denote the simultaneous eigenspace where the source action scales by $\lambda^n$ and the target action scales by $\mu^s$, the bivariate Hilbert--Poincar\'{e} series is defined precisely as the equivariant character of the focused arc space under this $k^\times \times k^\times$ action:
+\begin{equation*}
+  HP_{J^0A}(q, t) = \sum_{n, s \ge 0} \dim_k(A^s_n) q^s t^n.
+\end{equation*}
+This natural definition extends identically to the head module $H(M)$.
 
 \section{The head of the Leibniz jet module}
 \label{sec:head-leibniz}
