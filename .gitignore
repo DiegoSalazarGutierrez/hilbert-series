@@ -13,5 +13,6 @@ scratch/
 *.pdf
 *~
 \#*#
+*.bak
 auto/
 *.py
