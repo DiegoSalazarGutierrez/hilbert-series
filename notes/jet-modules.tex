@@ -737,9 +737,92 @@ Extensive computational evidence leads us to the following conjecture regarding 
   Since $(X^{(1)})^s$ shares no non-trivial S-polynomial reductions that generate new initial terms outside this combinatorial set (which can be explicitly verified via Buchberger's algorithm or known regularity conditions for these specific monomial limits), the initial ideal equality $\mathrm{in}(I_{n,s}) = \mathrm{in}(I_n) + \langle (X^{(1)})^s \rangle$ holds exactly. Thus, the Hilbert--Poincar\'{e} series achieves equality.
 \end{proof}
 
-\begin{remark}
-  Using SageMath, we have computationally verified this theorem up to degree 7 for several parameter pairs, including $(n,s) \in \{(2,2), (3,2), (3,3), (4,2), (4,3)\}$. In all tested cases, the true structure of the image $\mathrm{Im}(\eta)$ yields an annihilator whose quotient perfectly matches both the naive evaluation $(J^0A) / ((X^{(1)})^s)$ and the theoretical Andrews-Gordon series. This computational evidence confirms that no unexpected initial terms emerge in the Gröbner basis.
-\end{remark}
+\section{Concluding remarks and limitations}
+\label{sec:concluding-remarks}
+
+We conclude these notes by recording the main limitations
+that ultimately led to setting aside the module-theoretic approach,
+as well as the geometric obstructions encountered when attempting to extend
+the Andrews--Gordon correspondence beyond fat points.
+
+\subsection{Unnaturalness of the Leibniz construction}
+\label{sec:unnaturalness-leibniz}
+
+While the focused Leibniz jet module $J^0_\partial M$ succeeds
+in retaining the submodule parameter $s$
+(where the standard tensor product $J^0M = J^0A \otimes_A M$ completely collapses to $J^0A$),
+the overall construction feels somewhat artificial:
+\begin{enumerate}
+  \item
+  The module $J_\partial M$ is an infinite-rank module over $JA$,
+  carrying an infinite family of formal generators $v^{(l)}$.
+  \item
+  To obtain a module whose Hilbert series matches $AG_{n, s}(t)$,
+  one cannot work with $J^0_\partial M$ directly,
+  but must instead extract its head $H(M) = J^0A \cdot v^{(0)}$.
+  \item
+  At the end of this elaborate construction,
+  the resulting head simply evaluates to the quotient
+  \begin{equation*}
+    H(M) \cong J^0A / ((X^{(1)})^s).
+  \end{equation*}
+  Algebraically, this amounts to imposing the single condition $(X^{(1)})^s = 0$
+  by hand on the ambient arc algebra.
+  Combinatorially, this merely asserts that the number of parts equal to $1$
+  in any standard partition is strictly bounded by $s - 1$.
+\end{enumerate}
+Thus, rather than arising as an intrinsic geometric invariant of the module $M$,
+the machinery of $J_\partial M$ serves primarily as a formal vehicle
+to justify truncating the first variable.
+
+\subsection{Obstructions for higher-dimensional curves}
+\label{sec:obstructions-curves}
+
+A second natural direction was to look for the parameters $(n, s)$
+or other Rogers--Ramanujan-type partition identities
+by considering the arc schemes of singular plane curves,
+such as $y^2 = x^3$ or $y^2 = x^n$.
+
+Here, one encounters an immediate obstruction on the first graded piece:
+\begin{itemize}
+  \item
+  For any curve singularity $X \subset \mathbb{A}^2$ with embedding dimension $2$,
+  the Zariski tangent space at the origin has dimension at least $2$.
+  Consequently, the first focused jet variables $x^{(1)}$ and $y^{(1)}$
+  are linearly independent in degree $1$.
+  This forces the Hilbert--Poincar\'{e} series to begin as
+  \begin{equation*}
+    HP_{J^0X}(t) = 1 + 2t + O(t^2).
+  \end{equation*}
+  \item
+  On the other hand, the Andrews--Gordon series begins as
+  \begin{equation*}
+    AG_{n, s}(t) = 1 + t + O(t^2) \quad (\text{for } s \ge 2),
+    \qquad
+    AG_{n, 1}(t) = 1 + 0t + O(t^2).
+  \end{equation*}
+  The linear coefficient is strictly $0$ or $1$.
+\end{itemize}
+The coefficient of $t$ in the arc Hilbert series of any curve singularity
+is therefore incompatible with the Andrews--Gordon generating functions.
+Although one might contemplate applying non-trivial transformations
+$f(AG_{n, s}(t))$ or modifying the series by smooth factors,
+such modifications were not explored further,
+as they would sever the direct geometric interpretation
+of the partition weights as arc dimensions.
+
+\subsection{Outlook: the bivariate arc algebra}
+\label{sec:outlook-bivariate}
+
+These observations strongly motivate shifting focus away from modules
+and toward the intrinsic bi-graded structure of the arc ring $J^0(k[X]/(X^n))$ itself.
+By endowing $J^0A$ with both the differential weight grading (tracked by $t$)
+and the polynomial word-length grading (tracked by $q$),
+one obtains a bivariate Hilbert--Poincar\'{e} series $h(d)(q, t)$.
+As will be developed in subsequent work,
+this bi-graded algebra directly satisfies the bivariate Andrews--Gordon recursions
+and admits a clean, self-contained derivation
+of the Rogers--Ramanujan identities without artificial truncations.
 
 \printindex
 
