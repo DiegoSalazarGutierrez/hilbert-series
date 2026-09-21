@@ -1,6 +1,7 @@
 \documentclass[a4paper, 12pt]{amsart}
 
 \usepackage[margin = 0.75in]{geometry}
+\usepackage{amssymb}
 \usepackage{imakeidx}
 \makeindex
 
@@ -40,8 +41,10 @@ The \defterm{Hilbert-Poincaré series of $A$} is defined by
   HP_A(t) = \sum_{n \in \mathbb{N}}\dim_k(A_n)t^n.
 \end{equation*}
 If each $A_n$ is finite dimensional, then $HP_A(t) \in \mathbb{N}[[t]]$.
+We can change $\mathbb{N}$ by $\mathbb{N} \times \mathbb{N}$ to get a series in $\mathbb{N}[[t, q]]$
 
 A \defterm{differential $k$-algebra} is a $k$-algebra $A$ together with a $k$-linear derivation $\partial\in Der_k(A)$.
+An ideal $I \subseteq A$ is \defterm{differential} if $\partial(I) \subseteq I$.
 An \defterm{$\mathbb{N}$-graded differential $k$-algebra} is a differential $k$-algebra $A$ that is also an $\mathbb{N}$-graded $k$-algebra satisfying $\partial(A_n) \subseteq A_{n + 1}$.
 
 Let $k$ be a field and let $A$ be a $k$-algebra.
@@ -58,6 +61,15 @@ Then
 and $JA$ becomes an $\mathbb{N}$-graded differential $k$-algebra.
 We note that $(JA)_0 = A$.
 
+If $A = \bigoplus_{d \in \mathbb{N}}A_d$ is a grading of $A$ such that $A_0 = k$ and $A_dA_e \subseteq A_{d + e}$, then defining
+\begin{equation*}
+  (JA)_{n, d} = span_k\{(\partial^{n_1}a_1)\dots(\partial^{n_s}a_s) \mid s, n_1, \dots, n_s \in \mathbb{N}, a_1 \in A_{d_1} \dots, a_s \in A_{d_s}, n_1 + \dots + n_s = n, d_1 + \dots + d_s = d\}
+\end{equation*}
+satisfies
+\begin{equation*}
+  (JA)_n = \bigoplus_{d \in \mathbb{N}}(JA)_{n, d}, \qquad n \in \mathbb{N}.
+\end{equation*}
+
 Let $\mathfrak{p} \in Spec(A)$.
 Then $A_\mathfrak{p}$ is a local ring with maximal ideal $\mathfrak{p}A_\mathfrak{p}$, and the quotient $\kappa(\mathfrak{p}) = A_\mathfrak{p}/\mathfrak{p}A_\mathfrak{p}$ is the \defterm{residue field of $A$ at $\mathfrak{p}$}.
 We have a natural homomorphism $A \to \kappa(\mathfrak{p})$ which makes $\kappa(\mathfrak{p})$ into an $A$-algebra.
@@ -73,9 +85,21 @@ with operation given by
 \end{equation*}
 and with $\mathbb{N}$-grading given by
 \begin{equation*}
-(J^\mathfrak{p}A)_n = (JA)_n \otimes_A \kappa(\mathfrak{p}).
+(J^\mathfrak{p}A)_n = (JA)_n \otimes \kappa(\mathfrak{p}) = \{a \otimes x \mid a \in (JA)_n, x \in \kappa(\mathfrak{p})\}.
 \end{equation*}
 We note that $\dim_{\kappa(\mathfrak{p})}((J^\mathfrak{p}A)_0) = 1$ because $(J^\mathfrak{p}A)_0 = A \otimes_A \kappa(\mathfrak{p}) = \kappa(\mathfrak{p})$, and $J^\mathfrak{p}A$ does not inherit a derivation from $JA$.
+If $A = \bigoplus_{d \in \mathbb{N}}A_d$ is a grading of $A$ as above and $\mathfrak{p}$ is an homogeneous ideal, we can define
+\begin{equation*}
+  (J^\mathfrak{p}A)_{n, d} = (JA)_{n, d} \otimes \kappa(\mathfrak{p}) = \{a \otimes x \mid a \in (JA)_{n, d}, x \in \kappa(\mathfrak{p})\},
+\end{equation*}
+and
+\begin{equation*}
+  (J^\mathfrak{p}A)_n = \bigoplus_{d \in \mathbb{N}}(J^\mathfrak{p}A)_{n, d}, \qquad n \in \mathbb{N}.
+\end{equation*}
+Thus, we can define the \defterm{refined Hilbert-Poincaré series of $J^\mathfrak{p}A$} by
+\begin{equation*}
+  HP_{J^\mathfrak{p}A}(t, q) = \sum_{n, d \in \mathbb{N}}\dim_{\kappa(\mathfrak{p})}((J^\mathfrak{p}A)_{n, d})t^nq^d.
+\end{equation*}
 
 \section{Concrete examples of the focused arc algebra}
 \label{sec:concr-exampl-focus}
@@ -451,6 +475,65 @@ We define the \defterm{weight-$d$ subspace} of $\Gamma(JX)$ to be
   Since $f = \sum_d f_d$ and each $f_d \in \Gamma(JX)_d$,
   the decomposition $\Gamma(JX) = \bigoplus_{d \in \mathbb{N}} \Gamma(JX)_d$ follows.
 \end{proof}
+
+\section{Andrews--Gordon Series via Transverse Fat Points}
+\label{sec:transverse-fat-points}
+
+The Andrews--Gordon identities~\cite{andrews_analytic_1974,gordon_combinatorial_1961}
+generalize the celebrated Rogers--Ramanujan identities
+to an arbitrary odd modulus $2n + 1$ with $n \ge 1$.
+For any pair of integers $(n, s)$ satisfying $n \ge 1$ and $1 \le s \le n$,
+the associated generating function is defined by the product
+\begin{equation}
+  \label{eq:ag-def-atlas}
+  AG_{n, s}(t) = \prod_{\substack{i \ge 1 \\ i \not\equiv 0, \pm s \pmod{2n+1}}} \frac{1}{1 - t^i}.
+\end{equation}
+
+While Bruschek, Mourtada, and Schepers~\cite{bruschek_arc_2013}
+realized the diagonal series $AG_{n, n}(t)$
+as the focused arc algebra of the fat point $X^n = 0$ in $\mathbb{A}^1$,
+the intermediate spectrum $2 \le s \le n$
+can be realized geometrically through transversely coupled fat points in the affine plane $\mathbb{A}^2$.
+
+\begin{theorem}
+\label{thm:transverse-fat-points}
+Let $k$ be a field of characteristic zero.
+For integers $n \ge 2$ and $2 \le s \le n$,
+let $A_{n, s}$ be the fat point in $\mathbb{A}^2$
+defined by the ideal
+\begin{equation}
+  \label{eq:transverse-ideal}
+  I_{n, s} = \bigl(x^s, \, x y, \, y^{n+1}\bigr) \subset k[x, y].
+\end{equation}
+Then the Hilbert--Poincar\'{e} series of the focused arc algebra $J^0 A_{n, s}$
+satisfies
+\begin{equation}
+  \label{eq:transverse-hp}
+  HP_{J^0 A_{n, s}}(t) = AG_{n, s}(t) \times \prod_{i \equiv \pm 1 \pmod{2n+1}} \frac{1}{1 - t^i} = \frac{\mathbb{H}(t) \, AG_{n, s}(t)}{\mathbb{H}(t^{2n + 1}) \, AG_{n, 1}(t)},
+\end{equation}
+where
+\begin{equation*}
+  \mathbb{H}(t) = \prod_{i=1}^\infty \frac{1}{1 - t^i} = \sum_{m=0}^\infty p(m) \, t^m
+\end{equation*}
+is the generating series for the number of integer partitions $p(m)$.
+\end{theorem}
+
+\begin{thebibliography}{9}
+  \bibitem{andrews_analytic_1974}
+  G.~E.~Andrews,
+  \emph{An analytic generalization of the Rogers--Ramanujan identities for odd moduli},
+  Proc. Nat. Acad. Sci. U.S.A. \textbf{71} (1974), 4082--4085.
+
+  \bibitem{bruschek_arc_2013}
+  C.~Bruschek, H.~Mourtada, and J.~Schepers,
+  \emph{Arc spaces and Rogers--Ramanujan identities},
+  Discrete Math. \textbf{313} (2013), no.~17, 1743--1759.
+
+  \bibitem{gordon_combinatorial_1961}
+  B.~Gordon,
+  \emph{A combinatorial generalization of the Rogers--Ramanujan identities},
+  Amer. J. Math. \textbf{83} (1961), 743--749.
+\end{thebibliography}
 
 \printindex
 
