@@ -11,6 +11,7 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
 
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
@@ -476,64 +477,59 @@ We define the \defterm{weight-$d$ subspace} of $\Gamma(JX)$ to be
   the decomposition $\Gamma(JX) = \bigoplus_{d \in \mathbb{N}} \Gamma(JX)_d$ follows.
 \end{proof}
 
-\section{Andrews--Gordon Series via Transverse Fat Points}
-\label{sec:transverse-fat-points}
+\section{The Focused Arc Algebra of the Non-Reduced Node and Rogers--Ramanujan Identities}
+\label{sec:focused-arc-algebra-xy2}
 
-The Andrews--Gordon identities~\cite{andrews_analytic_1974,gordon_combinatorial_1961}
-generalize the celebrated Rogers--Ramanujan identities
-to an arbitrary odd modulus $2n + 1$ with $n \ge 1$.
-For any pair of integers $(n, s)$ satisfying $n \ge 1$ and $1 \le s \le n$,
-the associated generating function is defined by the product
-\begin{equation}
-  \label{eq:ag-def-atlas}
-  AG_{n, s}(t) = \prod_{\substack{i \ge 1 \\ i \not\equiv 0, \pm s \pmod{2n+1}}} \frac{1}{1 - t^i}.
-\end{equation}
-
-While Bruschek, Mourtada, and Schepers~\cite{bruschek_arc_2013}
-realized the diagonal series $AG_{n, n}(t)$
-as the focused arc algebra of the fat point $X^n = 0$ in $\mathbb{A}^1$,
-the intermediate spectrum $2 \le s \le n$
-can be realized geometrically through transversely coupled fat points in the affine plane $\mathbb{A}^2$.
-
-\begin{theorem}
-\label{thm:transverse-fat-points}
-Let $k$ be a field of characteristic zero.
-For integers $n \ge 2$ and $2 \le s \le n$,
-let $A_{n, s}$ be the fat point in $\mathbb{A}^2$
-defined by the ideal
-\begin{equation}
-  \label{eq:transverse-ideal}
-  I_{n, s} = \bigl(x^s, \, x y, \, y^{n+1}\bigr) \subset k[x, y].
-\end{equation}
-Then the Hilbert--Poincar\'{e} series of the focused arc algebra $J^0 A_{n, s}$
-satisfies
-\begin{equation}
-  \label{eq:transverse-hp}
-  HP_{J^0 A_{n, s}}(t) = AG_{n, s}(t) \times \prod_{i \equiv \pm 1 \pmod{2n+1}} \frac{1}{1 - t^i} = \frac{\mathbb{H}(t) \, AG_{n, s}(t)}{\mathbb{H}(t^{2n + 1}) \, AG_{n, 1}(t)},
-\end{equation}
-where
+Let $k$ be a field of characteristic zero, let $n \in \mathbb{Z}_+$, and let $s \in \{1, \dots, n\}$.
+The Andrews-Gordon generalization of the Rogers-Ramanujan identities states that
 \begin{equation*}
-  \mathbb{H}(t) = \prod_{i=1}^\infty \frac{1}{1 - t^i} = \sum_{m=0}^\infty p(m) \, t^m
+  \sum_{k = (k_1, \dots, k_{n - 1}) \in \mathbb{N}^{n - 1}}\frac{t^{\frac{1}{2}kG^{(n)}k^\top + kB^{(n)}_{n - s}}}{(t)_{k_1}\dots(t)_{k_{n - 1}}} = \prod^\infty_{\substack{i = 1 \\ i \not\equiv 0, \pm s \bmod 2n + 1}}(1 - t^i)^{-1},
 \end{equation*}
-is the generating series for the number of integer partitions $p(m)$.
-\end{theorem}
+where
+\begin{align*}
+  G^{(n)} &= (2\min\{i, j\})_{i, j = 1}^{n - 1}, \\
+  B^{(n)}_j &= (0, 0, \dots, 0, 1, 2, \dots, j)^\top \quad \text{for $j = 0, 1, \dots, n - 1$},
+\end{align*}
+and ${}^\top$ denotes the transpose matrix.
+We denote by $AG_{n, s}(t) \in \mathbb{N}[[t]]$ either side of this identity (though it's probably better to think of the products when doing Hilbert-Poincaré series).
 
-\begin{thebibliography}{9}
-  \bibitem{andrews_analytic_1974}
-  G.~E.~Andrews,
-  \emph{An analytic generalization of the Rogers--Ramanujan identities for odd moduli},
-  Proc. Nat. Acad. Sci. U.S.A. \textbf{71} (1974), 4082--4085.
+Recall that
+\begin{equation}
+  \mathbb{H}(t) = \prod_{i=1}^\infty \frac{1}{1 - t^i} = \sum_{m=0}^\infty p(m)t^m \in \mathbb{N}[[t]]
+\end{equation}
+is the generating function for integer partitions.
 
-  \bibitem{bruschek_arc_2013}
-  C.~Bruschek, H.~Mourtada, and J.~Schepers,
-  \emph{Arc spaces and Rogers--Ramanujan identities},
-  Discrete Math. \textbf{313} (2013), no.~17, 1743--1759.
+\begin{conjecture}
+\label{conj:xy2-hilbert-series}
+For $A = k[X, Y] / ((XY)^2)$, we have
+\begin{equation}
+  \label{eq:conj-xy2-hp}
+  HP_{J^0A}(t) = \frac{\mathbb{H}(t)}{1 - t}AG_{2, 1}(t).
+\end{equation}
+Equivalently,
+in Euler product form,
+\begin{equation}
+  \label{eq:conj-xy2-euler}
+  HP_{J^0A}(t) = \prod_{k=1}^\infty \frac{1}{(1 - t^k)^{c_k}},
+\end{equation}
+where the exponents $c_k$ satisfy $c_1 = 2$ and,
+for all $k \ge 2$,
+\begin{equation}
+  c_k = \begin{cases}
+    2 & \text{if } k \equiv \pm 2 \pmod 5, \\
+    1 & \text{if } k \equiv 0, \pm 1 \pmod 5.
+  \end{cases}
+\end{equation}
+\end{conjecture}
 
-  \bibitem{gordon_combinatorial_1961}
-  B.~Gordon,
-  \emph{A combinatorial generalization of the Rogers--Ramanujan identities},
-  Amer. J. Math. \textbf{83} (1961), 743--749.
-\end{thebibliography}
+\begin{conjecture}[Generalization to $(XY)^n$]
+\label{conj:xyn-generalization}
+Let $n \ge 2$ be an integer.
+For $A_n = k[X, Y]/((XY)^n)$, we have
+\begin{equation}
+  HP_{J^0A_n}(t) = \frac{\mathbb{H}(t)}{1 - t}AG_{n, 1}(t).
+\end{equation}
+\end{conjecture}
 
 \printindex
 
