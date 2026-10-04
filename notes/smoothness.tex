@@ -1,0 +1,111 @@
+\documentclass[a4paper, 12pt]{amsart}
+
+\usepackage[margin = 0.75in]{geometry}
+\usepackage{amssymb}
+\usepackage{imakeidx}
+\makeindex
+
+\newcommand{\defterm}[1]{\textbf{\textit{#1}}\index{#1}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\begin{document}
+
+\title{Smoothness in algebraic geometry}
+\author{Diego Salazar}
+\date{\today}
+\maketitle
+
+Let $X$ be a scheme, and let $x \in X$.
+Then $\mathfrak{m}_x/\mathfrak{m}_x^2$ is a vector space over $\kappa(x) = \mathcal{O}_{X, x}/\mathfrak{m}_x$, and the \defterm{absolute tangent space} of $X$ is the vector space
+\begin{equation}
+  \label{eq:1}
+  T_xX = (\mathfrak{m}_x/\mathfrak{m}_x^2)^*,
+\end{equation}
+where the asterisk denotes the dual vector space.
+
+Let $f: X \to Y$ be a morphism of schemes and $x \in X$ a point such that $\dim_{\kappa(f(x))}T_{f(x)}Y$ is finite.
+Then  the local homomorphism $f^\sharp: \mathcal{O}_{Y, f(x)} \to \mathcal{O}_{X, x}$ induces a $\kappa(x)$-linear map $\mathfrak{m}_{f(x)}/\mathfrak{m}^2_{f(x)}\otimes_{\kappa(f(x))}\kappa(x) \to \mathfrak{m}_x/\mathfrak{m}_x^2$.
+If $\kappa(f(x)) \to \kappa(x)$ is a finite extension or $T_{f(x)}Y$ is a finite-dimensional $\kappa(f(x))$-vector space, then we have a natural isomorphism
+\begin{equation*}
+  (\mathfrak{m}_{f(x)}/\mathfrak{m}^2_{f(x)}\otimes_{\kappa(f(x))}\kappa(x))^* \cong (\mathfrak{m}_{f(x)}/\mathfrak{m}^2_{f(x)})^*\otimes_{\kappa(f(x))}\kappa(x)
+\end{equation*}
+and dualizing, we obtain an induced map
+\begin{equation*}
+  (\mathfrak{m}_x/\mathfrak{m}_x^2)^* \to (\mathfrak{m}_{f(x)}/\mathfrak{m}^2_{f(x)}\otimes_{\kappa(f(x))}\kappa(x))^* \cong (\mathfrak{m}_{f(x)}/\mathfrak{m}^2_{f(x)})^*\otimes_{\kappa(f(x))}\kappa(x).
+\end{equation*}
+In other words, we obtain a map
+\begin{equation*}
+  df_x: T_xX \to T_{f(x)}Y \otimes_{\kappa(f(x))} \kappa(x).
+\end{equation*}
+
+Let $k$ be a field and we consider the affine scheme $\mathbb{A}^n_k = Spec(k[T_1, \dots, T_n])$
+We first compute the tangent space at the closed point $x = (T_1 - x_1, \dots, T_n - x_n)$.
+The maximal ideal of $\mathcal{O}_{X, x} \cong k[T_1, \dots, T_n]_{(T_1 - x_1, \dots, T_n - x_n)}$ is $\mathfrak{m}_x = (T_1 - x_1, \dots, T_n - x_n)k[T_1, \dots, T_n]_{(T_1 - x_1, \dots, T_n - x_n)}$ and $\kappa(x) = \mathcal{O}_{X, x}/\mathfrak{m}_x = k$.
+The elements $T_i - x_i$ yield a basis of $T_xX$ because we have the following isomorphism
+\begin{equation*}
+  (v_1, \dots, v_n) \mapsto \left( \mathfrak{m}_x / \mathfrak{m}_x^2 \to k, \ \overline{g} \mapsto \sum v_i \frac{\partial g}{\partial T_i}(x) \right).
+\end{equation*}
+
+Now let $f_1, \ldots, f_r \in k[T_1, \ldots, T_n]$, and let $f \colon \mathbb{A}_k^n \to \mathbb{A}_k^r$ be the map given by the $f_i$. For $x = (T_1 - x_1, \ldots, T_n - x_n) \in \mathbb{A}^n_k$, the induced map $df_x: T_x\mathbb{A}_k^n \to T_{f(x)}\mathbb{A}^r$ is given, using the identifications of the tangent spaces with $k^n$ and $k^r$, resp., as above, by the matrix
+\begin{equation*}
+  \left( \frac{\partial f_i}{\partial T_j}(x) \right)_{\substack{i=1,\ldots,r, \\ j=1,\ldots,n}}.
+\end{equation*}
+This is checked easily by using ``Taylor expansions'' of the $f_i$ around $x = (x_1, \ldots, x_n)$, i.\,e., by writing the $f_i$ as polynomials in $T_j - x_j$.
+
+Whenever we are given polynomials $f_1, \dots, f_r \in R[T_1, \dots, T_n]$ over some ring $R$, we denote by
+\begin{equation*}
+  J_{f_1, \dots, f_r} = \left(\frac{\partial f_i}{\partial T_j}\right)_{i, j} \in M_{r\times n}(R[T_1, \dots, T_n]).
+\end{equation*}
+
+Let $k$ be a field, and let $X = V(f_1, \dots, f_r) \subseteq \mathbb{A}^n_k$ be a closed subscheme, $f_i \in k[T_1, \dots, T_n]$.
+We pick a closed point $x = (T_1 - x_1, \dots, T_n - x_n) \in X$ which has to satisfy, of course, $f_1(x_1, \dots, x_n) = \dots = f_r(x_1, \dots, x_n) = 0$.
+Passing to coordinate rings, there is a natural right-exact sequence of $k$-algebras
+\begin{equation*}
+  k[U_1, \dots, U_r] \to k[T_1, \dots, T_n] \to k[T_1, \dots, T_n]/(f_1, \dots, f_r) \to 0,
+\end{equation*}
+where the first homomorphism sends $U_i$ to $f_i$.
+Taking localizations, we obtain the right-exact sequence
+\begin{equation*}
+  \mathcal{O}_{\mathbb{A}^r_k, f(x)} \to \mathcal{O}_{\mathbb{A}^n_k, x} \to \mathcal{O}_{X, x} \to 0.
+\end{equation*}
+Taking the maximal ideals of these local rings modulo their squares, and dualizing, we get a left-exact sequence
+\begin{equation*}
+  0 \to T_xX \to T_x\mathbb{A}^n_k \to T_{f(x)}\mathbb{A}^r_k
+\end{equation*}
+of $k$-vector spaces.
+Together with the previous computations, we see that we can identify $T_xX$ with the subspace
+\begin{equation*}
+  T_xX = \ker(J_{f_1, \dots, f_r}(x)) \subseteq T_x\mathbb{A}^n_k = k^n.
+\end{equation*}
+
+We note that the description for both the Jacobian and differential of a morphism coincides with what is customarily used in differential geometry for submanifolds of affine space.
+
+Let $f: X \to Y$ be a morphism of schemes, and let $d \ge 0$ be an integer.
+We say $f$ is \defterm{smooth of relative dimension $d$ at $x \in X$} if we can both:
+\begin{enumerate}
+\item Pick an affine neighborhood $U$ of $x$ and $V = Spec(R)$ of $f(x)$ such that $f(U) \subseteq V$, and an open immersion $U \hookrightarrow Spec(R[T_1, \dots, T_n]/(f_1, \dots, f_{n - d}))$ of $R$-schemes.
+\item The jacobian
+  \begin{equation*}
+    J_{f_1, \dots, f_{n - d}}(x) \in M_{n - d\times n}(\kappa(x))
+  \end{equation*}
+  at $x$ has the maximum rank $n - d$.
+\end{enumerate}
+In other words, we require $U$ to be an open subset of a closed subscheme of codimension $n - d$ at $x$ such that the closed subscheme is smooth at $x$ in the sense of having Jacobian with the maximum rank $n - d$, just like in differential geometry.
+
+Recall for this definition that we denote for $g \in R[T_1, \dots, T_n]$ (e.g., $g = \frac{\partial f_i}{\partial T_j}$) and for $x \in \mathbb{A}^n_R$ (or $x$ in a subscheme $U$ of $\mathbb{A}^n_R$) by $g(x) \in \kappa(x)$ the image of $g$ in $\mathcal{O}_{\mathbb{A}^n_R, x}/\mathfrak{m}_x$.
+Requiring that the open immersion  be a morphism of $R$-schemes amounts precisely to saying that its composition with the projection to $Spec(R)$ equals the restriction of $f$ to $U$.
+If $R = k$ is a field and $\mathfrak{p}_x = (T_1 - a_1, \dots, T_n - a_n)$ for $a = (a_1, \dots, a_n) \in k^n$, then $g(x) \in \kappa(x) = k$ is simply the usual evaluation of $g$ in $a$.
+
+We say \defterm{$f: X \to Y$ is smooth}, or that \defterm{$X$ is smooth over $Y$}, (of relative dimension $d$) if it is smooth (of relative dimension $d$) at all points $x \in X$.
+\printindex
+
+\end{document}

@@ -3,6 +3,7 @@
 \usepackage[margin = 0.75in]{geometry}
 \usepackage{amssymb}
 \usepackage{imakeidx}
+\usepackage{tikz-cd}
 \makeindex
 
 \newcommand{\defterm}[1]{\textbf{\textit{#1}}\index{#1}}
@@ -476,6 +477,117 @@ We define the \defterm{weight-$d$ subspace} of $\Gamma(JX)$ to be
   Since $f = \sum_d f_d$ and each $f_d \in \Gamma(JX)_d$,
   the decomposition $\Gamma(JX) = \bigoplus_{d \in \mathbb{N}} \Gamma(JX)_d$ follows.
 \end{proof}
+
+Now let $X$ be a $k$-scheme of finite type,
+and let $\mathfrak{p} \in X$ be a point with residue field $\kappa(\mathfrak{p})$.
+For $m \in \mathbb{N}$, the truncation morphism $A[[t]] \to A[t]/(t^{m + 1})$ for $k$-algebras $A$ give rise to a canonical morphism $\psi_m: JX \to X_m$.
+In particular, since $X_0 = X$, we have a canonical morphism $\psi_0: JX \to X$.
+We also have a canonical morphism of schemes $i_\mathfrak{p}: Spec(\kappa(\mathfrak{p})) \to X$.
+Thus, we can form the fiber product
+\begin{equation*}
+  J^\mathfrak{p}X = JX \otimes_X Spec(\kappa(\mathfrak{p}))
+\end{equation*}
+called the \defterm{focused arc of $X$ at $\mathfrak{p}$} and is an affine scheme over $\kappa(\mathfrak{p})$.
+The \defterm{focused arc algebra of $X$ at $\mathfrak{p}$} is the ring of global sections $\Gamma(J^\mathfrak{p}X)$ which is a $\kappa(\mathfrak{p})$-algebra.
+
+If $U = Spec(A) \subseteq X$ is an affine open neighborhood of $\mathfrak{p}$,
+so that $\mathfrak{p}$ corresponds to a prime ideal $\mathfrak{p} \subseteq A$,
+then
+\begin{equation*}
+  J^\mathfrak{p}X \cong Spec(JA) \times_{Spec(A)} Spec(\kappa(\mathfrak{p}))
+  \cong Spec(JA \otimes_A \kappa(\mathfrak{p})).
+\end{equation*}
+Taking global sections,
+we obtain a canonical isomorphism of $\kappa(\mathfrak{p})$-algebras
+\begin{equation*}
+  \Gamma(J^\mathfrak{p}X) \cong JA \otimes_A \kappa(\mathfrak{p}) = J^\mathfrak{p}A,
+\end{equation*}
+showing that this definition is independent of the choice of affine open neighborhood
+and coincides with the affine definition given in \eqref{eq:1}.
+
+To understand the induced action on the focused arc scheme $J^\mathfrak{p}X$ in detail,
+recall that $J^\mathfrak{p}X$ is defined by the Cartesian square
+\begin{equation}
+  \label{eq:fiber-pullback}
+  \begin{tikzcd}
+    J^\mathfrak{p}X \arrow[r, "j"] \arrow[d, "p"'] & JX \arrow[d, "\psi_0"] \\
+    Spec(\kappa(\mathfrak{p})) \arrow[r, "i_\mathfrak{p}"'] & X
+  \end{tikzcd}
+\end{equation}
+where $j: J^\mathfrak{p}X \to JX$ is the canonical morphism from the fiber,
+and $p: J^\mathfrak{p}X \to Spec(\kappa(\mathfrak{p}))$ is the structure morphism.
+
+First,
+the scaling action $\mu: \mathbb{A}^1_k \times_k JX \to JX$ preserves the projection $\psi_0$.
+Functorially,
+for any $k$-algebra $R$,
+an element of $(\mathbb{A}^1_k \times_k JX)(R)$ is a pair $(\lambda, \gamma)$
+with $\lambda \in R$ and $\gamma \in Hom_k(Spec(R[[t]]), X)$.
+The action $\mu$ maps $(\lambda, \gamma)$ to the scaled arc $\gamma_\lambda(t) := \gamma(\lambda t)$,
+and the projection $\psi_0$ evaluates an arc at $t = 0$.
+Since $\gamma_\lambda(0) = \gamma(0)$,
+evaluating at $t = 0$ is independent of the scaling factor $\lambda$.
+Hence,
+the following diagram commutes:
+\begin{equation}
+  \label{eq:mu-pi0-commute}
+  \begin{tikzcd}
+    \mathbb{A}^1_k \times_k JX \arrow[r, "\mu"] \arrow[d, "\mathrm{pr}_2"'] & JX \arrow[d, "\psi_0"] \\
+    JX \arrow[r, "\psi_0"'] & X
+  \end{tikzcd}
+\end{equation}
+that is,
+$\psi_0 \circ \mu = \psi_0 \circ \mathrm{pr}_2$.
+
+Next,
+base-changing $\mathbb{A}^1_k$ along $Spec(\kappa(\mathfrak{p})) \to Spec(k)$ gives
+\begin{equation*}
+  \mathbb{A}^1_{\kappa(\mathfrak{p})} \times_{\kappa(\mathfrak{p})} J^\mathfrak{p}X
+  \cong \mathbb{A}^1_k \times_k J^\mathfrak{p}X.
+\end{equation*}
+Consider the composite morphism $\Phi := \mu \circ (\mathrm{id}_{\mathbb{A}^1} \times j): \mathbb{A}^1_k \times_k J^\mathfrak{p}X \to JX$.
+Using the commutativity of \eqref{eq:mu-pi0-commute} and \eqref{eq:fiber-pullback},
+we have
+\begin{equation*}
+  \psi_0 \circ \Phi = \psi_0 \circ \mathrm{pr}_2 \circ (\mathrm{id}_{\mathbb{A}^1} \times j)
+  = \psi_0 \circ j \circ \mathrm{pr}_2
+  = i_\mathfrak{p} \circ (p \circ \mathrm{pr}_2),
+\end{equation*}
+where $\mathrm{pr}_2: \mathbb{A}^1_k \times_k J^\mathfrak{p}X \to J^\mathfrak{p}X$ is the projection onto the second factor.
+By the universal property of the fiber product $J^\mathfrak{p}X$,
+there exists a unique morphism
+\begin{equation*}
+  \mu_\mathfrak{p}: \mathbb{A}^1_{\kappa(\mathfrak{p})} \times_{\kappa(\mathfrak{p})} J^\mathfrak{p}X \to J^\mathfrak{p}X
+\end{equation*}
+making the following diagram commute:
+\begin{equation}
+  \label{eq:mu-p-universal-diagram}
+  \begin{tikzcd}
+    \mathbb{A}^1_{\kappa(\mathfrak{p})} \times_{\kappa(\mathfrak{p})} J^\mathfrak{p}X \arrow[dd, "p \circ \mathrm{pr}_2"'] \arrow[dr, dashed, "\exists! \, \mu_\mathfrak{p}"] \arrow[rr, "\Phi = \mu \circ (\mathrm{id} \times j)"] & & JX \arrow[dd, "\psi_0"] \\
+    & J^\mathfrak{p}X \arrow[ur, "j"'] \arrow[dl, "p"] & \\
+    Spec(\kappa(\mathfrak{p})) \arrow[rr, "i_\mathfrak{p}"'] & & X
+  \end{tikzcd}
+\end{equation}
+This morphism $\mu_\mathfrak{p}$ defines the scaling action of the multiplicative monoid $\mathbb{A}^1_{\kappa(\mathfrak{p})}$ on $J^\mathfrak{p}X$.
+
+Taking global sections,
+$\mu_\mathfrak{p}$ induces a coaction
+\begin{equation*}
+  \sigma_\mathfrak{p}: \Gamma(J^\mathfrak{p}X) \to \Gamma(J^\mathfrak{p}X)[\lambda],
+\end{equation*}
+which on an affine open neighborhood $U = Spec(A) \subseteq X$ of $\mathfrak{p}$
+recovers the algebraic coaction $\sigma \otimes \mathrm{id}_{\kappa(\mathfrak{p})}: JA \otimes_A \kappa(\mathfrak{p}) \to (JA \otimes_A \kappa(\mathfrak{p}))[\lambda]$.
+By Proposition~\ref{prop:weight-decomposition},
+this induces a weight decomposition
+\begin{equation*}
+  \Gamma(J^\mathfrak{p}X) = \bigoplus_{d \in \mathbb{N}} \Gamma(J^\mathfrak{p}X)_d,
+\end{equation*}
+making $\Gamma(J^\mathfrak{p}X)$ an $\mathbb{N}$-graded $\kappa(\mathfrak{p})$-algebra
+with $\Gamma(J^\mathfrak{p}X)_0 = \kappa(\mathfrak{p})$.
+The \defterm{arc Hilbert-Poincaré series of $X$ at $\mathfrak{p}$} is then defined by
+\begin{equation*}
+  HP_{\Gamma(J^\mathfrak{p}X)}(t) = \sum_{d \in \mathbb{N}} \dim_{\kappa(\mathfrak{p})}(\Gamma(J^\mathfrak{p}X)_d) t^d \in \mathbb{N}[[t]].
+\end{equation*}
 
 \section{The Focused Arc Algebra of the Non-Reduced Node and Rogers--Ramanujan Identities}
 \label{sec:focused-arc-algebra-xy2}
