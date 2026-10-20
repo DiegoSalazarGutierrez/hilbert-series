@@ -20,9 +20,6 @@
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{example}[theorem]{Example}
 
-\DeclareMathOperator{\Hom}{Hom}
-\DeclareMathOperator{\inc}{inc}
-
 \begin{document}
 
 \title{Jet modules}
@@ -32,7 +29,7 @@
 
 In this note, all rings and algebras are commutative with unit over a field $k$.
 Let $A$ be a finitely generated $k$-algebra, and let $JA$ denote its jet algebra.
-We have a natural algebra inclusion $\inc: A \hookrightarrow JA$.
+We have a natural algebra inclusion $\operatorname{inc}: A \hookrightarrow JA$.
 
 We present two constructions of $\mathbb{N}$-graded $JA$-modules starting from an $\mathbb{N}$-graded $A$-module $M$:
 the tensor product jet module $JM$,
@@ -54,7 +51,7 @@ These constructions are genuinely different and satisfy different universal prop
   \begin{equation*}
     JM = JA \otimes_A M,
   \end{equation*}
-  where $JA$ is viewed as an $A$-algebra via the inclusion $\inc: A \hookrightarrow JA$.
+  where $JA$ is viewed as an $A$-algebra via the inclusion $\operatorname{inc}: A \hookrightarrow JA$.
   The $JA$-action is given by $a \cdot (b \otimes m) = (ab) \otimes m$ for $a, b \in JA$ and $m \in M$.
 \end{definition}
 
@@ -64,9 +61,9 @@ These constructions are genuinely different and satisfy different universal prop
   For any $\mathbb{N}$-graded $JA$-module $N$,
   \begin{equation}
     \label{eq:UP-JM}
-    \Hom_{JA}(JM, N) \cong \Hom_A(M, N),
+    \operatorname{Hom}_{JA}(JM, N) \cong \operatorname{Hom}_A(M, N),
   \end{equation}
-  where $N$ is viewed as an $\mathbb{N}$-graded $A$-module via restriction of scalars along $\inc: A \hookrightarrow JA$.
+  where $N$ is viewed as an $\mathbb{N}$-graded $A$-module via restriction of scalars along $\operatorname{inc}: A \hookrightarrow JA$.
   In other words, the functor $JA \otimes_A \bullet$ is left adjoint to the restriction of scalars functor.
 \end{proposition}
 
@@ -85,7 +82,7 @@ Let $\mathfrak{p} \in \operatorname{Spec}(A)$ be a prime ideal and $\kappa(\math
   For any $\mathbb{N}$-graded $J^\mathfrak{p}A$-module $N$, the standard extension of scalars adjunction yields a canonical isomorphism:
   \begin{equation}
     \label{eq:UP-JpM}
-    \Hom_{J^\mathfrak{p}A}(J^\mathfrak{p}M, N) \cong \Hom_A(M, N),
+    \operatorname{Hom}_{J^\mathfrak{p}A}(J^\mathfrak{p}M, N) \cong \operatorname{Hom}_A(M, N),
   \end{equation}
   where $N$ is viewed as an $A$-module via the canonical restriction mapping $A \hookrightarrow JA \to J^\mathfrak{p}A$.
 \end{corollary}
@@ -118,7 +115,7 @@ Let $\mathfrak{p} \in \operatorname{Spec}(A)$ be a prime ideal and $\kappa(\math
   \begin{equation*}
     JA \otimes_A A \xrightarrow{1 \otimes \cdot X^s} JA \otimes_A A \to JA \otimes_A M \to 0.
   \end{equation*}
-  Recall that the graded $A$-module structure on $JA$ is given by the natural inclusion $\inc: A \hookrightarrow JA$, which maps $X \mapsto X(0) = X^{(0)}$.
+  Recall that the graded $A$-module structure on $JA$ is given by the natural inclusion $\operatorname{inc}: A \hookrightarrow JA$, which maps $X \mapsto X(0) = X^{(0)}$.
   Under the canonical isomorphism $JA \otimes_A A \cong JA$, the map $1 \otimes \cdot X^s$ becomes multiplication by the image of $X^s$, namely $(X^{(0)})^s$.
   Therefore, the sequence reduces to
   \begin{equation*}
@@ -148,7 +145,7 @@ Before defining our main object of interest, we briefly clarify the category of 
 
 Under this framework, the jet module we construct will be an object in $\mathbb{N}\text{-gr-}JA\text{-Mod}$. Note that our base algebra $A$ is merely a $k$-algebra (not a differential algebra), so our base module $M$ is simply an object in $\mathbb{N}\text{-gr-}A\text{-Mod}$. 
 
-Furthermore, since $A$ embeds into $JA$ via the canonical map $\inc: A \hookrightarrow JA$ given by $a \mapsto \partial^0(a)$, every $JA$-module $N$ naturally inherits the structure of an $A$-module via restriction of scalars. That is, the action is given by $a \cdot n := \partial^0(a) n$. This allows us to unambiguously consider sets of $A$-linear homomorphisms, such as $\Hom_A(M, N)$ or $\Hom_A(M, N[[t]])$, whenever $N$ is a $JA$-module.
+Furthermore, since $A$ embeds into $JA$ via the canonical map $\operatorname{inc}: A \hookrightarrow JA$ given by $a \mapsto \partial^0(a)$, every $JA$-module $N$ naturally inherits the structure of an $A$-module via restriction of scalars. That is, the action is given by $a \cdot n := \partial^0(a) n$. This allows us to unambiguously consider sets of $A$-linear homomorphisms, such as $\operatorname{Hom}_A(M, N)$ or $\operatorname{Hom}_A(M, N[[t]])$, whenever $N$ is a $JA$-module.
 
 \section{The Leibniz jet module}
 \label{sec:leibniz-jet-module}
@@ -190,14 +187,14 @@ for $a \in A$ and $u(t) = \sum_{l \ge 0} u_l t^l \in N[[t]]$,
   for any $JA$-module $N$,
   \begin{equation}
     \label{eq:UP-JdM}
-    \Hom_{JA}(J_\partial M, N) \cong \Hom_A(M, N[[t]]),
+    \operatorname{Hom}_{JA}(J_\partial M, N) \cong \operatorname{Hom}_A(M, N[[t]]),
   \end{equation}
   where $N[[t]]$ is viewed as an $A$-module as in \S\ref{sec:A-module-Nt}.
 \end{definition}
 
 \begin{remark}
   \label{rmk:universal-derivatives}
-  By applying the universal property to $N = J_\partial M$, the identity endomorphism $\mathrm{id} \in \Hom_{JA}(J_\partial M, J_\partial M)$ corresponds to a canonical $A$-module homomorphism
+  By applying the universal property to $N = J_\partial M$, the identity endomorphism $\mathrm{id} \in \operatorname{Hom}_{JA}(J_\partial M, J_\partial M)$ corresponds to a canonical $A$-module homomorphism
   \begin{equation*}
     \Delta_M: M \to J_\partial M[[t]].
   \end{equation*}
@@ -212,8 +209,8 @@ for $a \in A$ and $u(t) = \sum_{l \ge 0} u_l t^l \in N[[t]]$,
   \label{rmk:comparison-UP}
   The two universal properties differ only in the target of the right-hand side:
   \begin{align*}
-    \Hom_{JA}(JM, N) &\cong \Hom_A(M, N), \\
-    \Hom_{JA}(J_\partial M, N) &\cong \Hom_A(M, N[[t]]).
+    \operatorname{Hom}_{JA}(JM, N) &\cong \operatorname{Hom}_A(M, N), \\
+    \operatorname{Hom}_{JA}(J_\partial M, N) &\cong \operatorname{Hom}_A(M, N[[t]]).
   \end{align*}
   The tensor product $JM$ represents \emph{constant} maps from $M$ into $N$
   (where $A$ acts on $N$ through $X^{(0)}$ alone),
@@ -292,7 +289,7 @@ Consequently, for any $m \in M$, the pure tensor $m^{(l)} = q^l \otimes m$ intri
 
 \begin{remark}
   \label{rmk:duality-polynomial-series}
-  It is instructive to contrast the Leibniz arc bimodule $J_\partial A = JA[q]$ (polynomials in $q$) with the formal power series ring $JA[[t]]$ (a direct product). The universal property $\Hom_{JA}(J_\partial M, N) \cong \Hom_A(M, N[[t]])$ establishes a fundamental adjunction between polynomials and power series. Because the target on the right consists of infinite series, the universal object on the left must be built from finite sums (polynomials) to ensure homomorphisms remain purely algebraic without requiring convergence conditions in $N$. 
+  It is instructive to contrast the Leibniz arc bimodule $J_\partial A = JA[q]$ (polynomials in $q$) with the formal power series ring $JA[[t]]$ (a direct product). The universal property $\operatorname{Hom}_{JA}(J_\partial M, N) \cong \operatorname{Hom}_A(M, N[[t]])$ establishes a fundamental adjunction between polynomials and power series. Because the target on the right consists of infinite series, the universal object on the left must be built from finite sums (polynomials) to ensure homomorphisms remain purely algebraic without requiring convergence conditions in $N$. 
   
   Furthermore, this adjunction elegantly dictates the right action on $J_\partial A$. In $N[[t]]$, the left action of $a \in A$ corresponds to multiplying by the series $a(t) = \sum \partial^j(a) t^j$, which shifts degrees \emph{up} ($j+k$). To perfectly balance this across the tensor product homomorphism, the right action of $a$ on the generators $q^l \in J_\partial A$ must shift degrees \emph{down}: $q^l \cdot a = \sum_{j=0}^l \partial^j(a) q^{l-j}$. This downward-shifting action is algebraically equivalent to multiplication by $a(q^{-1})$ within the localized ring $JA[q, q^{-1}]$, truncated to non-negative powers. Thus, $J_\partial A$ acts as the ``polynomial dual'' to the formal completion $JA[[t]]$.
 \end{remark}
@@ -364,7 +361,7 @@ In particular:
   the map $\psi_l$ is coupled to $\psi_0, \psi_1, \dots, \psi_{l-1}$
   through the higher derivatives $\partial(a), \dots, \partial^l(a)$ of $a$.
 \end{itemize}
-Thus the full datum of a map $\psi \in \Hom_A(M, N[[t]])$
+Thus the full datum of a map $\psi \in \operatorname{Hom}_A(M, N[[t]])$
 is an infinite sequence $(\psi_0, \psi_1, \psi_2, \dots)$ of $k$-linear maps $M \to N$,
 coupled order by order via the Leibniz rule and the derivation $\partial$.
 
@@ -378,7 +375,7 @@ coupled order by order via the Leibniz rule and the derivation $\partial$.
   so $J_\partial A$ is the free $JA$-module on generators $\{v^{(l)} \mid l \in \mathbb{N}\}$.
   In particular, $J_\partial A$ is \emph{not} isomorphic to $JA$ as a $JA$-module
   (whereas $J_A = JA \otimes_A A \cong JA$).
-  Indeed, $\Hom_{JA}(JA, N) \cong N$ while $\Hom_{JA}(J_\partial A, N) \cong N[[t]]$.
+  Indeed, $\operatorname{Hom}_{JA}(JA, N) \cong N$ while $\operatorname{Hom}_{JA}(J_\partial A, N) \cong N[[t]]$.
 \end{example}
 
 \begin{example}
@@ -606,11 +603,11 @@ For the focused module $J^0_\partial M$,
 each graded piece $(J^0_\partial M)_n$ is finite dimensional,
 and the standard Hilbert--Poincar\'{e} series
 \begin{equation*}
-  HP_{J^0_\partial M}(t) = \sum_{n \in \mathbb{N}} \dim_k((J^0_\partial M)_n)\, t^n
+  \operatorname{HP}_{J^0_\partial M}(t) = \sum_{n \in \mathbb{N}} \dim_k((J^0_\partial M)_n)\, t^n
 \end{equation*}
 is well defined.
 Note that $(J^0_\partial M)_0$ is spanned by $v^{(0)}$ alone,
-so $HP_{J^0_\partial M}(t) = 1 + \dots$
+so $\operatorname{HP}_{J^0_\partial M}(t) = 1 + \dots$
 
 \subsection{The bivariate Hilbert-Poincar\'{e} series}
 \label{sec:bivariate-series}
@@ -631,7 +628,7 @@ Because the defining differential relations $\partial^m(X^n) = 0$ are homogeneou
 
 Letting $A^s_n = (J^0A)^s \cap (J^0A)_n$ denote the simultaneous eigenspace where the source action scales by $\lambda^n$ and the target action scales by $\mu^s$, the bivariate Hilbert--Poincar\'{e} series is defined precisely as the equivariant character of the focused arc space under this $k^\times \times k^\times$ action:
 \begin{equation*}
-  HP_{J^0A}(q, t) = \sum_{n, s \ge 0} \dim_k(A^s_n) q^s t^n.
+  \operatorname{HP}_{J^0A}(q, t) = \sum_{n, s \ge 0} \dim_k(A^s_n) q^s t^n.
 \end{equation*}
 This natural definition extends identically to the head module $H(M)$.
 
@@ -644,16 +641,16 @@ To fix this while retaining the structural benefits of the Leibniz relations, we
 Recall that there is a natural evaluation map $E: N[[t]] \to N$ at $t = 0$.
 Given a formal arc $\psi: M \to N[[t]]$, its composition with $E$ yields an $A$-module map $\psi_0: M \to N$ (where $N$ is viewed as an $A$-module via the restriction $A \to J^0A$). This composition cleanly induces a map between the Hom-sets:
 \begin{equation*}
-  \Hom_A(M, N[[t]]) \xrightarrow{\text{compose with } E} \Hom_A(M, N).
+  \operatorname{Hom}_A(M, N[[t]]) \xrightarrow{\text{compose with } E} \operatorname{Hom}_A(M, N).
 \end{equation*}
-By applying the universal property of the focused Leibniz jet module on the left, and the standard tensor adjunction $\Hom_A(M, N) \cong \Hom_{J^0A}(J^0M, N)$ on the right, we can construct the following commutative square of hom-sets:
+By applying the universal property of the focused Leibniz jet module on the left, and the standard tensor adjunction $\operatorname{Hom}_A(M, N) \cong \operatorname{Hom}_{J^0A}(J^0M, N)$ on the right, we can construct the following commutative square of hom-sets:
 \begin{equation*}
   \begin{tikzcd}[column sep=huge]
-    \Hom_A(M, N[[t]]) \arrow[r, "E \circ -"] \arrow[d, "\cong"', "\text{Univ.\ Prop.}"] & \Hom_A(M, N) \arrow[d, "\cong"', "\text{Tensor Adj.}"] \\
-    \Hom_{J^0A}(J^0_\partial M, N) \arrow[r, dashed, "\Psi_N"] & \Hom_{J^0A}(J^0M, N)
+    \operatorname{Hom}_A(M, N[[t]]) \arrow[r, "E \circ -"] \arrow[d, "\cong"', "\text{Univ.\ Prop.}"] & \operatorname{Hom}_A(M, N) \arrow[d, "\cong"', "\text{Tensor Adj.}"] \\
+    \operatorname{Hom}_{J^0A}(J^0_\partial M, N) \arrow[r, dashed, "\Psi_N"] & \operatorname{Hom}_{J^0A}(J^0M, N)
   \end{tikzcd}
 \end{equation*}
-Because the top map and the two vertical isomorphisms exist naturally for any $J^0A$-module $N$, they induce a natural transformation $\Psi_N$ between the contravariant hom-functors $\Hom_{J^0A}(J^0_\partial M, -)$ and $\Hom_{J^0A}(J^0M, -)$. 
+Because the top map and the two vertical isomorphisms exist naturally for any $J^0A$-module $N$, they induce a natural transformation $\Psi_N$ between the contravariant hom-functors $\operatorname{Hom}_{J^0A}(J^0_\partial M, -)$ and $\operatorname{Hom}_{J^0A}(J^0M, -)$. 
 
 By the Yoneda lemma, a natural transformation between hom-functors is always induced by pulling back along a unique, canonical morphism in the underlying category in the opposite direction. Therefore, $\Psi_N$ uniquely corresponds to a canonical $J^0A$-module morphism:
 \begin{equation*}
@@ -713,7 +710,7 @@ Extensive computational evidence leads us to the following conjecture regarding 
   Let $A = k[X]/(X^n)$ and let $M = A/(X^s)$ for some $1 \le s \le n$. 
   Under the standard $\mathbb{N}$-grading, the Hilbert--Poincar\'{e} series of the head of the Leibniz jet module is exactly the bi-parameter Andrews-Gordon series:
   \begin{equation*}
-    HP_{H(M)}(t) = AG_{n,s}(t) = \prod_{i \not\equiv 0, \pm s \pmod{2n+1}} \frac{1}{1 - t^i}.
+    \operatorname{HP}_{H(M)}(t) = AG_{n,s}(t) = \prod_{i \not\equiv 0, \pm s \pmod{2n+1}} \frac{1}{1 - t^i}.
   \end{equation*}
 \end{theorem}
 
@@ -732,7 +729,7 @@ Extensive computational evidence leads us to the following conjecture regarding 
   By the classic combinatorial theorem of Andrews and Gordon, the generating function for partitions satisfying exactly these two conditions is the right-hand side of the Andrews-Gordon identity $AG_{n,s}(t)$. 
   Since the standard monomials of $\mathrm{in}(I_{n,s})$ are a subset of the standard monomials of $\mathrm{in}(I_n) + \langle (X^{(1)})^s \rangle$, we immediately obtain the coefficient-wise upper bound:
   \begin{equation*}
-    HP_{H(M)}(t) \le AG_{n,s}(t).
+    \operatorname{HP}_{H(M)}(t) \le AG_{n,s}(t).
   \end{equation*}
   Since $(X^{(1)})^s$ shares no non-trivial S-polynomial reductions that generate new initial terms outside this combinatorial set (which can be explicitly verified via Buchberger's algorithm or known regularity conditions for these specific monomial limits), the initial ideal equality $\mathrm{in}(I_{n,s}) = \mathrm{in}(I_n) + \langle (X^{(1)})^s \rangle$ holds exactly. Thus, the Hilbert--Poincar\'{e} series achieves equality.
 \end{proof}
@@ -792,7 +789,7 @@ Here, one encounters an immediate obstruction on the first graded piece:
   are linearly independent in degree $1$.
   This forces the Hilbert--Poincar\'{e} series to begin as
   \begin{equation*}
-    HP_{J^0X}(t) = 1 + 2t + O(t^2).
+    \operatorname{HP}_{J^0X}(t) = 1 + 2t + O(t^2).
   \end{equation*}
   \item
   On the other hand, the Andrews--Gordon series begins as

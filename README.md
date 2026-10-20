@@ -29,21 +29,19 @@ Then I will try to do educated guesses for the missing parts of the results.
 hilbert-series/
 ├── .git/                    # Git repository
 ├── .vscode/                 # VS Code settings
-├── docs/                    # Research documents
+├── docs/                    # Research documents in pdf/djvu format
 ├── misc/                    # Miscellaneous files
 ├── notes/                   # .tex math notes to write down definitions, proofs, ideas, conjectures, etc.
-├── refs/                    # .tex math papers used as references
-├── scratch/                 # AI-generated content & prompt logs
-│   ├── explanations/        # Explanations curated by me
-│   └── reviews/             # Reviews of the project, notes/ and src/ files
-├── src/                     # main paper LaTeX files
+├── refs/                    # .tex sources used as references
+├── scratch/                 # AI-generated content
+├── src/                     # Paper source files
 │   ├── bibliography.bib     # BibTeX references
-│   └── main.tex             # Main paper
-├── tests/                   # SageMath / Mathematica experiments
+│   └── main.tex             # Main paper source file
+├── tests/                   # SageMath/Mathematica experiments
 ├── .gitignore               # Ignores all LaTeX auxiliary files and some folders
 ├── AGENTS.md                # Instructions/notation conventions for LLMs
 ├── LICENSE.md               # Licensing for your text and code
-└── README.md                # Project overview and goals
+└── README.md                # Project overview, directory structure and goals
 ```
 
 ## Goals
