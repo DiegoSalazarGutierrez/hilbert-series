@@ -668,8 +668,20 @@ The ideal
 \begin{equation}
   J_n = \bigl( [t^l] W(t)^n \bigm| l \ge n d \bigr) \subset Q
 \end{equation}
-defines the 1-variable fat point arc algebra $B_n := Q / J_n$.
-Notice that
+defines the (weight-shifted) 1-variable fat point arc algebra $B_n := Q / J_n$.
+Since multiplication in a formal power series ring satisfies $[t^l](gh) = \sum_{i = 0}^l ([t^i]g)([t^{l - i}]h)$,
+it follows by induction on $n$ that
+\begin{equation*}
+  [t^l] W(t)^n = \sum_{\substack{l_1 + \dots + l_n = l \\ l_1, \dots, l_n \ge d}} W^{(l_1)} \cdots W^{(l_n)}.
+\end{equation*}
+Since $\phi_f \colon Q \to P$ is a ring homomorphism mapping $W^{(l_i)} \mapsto u_{l_i} = [t^{l_i}] f(X_1(t), \dots, X_r(t))$,
+applying $\phi_f$ yields
+\begin{equation*}
+  \phi_f\bigl([t^l] W(t)^n\bigr)
+  = \sum_{\substack{l_1 + \dots + l_n = l \\ l_1, \dots, l_n \ge d}} u_{l_1} \cdots u_{l_n}
+  = [t^l] \bigl(f(X_1(t), \dots, X_r(t))\bigr)^n,
+\end{equation*}
+and therefore
 \begin{equation}
   I_\infty^0(f^n) = \phi_f(J_n) \cdot P.
 \end{equation}
