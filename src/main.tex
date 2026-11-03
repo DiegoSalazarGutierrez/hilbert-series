@@ -1,0 +1,285 @@
+\documentclass[a4paper, 12pt, reqno]{amsart}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[backref=page]{hyperref}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{enumitem}
+\usepackage{tikz-cd}
+\usepackage{zref-clever}
+\makeindex
+
+\newcommand{\defterm}[1]{\textbf{\textit{#1}}\index{#1}}
+
+\zcsetup{cap, nameinlink}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\AddToHook{env/lemma/begin}{\zcsetup{countertype={theorem=lemma}}}
+\newtheorem{proposition}[theorem]{Proposition}
+\AddToHook{env/proposition/begin}{\zcsetup{countertype={theorem=proposition}}}
+\newtheorem{corollary}[theorem]{Corollary}
+\AddToHook{env/corollary/begin}{\zcsetup{countertype={theorem=corollary}}}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\AddToHook{env/remark/begin}{\zcsetup{countertype={theorem=remark}}}
+\newtheorem{example}[theorem]{Example}
+\AddToHook{env/example/begin}{\zcsetup{countertype={theorem=example}}}
+
+\zcRefTypeSetup{section}{
+  Name-sg=\S,
+  name-sg=\S,
+  Name-pl=\S\S,
+  name-pl=\S\S,
+  namesep={}
+}
+
+\setlist[enumerate, 1]{label=\normalfont(\roman*)}
+
+\renewcommand*{\backref}[1]{}
+\renewcommand*{\backrefalt}[4]{%
+  \ifcase #1 (Not cited.)%
+  \or        (Cited on page~#2.)%
+  \else      (Cited on pages~#2.)%
+  \fi}
+
+\begin{document}
+
+\setcounter{section}{-1}
+
+\title{Hilbert series}
+\author{Diego Salazar}
+\thanks{}
+\address{Universidade Federal do Rio de Janeiro, Macaé, RJ, Brazil}
+\email{xdiego.sg@gmail.com}
+\date{\today}
+
+\begin{abstract}
+  \noindent \textbf{Keywords.}
+\end{abstract}
+
+\maketitle
+
+
+\section{Introduction}
+\label{sec:introduction}
+
+\paragraph{Acknowledgements.}
+
+\section{Preliminaries and notation}
+\label{sec:prel-notat}
+
+All rings considered are commutative with identity element $1$, and all ring homomorphisms preserve the identity.
+The set of natural numbers $\{0, 1, \dots\}$ is denoted by $\mathbb{N}$, the set of integers is denoted by $\mathbb{Z}$, and the set of positive integers $\{1, 2, \dots\}$ is denoted by $\mathbb{Z}_+$.
+Let $R$ be a ring.
+An \defterm{$R$-algebra} is a ring $S$ equipped with a ring homomorphism $R \to S$.
+An \defterm{$\mathbb{N}$-graded ring} is a ring $R$ together with a family $(R_n)_{n \in \mathbb{N}}$ of additive subgroups of $R$ such that $R = \bigoplus_{n \in \mathbb{N}} R_n$ and $R_mR_n \subseteq R_{m + n}$.
+This automatically implies $1 \in R_0$.
+Let $k$ be a field.
+An \defterm{$\mathbb{N}$-graded $k$-algebra} is a $k$-algebra $A = \bigoplus_{n \in \mathbb{N}} A_n$ such that $A$ is an $\mathbb{N}$-graded ring, and each additive subgroup $A_n$ is a subspace of $A$.
+If $a \in A_n$, we say $a$ has \defterm{weight} $n$.
+
+Let $A$ be an $\mathbb{N}$-graded $k$-algebra such that $A_n$ is finite dimensional for $n \in \mathbb{N}$.
+The \defterm{Hilbert--Poincaré series of $A$} is defined by
+\begin{equation*}
+  \operatorname{HP}_A(t) = \sum_{n \in \mathbb{N}} \dim_k(A_n)t^n \in \mathbb{Z}[[t]].
+\end{equation*}
+
+Let $N \in \mathbb{N}$.
+We wish to define a functor $J_N \colon k\textnormal{-Alg} \to k\textnormal{-Alg}$ which is left adjoint to the functor $k\textnormal{-Alg} \to k\textnormal{-Alg}, B \mapsto B[t] / (t^{N + 1})$.
+That is, for $A, B \in k\textnormal{-Alg}$, we want the adjunction
+\begin{equation}
+  \label{eq:1}
+  \operatorname{Hom}_{k\textnormal{-Alg}}(J_NA, B) \cong \operatorname{Hom}_{k\textnormal{-Alg}}(A, B[t] / (t^{N + 1})).
+\end{equation}
+If $A \cong k[X_j \mid j \in J] / (F_r \mid r \in \Gamma)$, where $J$ and $\Gamma$ are some (not necessarily finite) sets, we work in the polynomial $k$-algebra $P_N = k[X_j^{(i)} \mid j \in J, 0 \le i \le N]$ and define the polynomials
+\begin{equation*}
+  X_j(t) = \sum_{i = 0}^N X_j^{(i)}t^i \in P_N[t], \qquad j \in J.
+\end{equation*}
+For $l \in \mathbb{N}$, we denote by $[t^l]$ the $t^l$-coefficient extraction map, and we define the ideal
+\begin{equation}
+  \label{eq:2}
+  I_N = ([t^l]F_r((X_j(t))_{j \in J}) \mid 0 \le l \le N, r \in \Gamma).
+\end{equation}
+Then the quotient
+\begin{equation}
+  \label{eq:3}
+  J_NA = P_N / I_N
+\end{equation}
+satisfies our desired adjunction \eqref{eq:1} and is called the \defterm{$N$-th jet algebra of $A$}.
+
+Let $M, N \in \mathbb{N}$ with $M \le N$, and let $B \in k\textnormal{-Alg}$.
+The natural surjection $B[t] / (t^{N + 1}) \to B[t] / (t^{M + 1})$ gives us a natural map
+\begin{equation*}
+  \operatorname{Hom}_{k\textnormal{-Alg}}(A, B[t] / (t^{N + 1})) \to \operatorname{Hom}_{k\textnormal{-Alg}}(A, B[t] / (t^{M + 1})).
+\end{equation*}
+By the adjunction \eqref{eq:1}, this is the same as having a map natural in $B$ of the form
+\begin{equation*}
+  \operatorname{Hom}_{k\textnormal{-Alg}}(J_NA, B) \to \operatorname{Hom}_{k\textnormal{-Alg}}(J_MA, B).
+\end{equation*}
+Using Yoneda's lemma, we obtain a homomorphism
+\begin{equation*}
+  \varphi_{N, M} \colon J_MA \to J_NA.
+\end{equation*}
+Concretely, in terms of the presentation $J_N A = P_N / I_N$, for $M \le N$, we have $P_M \subseteq P_N$.
+Moreover, for $0 \le l \le M$ and $r \in \Gamma$, the coefficient $[t^l]F_r((X_j(t))_{j \in J})$ involves only the variables $X_j^{(i)}$ with $0 \le i \le l$, so it is the same polynomial whether $X_j(t)$ is truncated at $M$ or at $N$.
+Hence $I_M \subseteq I_N$, and $\varphi_{N, M} \colon J_MA \to J_NA$ is simply $X_j^{(i)} + I_M \mapsto X_j^{(i)} + I_N$ for $0 \le i \le M$.
+These homomorphisms are compatible in the sense that for $M \le N \le K$, $\varphi_{K, N}\circ\varphi_{N, M} = \varphi_{K, M}$.
+We then define the \defterm{jet algebra of $A$} by
+\begin{equation}
+  \label{eq:4}
+  J_\infty A = \varinjlim_{N \in \mathbb{N}} J_NA.
+\end{equation}
+Explicitly, if $A \cong k[X_j \mid j \in J] / (F_r \mid r \in \Gamma)$, where $J$ and $\Gamma$ are some (not necessarily finite) sets, we work in the polynomial $k$-algebra $P_\infty = k[X_j^{(i)} \mid j \in J, i \in \mathbb{N}]$ and define the series
+\begin{equation}
+  \label{eq:5}
+  X_j(t) = \sum_{i = 0}^\infty X_j^{(i)}t^i \in P_\infty[[t]], \qquad j \in J.
+\end{equation}
+We define the ideal
+\begin{equation}
+  \label{eq:6}
+  I_\infty = ([t^l]F_r((X_j(t))_{j \in J}) \mid l \in \mathbb{N}, r \in \Gamma).
+\end{equation}
+Every polynomial in $P_\infty$ involves only finitely many variables $X_j^{(i)}$ and thus lies in $P_N$ for $N \in \mathbb{N}$ large enough, so $P_\infty = \bigcup_{N \in \mathbb{N}} P_N = \varinjlim_{N \in \mathbb{N}} P_N$.
+By the same observation as above, for $l \le N$, the coefficient $[t^l]F_r((X_j(t))_{j \in J})$ is the same whether $X_j(t)$ is given by \eqref{eq:5} or truncated at $N$.
+Since any element of $I_\infty$ is a finite $P_\infty$-linear combination of such coefficients, it lies in $I_N$ for $N \in \mathbb{N}$ large enough, and hence $I_\infty = \bigcup_{N \in \mathbb{N}} I_N = \varinjlim_{N \in \mathbb{N}} I_N$.
+Since filtered colimits in $k\textnormal{-Alg}$ are created by the forgetful functor to $k\textnormal{-Vect}$ (where filtered colimits are exact), taking the colimit over $N \in \mathbb{N}$ of the short exact sequences $0 \to I_N \to P_N \to J_N A \to 0$ yields the short exact sequence $0 \to I_\infty \to P_\infty \to J_\infty A \to 0$, so we can express the jet algebra of $A$ by
+\begin{equation}
+  \label{eq:7}
+  J_\infty A \cong P_\infty / I_\infty.
+\end{equation}
+Let $B \in k\textnormal{-Alg}$.
+From \eqref{eq:1}, \eqref{eq:4} and $B[[t]] = \varprojlim_{N \in \mathbb{N}} B[t] / (t^{N + 1})$, we get the adjunction
+\begin{equation}
+  \label{eq:8}
+  \operatorname{Hom}_{k\textnormal{-Alg}}(J_\infty A, B) \cong \operatorname{Hom}_{k\textnormal{-Alg}}(A, B[[t]]).
+\end{equation}
+Since $B[t] / (t) \cong B$, we have $J_0 A \cong A$ by \eqref{eq:1} (or directly $P_0 / I_0 = A$ under the identification $X_j^{(0)} = X_j$).
+We can consider $A = J_0A$ as a $k$-subalgebra of $J_\infty A$ because the canonical homomorphism $A = J_0 A \to J_\infty A$ has a retraction, namely the homomorphism $J_\infty A \to A$ corresponding under \eqref{eq:8} to the inclusion $A \hookrightarrow A[[t]]$ of constant power series (concretely given by $X_j^{(0)} + I_\infty \mapsto X_j^{(0)} + I_0$ and $X_j^{(i)} + I_\infty \mapsto 0$ for $i \ge 1$), and is therefore injective.
+
+A \defterm{differential $k$-algebra} is a $k$-algebra $A$ together with a $k$-linear derivation $\partial \in \operatorname{Der}_k(A)$.
+An ideal $I \subseteq A$ is \defterm{differential} if $\partial(I) \subseteq I$.
+For a subset $S \subseteq A$, we denote by $k[S]_\partial$ the differential $k$-subalgebra of $A$ generated by $S$ and by $(S)_\partial$ the differential ideal of $A$ generated by $S$.
+A homomorphism of differential $k$-algebras is a homomorphism of $k$-algebras that commutes with the derivations.
+An \defterm{$\mathbb{N}$-graded differential $k$-algebra} is a differential $k$-algebra $A$ that is also an $\mathbb{N}$-graded $k$-algebra satisfying $\partial(A_n) \subseteq A_{n + 1}$.
+
+From now on, we assume $\operatorname{char}(k) = 0$.
+Let $A \cong k[X_j \mid j \in J] / (F_r \mid r \in \Gamma)$, where $J$ and $\Gamma$ are some (not necessarily finite) sets.
+We now make $J_\infty A$ into an $\mathbb{N}$-graded differential $k$-algebra by using its explicit construction \eqref{eq:7}.
+We consider the polynomial $k$-algebra $P_\infty = k[X_j^{(i)} \mid j \in J, i \in \mathbb{N}]$ with derivation $\partial \in \operatorname{Der}_k(P_\infty)$ given by
+\begin{equation}
+  \label{eq:9}
+  \partial X_j^{(i)} = (i + 1)X_j^{(i + 1)}, \qquad j \in J, i \in \mathbb{N}.
+\end{equation}
+
+To motivate this definition, we recall the series in \eqref{eq:5}.
+We have a natural derivation $\partial_t$.
+We wish to have
+\begin{equation}
+  \label{eq:10}
+  \partial(F((X_j(t))_{j \in J})) = \partial_t(F((X_j(t))_{j \in J})), \qquad F \in k[X_j \mid j \in J].
+\end{equation}
+Taking $F = X_j$ for $j \in J$, we get \eqref{eq:9}.
+With this definition, we get \eqref{eq:10} for $F \in k[X_j \mid j \in J]$.
+Identifying $X_j = X_j^{(0)}$ for $j \in J$, we have $k[X_j \mid j \in J]_\partial = P_\infty$.
+For $r \in \Gamma$ and $l \in \mathbb{N}$, we define $F^{(l)}_r = [t^l]F_r((X_j(t))_{j \in J})$.
+The ideal $I_\infty = (F_r^{(l)} \mid l \in \mathbb{N}, r \in \Gamma)$ is differential because $\partial(F_r((X_j(t))_{j \in J})) = \partial_t(F_r((X_j(t))_{j \in J}))$ for $r \in \Gamma$ implies
+\begin{equation*}
+  \partial(F_r^{(l)}) = (l + 1)F_r^{(l + 1)}, \qquad l \in \mathbb{N}, r \in \Gamma.
+\end{equation*}
+Thus
+\begin{equation*}
+  F_r^{(l)} = \frac{\partial^lF_r^{(0)}}{l!}, \qquad l \in \mathbb{N}, r \in \Gamma.
+\end{equation*}
+We see that $F_r^{(0)} = F_r$ for $r \in \Gamma$.
+We have proved that
+\begin{equation*}
+  I_\infty = (F_r^{(l)} \mid l \in \mathbb{N}, r \in \Gamma) = (F_r \mid r \in \Gamma)_\partial.
+\end{equation*}
+Thus, the derivation $\partial$ of $P_\infty$ descends to a derivation of $J_\infty A$, which we also denote by $\partial$.
+For $j \in J$, we denote by $x_j = X_j^{(0)} + I_\infty \in A \subseteq J_\infty A$ the class of $X_j$.
+Since $\partial^i x_j = i!(X_j^{(i)} + I_\infty)$ for $j \in J$ and $i \in \mathbb{N}$, the derivation $\partial$ satisfies $k[A]_\partial = J_\infty A$.
+
+The derivation $\partial$ of $J_\infty A$ does not depend on the chosen presentation of $A$.
+Indeed, let $\gamma_A \colon A \to (J_\infty A)[[t]]$ be the homomorphism corresponding to $\operatorname{id}_{J_\infty A}$ under the adjunction \eqref{eq:8}.
+In terms of \eqref{eq:7}, it is given by $\gamma_A(x_j) = \sum_{i = 0}^\infty (X_j^{(i)} + I_\infty)t^i$ for $j \in J$.
+The map
+\begin{equation*}
+  A \to (J_\infty A)[[t]], \qquad a \mapsto \sum_{i = 0}^\infty \frac{\partial^ia}{i!}t^i
+\end{equation*}
+is a homomorphism of $k$-algebras by the Leibniz rule $\partial^n(ab)/n! = \sum_{i = 0}^n (\partial^ia/i!)(\partial^{n - i}b/(n - i)!)$, and it agrees with $\gamma_A$ on the generators $x_j$.
+Hence
+\begin{equation*}
+  \gamma_A(a) = \sum_{i = 0}^\infty \frac{\partial^ia}{i!}t^i, \qquad a \in A.
+\end{equation*}
+Therefore, $\partial$ is the unique derivation of $J_\infty A$ satisfying $\partial([t^i]\gamma_A(a)) = (i + 1)[t^{i + 1}]\gamma_A(a)$ for $a \in A$ and $i \in \mathbb{N}$, where uniqueness holds because the elements $[t^i]\gamma_A(a)$ generate $J_\infty A$ as a $k$-algebra.
+Since $\gamma_A$ is determined by the adjunction \eqref{eq:8} alone, so is $\partial$.
+
+Let $B \in k\textnormal{-DiffAlg}$ with derivation $\partial_B$, and let $f \colon A \to B$ be a homomorphism of $k$-algebras.
+We define a homomorphism of $k$-algebras $\tilde{f} \colon P_\infty \to B$ by
+\begin{equation*}
+  \tilde{f}(X_j^{(i)}) = \frac{\partial_B^if(x_j)}{i!}, \qquad j \in J, i \in \mathbb{N}.
+\end{equation*}
+The $k$-linear maps $\tilde{f} \circ \partial$ and $\partial_B \circ \tilde{f}$ from $P_\infty$ to $B$ both satisfy $D(gh) = D(g)\tilde{f}(h) + \tilde{f}(g)D(h)$ for $g, h \in P_\infty$, and they agree on the generators of $P_\infty$ because
+\begin{equation*}
+  \tilde{f}(\partial X_j^{(i)}) = (i + 1)\frac{\partial_B^{i + 1}f(x_j)}{(i + 1)!} = \partial_B\tilde{f}(X_j^{(i)}), \qquad j \in J, i \in \mathbb{N}.
+\end{equation*}
+Hence $\tilde{f} \circ \partial = \partial_B \circ \tilde{f}$, and $\ker(\tilde{f})$ is a differential ideal of $P_\infty$.
+For $r \in \Gamma$, we have $\tilde{f}(F_r) = F_r((f(x_j))_{j \in J}) = f(F_r((x_j)_{j \in J})) = 0$.
+Thus $I_\infty = (F_r \mid r \in \Gamma)_\partial \subseteq \ker(\tilde{f})$, and $\tilde{f}$ induces a homomorphism of differential $k$-algebras $\bar{f} \colon J_\infty A \to B$ with $\bar{f}(x_j) = f(x_j)$ for $j \in J$, that is, $\bar{f}|_A = f$.
+Since $k[A]_\partial = J_\infty A$, it is the unique homomorphism of differential $k$-algebras extending $f$.
+Therefore, we get that the functor $J_\infty \colon k\textnormal{-Alg} \to k\textnormal{-DiffAlg}$ is left adjoint to the forgetful functor $k\textnormal{-DiffAlg} \to k\textnormal{-Alg}$.
+That is, for $A \in k\textnormal{-Alg}$ and $B \in k\textnormal{-DiffAlg}$, we have an adjunction
+\begin{equation}
+  \label{eq:12}
+  \operatorname{Hom}_{k\textnormal{-DiffAlg}}(J_\infty A, B) \cong \operatorname{Hom}_{k\textnormal{-Alg}}(A, B).
+\end{equation}
+
+Assigning weight $i$ to $X_j^{(i)}$ for $j \in J$ and $i \in \mathbb{N}$ makes $P_\infty$ into an $\mathbb{N}$-graded $k$-algebra in which each generator $F_r^{(l)} = [t^l]F_r((X_j(t))_{j \in J})$ of $I_\infty$ has weight $l$.
+Since $\partial^i X_j^{(0)} = i!X_j^{(i)}$ has weight $i$, the induced quotient grading on $P_\infty / I_\infty \cong J_\infty A$ is given by
+\begin{equation*}
+  (J_\infty A)_n = \operatorname{span}_k\{(\partial^{n_1}a_1)\dots(\partial^{n_s}a_s) \mid s, n_1, \dots, n_s \in \mathbb{N}, a_1, \dots, a_s \in A, n_1 + \dots + n_s = n\},
+\end{equation*}
+which, since $\partial$ does not depend on the chosen presentation of $A$, shows that the grading is independent of the chosen presentation of $A$.
+Then
+\begin{equation*}
+  J_\infty A = \bigoplus_{n \in \mathbb{N}}(J_\infty A)_n,
+\end{equation*}
+and $J_\infty A$ becomes an $\mathbb{N}$-graded differential $k$-algebra.
+We note that $(J_\infty A)_0 = P_0 / I_0 = J_0 A = A$.
+
+Let $\mathfrak{p} \in \operatorname{Spec}(A)$.
+Then $A_\mathfrak{p}$ is a local ring with maximal ideal $\mathfrak{p}A_\mathfrak{p}$, and the quotient $\kappa(\mathfrak{p}) = A_\mathfrak{p} / \mathfrak{p}A_\mathfrak{p}$ is the \defterm{residue field of $A$ at $\mathfrak{p}$}.
+We have a natural homomorphism $A \to \kappa(\mathfrak{p})$ which makes $\kappa(\mathfrak{p})$ into an $A$-algebra.
+We can also view $J_\infty A$ as an $A$-algebra.
+The \defterm{focused arc algebra of $A$ at $\mathfrak{p}$} is the $\mathbb{N}$-graded $\kappa(\mathfrak{p})$-algebra
+\begin{equation}
+  \label{eq:13}
+  J_\infty^\mathfrak{p} A = J_\infty A \otimes_A \kappa(\mathfrak{p})
+\end{equation}
+with operation given by
+\begin{equation*}
+  (a\otimes x)(b\otimes y) = (ab)\otimes(xy)
+\end{equation*}
+and with $\mathbb{N}$-grading given by
+\begin{equation*}
+  (J_\infty^\mathfrak{p} A)_n = (J_\infty A)_n \otimes_A \kappa(\mathfrak{p}) = \{a \otimes x \mid a \in (J_\infty A)_n, x \in \kappa(\mathfrak{p})\}.
+\end{equation*}
+This makes sense because $(J_\infty A)_0 = A$, so $J_\infty A = \bigoplus_{n \in \mathbb{N}}(J_\infty A)_n$ is a direct sum of $A$-modules, and hence $J_\infty^\mathfrak{p} A = \bigoplus_{n \in \mathbb{N}}(J_\infty^\mathfrak{p} A)_n$.
+Moreover, every element of $(J_\infty A)_n \otimes_A \kappa(\mathfrak{p})$ is a pure tensor: since $\kappa(\mathfrak{p})$ is a localization of $A / \mathfrak{p}$, for $a_1, \dots, a_m \in (J_\infty A)_n$, $b_1, \dots, b_m \in A$ and $s \in A \setminus \mathfrak{p}$, we have
+\begin{equation*}
+  \sum_{i = 1}^m a_i \otimes \frac{\bar{b}_i}{\bar{s}} = \left(\sum_{i = 1}^m b_ia_i\right) \otimes \frac{1}{\bar{s}},
+\end{equation*}
+where $\bar{b}$ denotes the class of $b \in A$ in $A / \mathfrak{p}$.
+We note that $\dim_{\kappa(\mathfrak{p})}((J_\infty^\mathfrak{p} A)_0) = 1$ because $(J_\infty^\mathfrak{p} A)_0 = A \otimes_A \kappa(\mathfrak{p}) = \kappa(\mathfrak{p})$.
+In general, the ideal $\mathfrak{p}J_\infty A$ is not differential, so $\partial$ does not descend to $J_\infty^\mathfrak{p} A$.
+For example, if $A = k[X]$ and $\mathfrak{p} = (X)$, then $J_\infty A = k[X^{(i)} \mid i \in \mathbb{N}]$ and $J_\infty^\mathfrak{p} A \cong J_\infty A / (X^{(0)})$, but $\partial X^{(0)} = X^{(1)} \notin (X^{(0)})$.
+
+\appendix
+\section{Graded Poisson algebras and their modules}
+\label{sec:grad-poiss-algeb}
+
+\printindex
+
+\end{document}
