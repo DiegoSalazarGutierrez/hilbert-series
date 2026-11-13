@@ -46,8 +46,6 @@
 
 \begin{document}
 
-\setcounter{section}{-1}
-
 \title{Hilbert series}
 \author{Diego Salazar}
 \thanks{}
@@ -56,34 +54,70 @@
 \date{\today}
 
 \begin{abstract}
-  \noindent \textbf{Keywords.}
+  
 \end{abstract}
+
+\keywords{Commutative algebra}
+\subjclass[2020]{Primary; Secondary}
 
 \maketitle
 
-
-\section{Introduction}
+\section*{Introduction}
 \label{sec:introduction}
+
+\begin{theorem}[Hilbert---Poincaré Series of $(XY)^e = 0$]
+\label{thm:xye-generalization}
+Let $e \ge 2$ be an integer.
+For the algebra $A_e = k[X, Y]/((XY)^e)$, we have
+\begin{equation}
+  \operatorname{HP}_{J_\infty^0(A_e)}(t) = \frac{\mathbb{H}(t)}{1 - t}\operatorname{AG}_{e, 1}(t).
+\end{equation}
+\end{theorem}
+
+\begin{theorem}[Hilbert---Poincaré Series of $(X_1 \cdots X_n)^e = 0$]
+\label{thm:normal-crossings}
+Let $n \ge 1$ and $e \ge 2$ be integers,
+and let $A_{n, e} = k[X_1, \dots, X_n] / ((X_1 \cdots X_n)^e)$.
+Then:
+\begin{enumerate}
+  \item For every truncation order $N \ge n$,
+  the polynomials $u_l = [t^l](X^0_1(t) \cdots X^0_n(t))$ for $n \le l \le N$ form a regular sequence $(u_n, u_{n + 1}, \dots, u_N)$ in $P^0_N$.
+  \item The Hilbert---Poincaré series of the focussed jet algebra $J_\infty^0(A_{n, e})$ is
+  \begin{equation}
+    \label{eq:HP-normal-crossings}
+    \operatorname{HP}_{J_\infty^0(A_{n, e})}(t) = \frac{\mathbb{H}(t)^{n - 1}}{(t)_{n - 1}} \sum_{\substack{\mu \\ \mu_i - \mu_{i + e - 1} \ge 2 \\ \mu_{\mathrm{min}} \ge n}} t^{|\mu|}
+  \end{equation}
+  (where for $n = 1$ the prefactor is $1$, recovering Theorem~5.6 of~\cite{bruschek_arc_2013}).
+  \item In particular,
+  for $e = 2$,
+  we obtain the shifted Rogers--Ramanujan series:
+  \begin{equation}
+    \label{eq:HP-normal-crossings-e2}
+    \operatorname{HP}_{J_\infty^0(A_{n, 2})}(t) = \frac{\mathbb{H}(t)^{n - 1}}{(t)_{n - 1}} \sum_{\ell = 0}^\infty \frac{t^{\ell^2 + (n - 1)\ell}}{(t)_\ell}.
+  \end{equation}
+\end{enumerate}
+\end{theorem}
 
 \paragraph{Acknowledgements.}
 
-\section{Preliminaries and notation}
-\label{sec:prel-notat}
+\section{Jet algebras and focussed jet algebras}
+\label{sec:jet-algebr-focuss}
 
 All rings considered are commutative with identity element $1$, and all ring homomorphisms preserve the identity.
-The set of natural numbers $\{0, 1, \dots\}$ is denoted by $\mathbb{N}$, the set of integers is denoted by $\mathbb{Z}$, and the set of positive integers $\{1, 2, \dots\}$ is denoted by $\mathbb{Z}_+$.
+The set of natural numbers $\{0, 1, \dots\}$ is denoted by $\mathbb{N}$, and the set of integers is denoted by $\mathbb{Z}$.
 Let $R$ be a ring.
 An \defterm{$R$-algebra} is a ring $S$ equipped with a ring homomorphism $R \to S$.
-An \defterm{$\mathbb{N}$-graded ring} is a ring $R$ together with a family $(R_n)_{n \in \mathbb{N}}$ of additive subgroups of $R$ such that $R = \bigoplus_{n \in \mathbb{N}} R_n$ and $R_mR_n \subseteq R_{m + n}$.
+An \defterm{$\mathbb{N}$-graded ring} is a ring $R$ together with a family $(R_w)_{w \in \mathbb{N}}$ of additive subgroups of $R$ such that $R = \bigoplus_{w \in \mathbb{N}} R_w$ and $R_{w_1}R_{w_2} \subseteq R_{w_1 + w_2}$.
 This automatically implies $1 \in R_0$.
 Let $k$ be a field.
-An \defterm{$\mathbb{N}$-graded $k$-algebra} is a $k$-algebra $A = \bigoplus_{n \in \mathbb{N}} A_n$ such that $A$ is an $\mathbb{N}$-graded ring, and each additive subgroup $A_n$ is a subspace of $A$.
-If $a \in A_n$, we say $a$ has \defterm{weight} $n$.
+An \defterm{$\mathbb{N}$-graded $k$-algebra} is a $k$-algebra $A = \bigoplus_{w \in \mathbb{N}} A_w$ such that $A$ is an $\mathbb{N}$-graded ring, and each additive subgroup $A_w$ is a subspace of $A$.
+If $a \in A_w$,
+we say that $a$ is \defterm{homogeneous} of \defterm{weight} $w$ and write $\operatorname{wt}(a) = w$.
 
-Let $A$ be an $\mathbb{N}$-graded $k$-algebra such that $A_n$ is finite dimensional for $n \in \mathbb{N}$.
-The \defterm{Hilbert--Poincaré series of $A$} is defined by
+Let $A$ be an $\mathbb{N}$-graded $k$-algebra such that $A_w$ is finite dimensional for $w \in \mathbb{N}$.
+The \defterm{Hilbert---Poincaré series of $A$} is defined by
 \begin{equation*}
-  \operatorname{HP}_A(t) = \sum_{n \in \mathbb{N}} \dim_k(A_n)t^n \in \mathbb{Z}[[t]].
+  \operatorname{HP}_A(t) = \sum_{w = 0}^\infty \dim_k(A_w)t^w \in \mathbb{Z}[[t]].
 \end{equation*}
 
 Let $N \in \mathbb{N}$.
@@ -93,11 +127,11 @@ That is, for $A, B \in k\textnormal{-Alg}$, we want the adjunction
   \label{eq:1}
   \operatorname{Hom}_{k\textnormal{-Alg}}(J_NA, B) \cong \operatorname{Hom}_{k\textnormal{-Alg}}(A, B[t] / (t^{N + 1})).
 \end{equation}
-If $A \cong k[X_j \mid j \in J] / (F_r \mid r \in \Gamma)$, where $J$ and $\Gamma$ are some (not necessarily finite) sets, we work in the polynomial $k$-algebra $P_N = k[X_j^{(i)} \mid j \in J, 0 \le i \le N]$ and define the polynomials
+If $A \cong k[X_j \mid j \in J] / (F_r \mid r \in \Gamma)$, where $J$ and $\Gamma$ are some (not necessarily finite) sets, we work in the polynomial $k$-algebra $P_N = k[X_j^{(i)} \mid j \in J, i = 0, 1, \dots, N]$ and define the \defterm{$N$-th truncated polynomials}
 \begin{equation*}
   X_j(t) = \sum_{i = 0}^N X_j^{(i)}t^i \in P_N[t], \qquad j \in J.
 \end{equation*}
-For $l \in \mathbb{N}$, we denote by $[t^l]$ the $t^l$-coefficient extraction map, and we define the ideal
+For $l \in \mathbb{N}$, we denote by $[t^l]$ the \defterm{$t^l$-coefficient extraction map}, and we define the ideal
 \begin{equation}
   \label{eq:2}
   I_N = ([t^l]F_r((X_j(t))_{j \in J}) \mid 0 \le l \le N, r \in \Gamma).
@@ -105,7 +139,7 @@ For $l \in \mathbb{N}$, we denote by $[t^l]$ the $t^l$-coefficient extraction ma
 Then the quotient
 \begin{equation}
   \label{eq:3}
-  J_NA = P_N / I_N
+  J_NA = P_N / I_N \in k\textnormal{-Alg}
 \end{equation}
 satisfies our desired adjunction \eqref{eq:1} and is called the \defterm{$N$-th jet algebra of $A$}.
 
@@ -129,9 +163,9 @@ These homomorphisms are compatible in the sense that for $M \le N \le K$, $\varp
 We then define the \defterm{jet algebra of $A$} by
 \begin{equation}
   \label{eq:4}
-  J_\infty A = \varinjlim_{N \in \mathbb{N}} J_NA.
+  J_\infty A = \varinjlim_{N \in \mathbb{N}} J_NA \in k\textnormal{-Alg}.
 \end{equation}
-Explicitly, if $A \cong k[X_j \mid j \in J] / (F_r \mid r \in \Gamma)$, where $J$ and $\Gamma$ are some (not necessarily finite) sets, we work in the polynomial $k$-algebra $P_\infty = k[X_j^{(i)} \mid j \in J, i \in \mathbb{N}]$ and define the series
+Explicitly, if $A \cong k[X_j \mid j \in J] / (F_r \mid r \in \Gamma)$, where $J$ and $\Gamma$ are some (not necessarily finite) sets, we work in the polynomial $k$-algebra $P_\infty = k[X_j^{(i)} \mid j \in J, i = 0, 1, \dots]$ and define the series
 \begin{equation}
   \label{eq:5}
   X_j(t) = \sum_{i = 0}^\infty X_j^{(i)}t^i \in P_\infty[[t]], \qquad j \in J.
@@ -162,15 +196,15 @@ A \defterm{differential $k$-algebra} is a $k$-algebra $A$ together with a $k$-li
 An ideal $I \subseteq A$ is \defterm{differential} if $\partial(I) \subseteq I$.
 For a subset $S \subseteq A$, we denote by $k[S]_\partial$ the differential $k$-subalgebra of $A$ generated by $S$ and by $(S)_\partial$ the differential ideal of $A$ generated by $S$.
 A homomorphism of differential $k$-algebras is a homomorphism of $k$-algebras that commutes with the derivations.
-An \defterm{$\mathbb{N}$-graded differential $k$-algebra} is a differential $k$-algebra $A$ that is also an $\mathbb{N}$-graded $k$-algebra satisfying $\partial(A_n) \subseteq A_{n + 1}$.
+An \defterm{$\mathbb{N}$-graded differential $k$-algebra} is a differential $k$-algebra $A$ that is also an $\mathbb{N}$-graded $k$-algebra satisfying $\partial(A_w) \subseteq A_{w + 1}$.
 
 From now on, we assume $\operatorname{char}(k) = 0$.
 Let $A \cong k[X_j \mid j \in J] / (F_r \mid r \in \Gamma)$, where $J$ and $\Gamma$ are some (not necessarily finite) sets.
 We now make $J_\infty A$ into an $\mathbb{N}$-graded differential $k$-algebra by using its explicit construction \eqref{eq:7}.
-We consider the polynomial $k$-algebra $P_\infty = k[X_j^{(i)} \mid j \in J, i \in \mathbb{N}]$ with derivation $\partial \in \operatorname{Der}_k(P_\infty)$ given by
+We consider the polynomial $k$-algebra $P_\infty = k[X_j^{(i)} \mid j \in J, i = 0, 1, \dots]$ with derivation $\partial \in \operatorname{Der}_k(P_\infty)$ given by
 \begin{equation}
   \label{eq:9}
-  \partial X_j^{(i)} = (i + 1)X_j^{(i + 1)}, \qquad j \in J, i \in \mathbb{N}.
+  \partial X_j^{(i)} = (i + 1)X_j^{(i + 1)}, \qquad j \in J, i = 0, 1, \dots
 \end{equation}
 
 To motivate this definition, we recall the series in \eqref{eq:5}.
@@ -197,9 +231,9 @@ We have proved that
 \begin{equation*}
   I_\infty = (F_r^{(l)} \mid l \in \mathbb{N}, r \in \Gamma) = (F_r \mid r \in \Gamma)_\partial.
 \end{equation*}
-Thus, the derivation $\partial$ of $P_\infty$ descends to a derivation of $J_\infty A$, which we also denote by $\partial$.
+Thus, the derivation $\partial$ of $P_\infty$ descends to a derivation of $J_\infty A \in k\textnormal{-DiffAlg}$, which we also denote by $\partial$.
 For $j \in J$, we denote by $x_j = X_j^{(0)} + I_\infty \in A \subseteq J_\infty A$ the class of $X_j$.
-Since $\partial^i x_j = i!(X_j^{(i)} + I_\infty)$ for $j \in J$ and $i \in \mathbb{N}$, the derivation $\partial$ satisfies $k[A]_\partial = J_\infty A$.
+Since $\partial^i x_j = i!(X_j^{(i)} + I_\infty)$ for $j \in J$ and $i = 0, 1, \dots$, the derivation $\partial$ satisfies $k[A]_\partial = J_\infty A$.
 
 The derivation $\partial$ of $J_\infty A$ does not depend on the chosen presentation of $A$.
 Indeed, let $\gamma_A \colon A \to (J_\infty A)[[t]]$ be the homomorphism corresponding to $\operatorname{id}_{J_\infty A}$ under the adjunction \eqref{eq:8}.
@@ -213,17 +247,17 @@ Hence
 \begin{equation*}
   \gamma_A(a) = \sum_{i = 0}^\infty \frac{\partial^ia}{i!}t^i, \qquad a \in A.
 \end{equation*}
-Therefore, $\partial$ is the unique derivation of $J_\infty A$ satisfying $\partial([t^i]\gamma_A(a)) = (i + 1)[t^{i + 1}]\gamma_A(a)$ for $a \in A$ and $i \in \mathbb{N}$, where uniqueness holds because the elements $[t^i]\gamma_A(a)$ generate $J_\infty A$ as a $k$-algebra.
+Therefore, $\partial$ is the unique derivation of $J_\infty A$ satisfying $\partial([t^i]\gamma_A(a)) = (i + 1)[t^{i + 1}]\gamma_A(a)$ for $a \in A$ and $i = 0, 1, \dots$, where uniqueness holds because the elements $[t^i]\gamma_A(a)$ generate $J_\infty A$ as a $k$-algebra.
 Since $\gamma_A$ is determined by the adjunction \eqref{eq:8} alone, so is $\partial$.
 
 Let $B \in k\textnormal{-DiffAlg}$ with derivation $\partial_B$, and let $f \colon A \to B$ be a homomorphism of $k$-algebras.
 We define a homomorphism of $k$-algebras $\tilde{f} \colon P_\infty \to B$ by
 \begin{equation*}
-  \tilde{f}(X_j^{(i)}) = \frac{\partial_B^if(x_j)}{i!}, \qquad j \in J, i \in \mathbb{N}.
+  \tilde{f}(X_j^{(i)}) = \frac{\partial_B^if(x_j)}{i!}, \qquad j \in J, i = 0, 1, \dots
 \end{equation*}
 The $k$-linear maps $\tilde{f} \circ \partial$ and $\partial_B \circ \tilde{f}$ from $P_\infty$ to $B$ both satisfy $D(gh) = D(g)\tilde{f}(h) + \tilde{f}(g)D(h)$ for $g, h \in P_\infty$, and they agree on the generators of $P_\infty$ because
 \begin{equation*}
-  \tilde{f}(\partial X_j^{(i)}) = (i + 1)\frac{\partial_B^{i + 1}f(x_j)}{(i + 1)!} = \partial_B\tilde{f}(X_j^{(i)}), \qquad j \in J, i \in \mathbb{N}.
+  \tilde{f}(\partial X_j^{(i)}) = (i + 1)\frac{\partial_B^{i + 1}f(x_j)}{(i + 1)!} = \partial_B\tilde{f}(X_j^{(i)}), \qquad j \in J, i = 0, 1, \dots
 \end{equation*}
 Hence $\tilde{f} \circ \partial = \partial_B \circ \tilde{f}$, and $\ker(\tilde{f})$ is a differential ideal of $P_\infty$.
 For $r \in \Gamma$, we have $\tilde{f}(F_r) = F_r((f(x_j))_{j \in J}) = f(F_r((x_j)_{j \in J})) = 0$.
@@ -232,30 +266,31 @@ Since $k[A]_\partial = J_\infty A$, it is the unique homomorphism of differentia
 Therefore, we get that the functor $J_\infty \colon k\textnormal{-Alg} \to k\textnormal{-DiffAlg}$ is left adjoint to the forgetful functor $k\textnormal{-DiffAlg} \to k\textnormal{-Alg}$.
 That is, for $A \in k\textnormal{-Alg}$ and $B \in k\textnormal{-DiffAlg}$, we have an adjunction
 \begin{equation}
-  \label{eq:12}
+  \label{eq:11}
   \operatorname{Hom}_{k\textnormal{-DiffAlg}}(J_\infty A, B) \cong \operatorname{Hom}_{k\textnormal{-Alg}}(A, B).
 \end{equation}
 
-Assigning weight $i$ to $X_j^{(i)}$ for $j \in J$ and $i \in \mathbb{N}$ makes $P_\infty$ into an $\mathbb{N}$-graded $k$-algebra in which each generator $F_r^{(l)} = [t^l]F_r((X_j(t))_{j \in J})$ of $I_\infty$ has weight $l$.
+Assigning weight $i$ to $X_j^{(i)}$ for $j \in J$ and $i = 0, 1, \dots$ makes $P_\infty$ into an $\mathbb{N}$-graded $k$-algebra in which each generator $F_r^{(l)} = [t^l]F_r((X_j(t))_{j \in J})$ of $I_\infty$ has weight $l$.
 Since $\partial^i X_j^{(0)} = i!X_j^{(i)}$ has weight $i$, the induced quotient grading on $P_\infty / I_\infty \cong J_\infty A$ is given by
 \begin{equation*}
-  (J_\infty A)_n = \operatorname{span}_k\{(\partial^{n_1}a_1)\dots(\partial^{n_s}a_s) \mid s, n_1, \dots, n_s \in \mathbb{N}, a_1, \dots, a_s \in A, n_1 + \dots + n_s = n\},
+  (J_\infty A)_w = \operatorname{span}_k\{(\partial^{w_1}a_1)\dots(\partial^{w_s}a_s) \mid s, w_1, \dots, w_s \in \mathbb{N}, a_1, \dots, a_s \in A, w_1 + \dots + w_s = w\},
 \end{equation*}
 which, since $\partial$ does not depend on the chosen presentation of $A$, shows that the grading is independent of the chosen presentation of $A$.
 Then
 \begin{equation*}
-  J_\infty A = \bigoplus_{n \in \mathbb{N}}(J_\infty A)_n,
+  J_\infty A = \bigoplus_{w \in \mathbb{N}}(J_\infty A)_w,
 \end{equation*}
 and $J_\infty A$ becomes an $\mathbb{N}$-graded differential $k$-algebra.
+Similarly, $J_NA$ is an $\mathbb{N}$-graded $k$-algebra and its grading is compatible with the grading of $J_\infty A$ in the sense that $(J_NA)_w \cong (J_\infty A)_w$ as $k$-vector spaces for $N \ge w$.
 We note that $(J_\infty A)_0 = P_0 / I_0 = J_0 A = A$.
 
 Let $\mathfrak{p} \in \operatorname{Spec}(A)$.
 Then $A_\mathfrak{p}$ is a local ring with maximal ideal $\mathfrak{p}A_\mathfrak{p}$, and the quotient $\kappa(\mathfrak{p}) = A_\mathfrak{p} / \mathfrak{p}A_\mathfrak{p}$ is the \defterm{residue field of $A$ at $\mathfrak{p}$}.
 We have a natural homomorphism $A \to \kappa(\mathfrak{p})$ which makes $\kappa(\mathfrak{p})$ into an $A$-algebra.
 We can also view $J_\infty A$ as an $A$-algebra.
-The \defterm{focused arc algebra of $A$ at $\mathfrak{p}$} is the $\mathbb{N}$-graded $\kappa(\mathfrak{p})$-algebra
+The \defterm{focussed jet algebra of $A$ at $\mathfrak{p}$} is the $\mathbb{N}$-graded $\kappa(\mathfrak{p})$-algebra
 \begin{equation}
-  \label{eq:13}
+  \label{eq:12}
   J_\infty^\mathfrak{p} A = J_\infty A \otimes_A \kappa(\mathfrak{p})
 \end{equation}
 with operation given by
@@ -264,21 +299,317 @@ with operation given by
 \end{equation*}
 and with $\mathbb{N}$-grading given by
 \begin{equation*}
-  (J_\infty^\mathfrak{p} A)_n = (J_\infty A)_n \otimes_A \kappa(\mathfrak{p}) = \{a \otimes x \mid a \in (J_\infty A)_n, x \in \kappa(\mathfrak{p})\}.
+  (J_\infty^\mathfrak{p} A)_w = (J_\infty A)_w \otimes_A \kappa(\mathfrak{p}) = \{a \otimes x \mid a \in (J_\infty A)_w, x \in \kappa(\mathfrak{p})\}.
 \end{equation*}
-This makes sense because $(J_\infty A)_0 = A$, so $J_\infty A = \bigoplus_{n \in \mathbb{N}}(J_\infty A)_n$ is a direct sum of $A$-modules, and hence $J_\infty^\mathfrak{p} A = \bigoplus_{n \in \mathbb{N}}(J_\infty^\mathfrak{p} A)_n$.
-Moreover, every element of $(J_\infty A)_n \otimes_A \kappa(\mathfrak{p})$ is a pure tensor: since $\kappa(\mathfrak{p})$ is a localization of $A / \mathfrak{p}$, for $a_1, \dots, a_m \in (J_\infty A)_n$, $b_1, \dots, b_m \in A$ and $s \in A \setminus \mathfrak{p}$, we have
+This makes sense because $(J_\infty A)_0 = A$, so $J_\infty A = \bigoplus_{w \in \mathbb{N}}(J_\infty A)_w$ is a direct sum of $A$-modules, and hence $J_\infty^\mathfrak{p} A = \bigoplus_{w \in \mathbb{N}}(J_\infty^\mathfrak{p} A)_w$.
+Moreover, every element of $(J_\infty A)_w \otimes_A \kappa(\mathfrak{p})$ is a pure tensor: since $\kappa(\mathfrak{p})$ is a localization of $A / \mathfrak{p}$, for $a_1, \dots, a_m \in (J_\infty A)_w$, $b_1, \dots, b_m \in A$ and $s \in A \setminus \mathfrak{p}$, we have
 \begin{equation*}
   \sum_{i = 1}^m a_i \otimes \frac{\bar{b}_i}{\bar{s}} = \left(\sum_{i = 1}^m b_ia_i\right) \otimes \frac{1}{\bar{s}},
 \end{equation*}
 where $\bar{b}$ denotes the class of $b \in A$ in $A / \mathfrak{p}$.
 We note that $\dim_{\kappa(\mathfrak{p})}((J_\infty^\mathfrak{p} A)_0) = 1$ because $(J_\infty^\mathfrak{p} A)_0 = A \otimes_A \kappa(\mathfrak{p}) = \kappa(\mathfrak{p})$.
 In general, the ideal $\mathfrak{p}J_\infty A$ is not differential, so $\partial$ does not descend to $J_\infty^\mathfrak{p} A$.
-For example, if $A = k[X]$ and $\mathfrak{p} = (X)$, then $J_\infty A = k[X^{(i)} \mid i \in \mathbb{N}]$ and $J_\infty^\mathfrak{p} A \cong J_\infty A / (X^{(0)})$, but $\partial X^{(0)} = X^{(1)} \notin (X^{(0)})$.
+For example, if $A = k[X]$ and $\mathfrak{p} = (X)$, then $J_\infty A = k[X^{(i)} \mid i = 0, 1, \dots]$ and $J_\infty^\mathfrak{p} A \cong J_\infty A / (X^{(0)})$, but $\partial X^{(0)} = X^{(1)} \notin (X^{(0)})$.
+
+Alternatively, we can define the \defterm{$N$-th focussed jet algebra of $A$ at $\mathfrak{p}$} by
+\begin{equation}
+  \label{eq:16}
+  J^\mathfrak{p}_NA = J_NA \otimes_A \kappa(\mathfrak{p}),
+\end{equation}
+and we have
+\begin{equation*}
+  J^\mathfrak{p}_\infty A = \varinjlim_{N \in \mathbb{N}}J^\mathfrak{p}_NA.
+\end{equation*}
+
+We are interested in the case where $A$ has the presentation
+\begin{equation}
+  \label{eq:13}
+  A = k[X_1, \dots, X_n]/(F_1, \dots, F_m),
+\end{equation}
+where $F_1, \dots, F_m \in k[X_1, \dots, X_n]$ satisfy
+\begin{equation}
+  \label{eq:14}
+  0 = F_r(0, \dots, 0), \qquad r = 1, \dots, m,
+\end{equation}
+and $\mathfrak{p} = (X_1 + (F_1, \dots, F_m), \dots, X_n + (F_1, \dots, F_m))$ is the maximal ideal corresponding to the origin $(0, \dots, 0)$.
+In this case, the residue field is $\kappa(\mathfrak{p}) = k$, and the natural homomorphism $A \to k$ is just evaluation at $(0, \dots, 0)$.
+Defining
+\begin{equation}
+  \label{eq:15}
+  f^{(l)}_r = F_r^{(l)}|_{X^{(0)}_j \mapsto 0, j = 1, \dots, n} \in k[X^{(i)}_j \mid i = 1, 2, \dots, j = 1, \dots, n], \qquad l = 1, 2, \dots, r = 1, \dots, m,
+\end{equation}
+the focussed jet algebra of $A$ at $\mathfrak{p} = 0$ is given concretely by
+\begin{equation*}
+  J^0_\infty A = \frac{P^0_\infty}{I^0_\infty} = \frac{k[X^{(i)}_j \mid i = 1, 2, \dots, j = 1, \dots, n]}{(f^{(l)}_r \mid l = 1, 2, \dots, r = 1, \dots, m)}.
+\end{equation*}
+Writing
+\begin{equation*}
+  X^0_j(t) = \sum_{i = 1}^\infty X_j^{(i)}t^i, \qquad j = 1, \dots, n,
+\end{equation*}
+we can also express $f^{(l)}_r$ as
+\begin{equation*}
+  f^{(l)}_r = [t^l]F_r(X^0_1(t), \dots, X^0_n(t)), \qquad l = 1, 2, \dots, r = 1, \dots, m.
+\end{equation*}
+
+Informally, we can think of $J_\infty A$ and $J_\infty^0A$ as being the following sets of solutions
+\begin{align*}
+  J_\infty A &= \{(x_1(t), \dots, x_n(t)) \in k[[t]]^n \mid 0 = F_r(x_1(t), \dots, x_n(t)), r = 1, \dots, m\}, \\
+  J_\infty^0A &= \{(x_1(t), \dots, x_n(t)) \in (tk[[t]])^n \mid 0 = F_r(x_1(t), \dots, x_n(t)), r = 1, \dots, m\}
+\end{align*}
+in the same way we can think of $A$ as
+\begin{equation*}
+  A = \{(x_1, \dots, x_n) \in k^n \mid 0 = F_r(x_1, \dots, x_n), r = 1, \dots, m\}.
+\end{equation*}
+Of course, this is just an intuition because the $k$-algebra $A$ may be nonreduced.
+For example, if $A = k[X]/(X^2)$ (a case we are interested in), then with this definition, we would get $A = J_\infty A = \{0\}$, which we obviously don't want.
+
+The $N$-th focussed jet algebra of $A$ at $\mathfrak{p} = 0$ is concretely given by
+\begin{equation*}
+  J^0_NA = \frac{P^0_N}{I^0_N} = \frac{k[X^{(i)}_j \mid i = 1, 2, \dots, N, j = 1, \dots, n]}{(f^{(l)}_r \mid l = 1, 2, \dots, N, r = 1, \dots, m)}.
+\end{equation*}
+
+\begin{example}
+  \label{exa:1}
+  For $A = k[X]$, we have
+  \begin{equation*}
+    \operatorname{HP}_{J_\infty^0 A}(t) = \prod_{i = 1}^\infty \frac{1}{1 - t^i} = \mathbb{H}(t).
+  \end{equation*}
+  Recall that a \defterm{partition $\lambda = [\lambda_1, \dots, \lambda_\ell]$ of $n \in \mathbb{N}$} is a finite $\ell$-tuple of positive integers such that $\lambda_1 \ge \lambda_2 \ge \dots \ge \lambda_\ell$ and $\lambda_1 + \dots + \lambda_\ell = n$,
+  and we denote the number of partitions of $n$ by $p(n)$.
+  We write $\ell(\lambda) = \ell$ for the \defterm{length} of $\lambda$.
+  We also consider the \defterm{empty partition $\emptyset$}.
+  The \defterm{minimum integer} in a partition $\lambda = [\lambda_1, \dots, \lambda_\ell]$ is denoted by $\lambda_{\mathrm{min}} = \lambda_\ell$ and its \defterm{sum} is defined as $|\lambda| = \lambda_1 + \dots + \lambda_\ell$.
+  The series $\mathbb{H}(t)$ is generating series for partitions:
+  \begin{equation*}
+    \mathbb{H}(t) = \sum_{n = 0}^\infty p(n)t^n.
+  \end{equation*}
+\end{example}
+
+\section{The Hilbert--Poincaré series}
+\label{sec:hilb-poinc-seri}
+
+We have the $\mathbb{N}$-grading
+\begin{align*}
+  J^\mathfrak{p}_N A &= \bigoplus_{w \in \mathbb{N}} (J^\mathfrak{p}_N A)_w, \\
+  (J^\mathfrak{p}_N A)_w &= (J_N A)_w \otimes_A \kappa(\mathfrak{p}), \qquad w = 0, 1, \dots
+\end{align*}
+Because filtered colimits commute with arbitrary direct sums,
+the colimit decomposes componentwise:
+\begin{equation*}
+  (J^\mathfrak{p}_\infty A)_w \cong \varinjlim_{N \in \mathbb{N}} (J^\mathfrak{p}_N A)_w, \qquad w = 0, 1, \dots
+\end{equation*}
+Thus, we have an isomorphism $(J^\mathfrak{p}_N A)_w \cong (J^\mathfrak{p}_\infty A)_w$ of $\kappa(\mathfrak{p})$-vector spaces for $N \ge w$, and $\dim_{\kappa(\mathfrak{p})}((J^\mathfrak{p}_N A)_w) = \dim_{\kappa(\mathfrak{p})}((J^\mathfrak{p}_\infty A)_w)$ for $N \ge w$.
+Then
+\begin{equation*}
+  \operatorname{HP}_{J^\mathfrak{p}_\infty A}(t) - \operatorname{HP}_{J^\mathfrak{p}_N A}(t) \in t^{N + 1}\mathbb{Z}[[t]], \qquad N = 0, 1, \dots, 
+\end{equation*}
+and therefore
+\begin{equation}
+  \label{eq:17}
+  \operatorname{HP}_{J^\mathfrak{p}_\infty A}(t) = \lim_{N \to \infty} \operatorname{HP}_{J^\mathfrak{p}_NA}(t).
+\end{equation}
+in the $(t)$-adic topology of $\mathbb{Z}[[t]]$.
+
+\section{Proof of main theorems}
+\label{sec:proof-main-theorems}
+
+We now establish \zcref{thm:xye-generalization} and \zcref{thm:normal-crossings} avoiding multivariable Gröbner bases and direct computation of higher Tor modules on infinite-dimensional jet spaces.
+
+More generally, let $F \in k[X_1, \dots, X_n]$ be a polynomial vanishing at the origin with order $d = \operatorname{ord}_0(F) \ge 1$, and let
+\begin{equation*}
+  A_{F, e} = k[X_1, \dots, X_n] / (F^e), \qquad e \ge 1,
+\end{equation*}
+writing $A_F := A_{F, 1} = k[X_1, \dots, X_n] / (F)$ for the reduced hypersurface.
+We work in the polynomial $k$-algebra $P^0_\infty = k[X_j^{(i)} \mid j = 1, \dots, n, i = 1, 2, \dots]$ with the grading $\operatorname{wt}(X_j^{(i)}) = i$ and whose Hilbert--Poincaré series is
+\begin{equation*}
+  \operatorname{HP}_{P^0_\infty}(t) = \prod_{i = 1}^\infty \frac{1}{(1 - t^i)^n} = \mathbb{H}(t)^n.
+\end{equation*}
+We define the weight-$l$ polynomials
+\begin{equation}
+  u_l := [t^l]F(X^0_1(t), \dots, X^0_n(t)) \in P^0_\infty, \qquad l \ge d.
+\end{equation}
+We note that for any truncation order $N \ge d$ and $l \le N$, $u_l$ belongs to $P^0_N = k[X_j^{(i)} \mid j = 1, \dots, n, i = 1, \dots, N]$.
+Since $F(X^0_1(t), \dots, X^0_n(t)) = \sum_{l = d}^\infty u_l t^l$,
+the focussed arc ideal of $A_{F, e}$ in $P^0_\infty$ is
+\begin{align*}
+  I_\infty^0(F^e) &= \left([t^l]\left(F(X^0_1(t), \dots, X^0_n(t))\right)^e \;\middle|\; l \ge ed\right), \\
+  J_\infty^0(A_{F, e}) &= \frac{P^0_\infty}{I_\infty^0(F^e)}.
+\end{align*}
+We note that we are not taking the exponent $e$ in the definition of $u_l$ like in the definition of $I_\infty^0(F^e)$.
+
+Next, consider the 1-variable $e$-fold point $k[V]/(V^e)$ with focussed arc algebra
+\begin{equation*}
+  J_\infty^0\left(k[V]/(V^e)\right) = \frac{Q^0_\infty}{I_\infty^0(V^e)}, \qquad
+  Q^0_\infty := k[V^{(1)}, V^{(2)}, \dots], \qquad
+  I_\infty^0(V^e) := \left(f_p(V) \;\middle|\; p \ge e\right),
+\end{equation*}
+where $V^0(t) = \sum_{i = 1}^\infty V^{(i)} t^i \in Q^0_\infty[[t]]$ and
+\begin{equation*}
+  f_p(V) := [t^p]V^0(t)^e = \sum_{\substack{i_1 + \dots + i_e = p \\ i_1, \dots, i_e \ge 1}} V^{(i_1)} \cdots V^{(i_e)}, \qquad p \ge e.
+\end{equation*}
+Endow $Q^0_\infty$ with the shifted grading
+\begin{equation}
+  \operatorname{wt}_d(V^{(i)}) := i + d - 1, \qquad i \ge 1,
+\end{equation}
+whose Hilbert--Poincaré series is
+\begin{equation}
+  \operatorname{HP}_{Q^0_\infty}(t) = \prod_{i = 1}^\infty \frac{1}{1 - t^{i + d - 1}} = \prod_{l = d}^\infty \frac{1}{1 - t^l} = (t)_{d - 1} \mathbb{H}(t),
+\end{equation}
+and define the homomorphism of $\mathbb{N}$-graded $k$-algebras
+\begin{align*}
+  \phi_F \colon Q^0_\infty &\to P^0_\infty, \\
+  \phi_F(V^{(i)}) &= u_{i + d - 1}, \qquad i \ge 1.
+\end{align*}
+Since $\phi_F(V^0(t)) = \sum_{i = 1}^\infty u_{i + d - 1} t^i = t^{-(d - 1)} F(X^0_1(t), \dots, X^0_n(t))$,
+raising both sides to the $e$-th power gives
+\begin{equation*}
+  \sum_{p = e}^\infty \phi_F(f_p(V)) t^{p + e(d - 1)} = \left(F(X^0_1(t), \dots, X^0_n(t))\right)^e = \sum_{l = ed}^\infty \left([t^l]F(X^0_1(t), \dots, X^0_n(t))^e\right) t^l.
+\end{equation*}
+Comparing coefficients of $t^l$ for $l = p + e(d - 1) \ge ed$ shows that $\phi_F(f_p(V)) = [t^l]\left(F(X^0_1(t), \dots, X^0_n(t))\right)^e$ is homogeneous of $\operatorname{wt}_d$-weight $p + e(d - 1) = l$.
+Consequently, $I_\infty^0(V^e)$ is a $\operatorname{wt}_d$-homogeneous ideal of $Q^0_\infty$,
+its quotient $J_\infty^0\left(k[V]/(V^e)\right) = Q^0_\infty / I_\infty^0(V^e)$ inherits the shifted grading $\operatorname{wt}_d$,
+and $I_\infty^0(F^e) = (\phi_F(I_\infty^0(V^e))) \subseteq P^0_\infty$.
+Viewing $P^0_\infty$ as an $\mathbb{N}$-graded $Q^0_\infty$-algebra via $\phi_F$, we obtain a canonical isomorphism of $\mathbb{N}$-graded $k$-algebras
+\begin{equation}
+  \label{eq:JN-quotient-phi}
+  J_\infty^0(A_{F, e}) = \frac{P^0_\infty}{(\phi_F(I_\infty^0(V^e)))} \cong P^0_\infty \otimes_{Q^0_\infty} \frac{Q^0_\infty}{I_\infty^0(V^e)} = P^0_\infty \otimes_{Q^0_\infty} J_\infty^0\left(k[V]/(V^e)\right).
+\end{equation}
+
+\begin{proposition}[Elementary Graded Freeness and Factored Hilbert Series]
+\label{prop:graded-freeness-finite}
+Suppose that for every truncation order $N \ge d$,
+$(u_d, u_{d + 1}, \dots, u_N)$ is a regular sequence in $P^0_N$,
+where
+\begin{equation*}
+  J_\infty^0(A_F) = \frac{P^0_\infty}{(u_l \mid l \ge d)}, \qquad
+  J_N^0(A_F) = \frac{P^0_N}{(u_d, u_{d + 1}, \dots, u_N)}
+\end{equation*}
+are the focussed arc and jet algebras of the reduced hypersurface $A_F = k[X_1, \dots, X_n] / (F)$.
+Then:
+\begin{enumerate}
+  \item For every $N \ge d$, the Hilbert--Poincaré series of $J_N^0(A_F)$ is
+  \begin{equation}
+    \label{eq:HP-RN-quotient}
+    \operatorname{HP}_{J_N^0(A_F)}(t) = \operatorname{HP}_{P^0_N}(t) \prod_{l = d}^N (1 - t^l),
+  \end{equation}
+  and taking the limit $N \to \infty$ in the $(t)$-adic topology gives
+  \begin{equation}
+    \label{eq:HP-RF-quotient}
+    \operatorname{HP}_{J_\infty^0(A_F)}(t) = \lim_{N \to \infty} \operatorname{HP}_{J_N^0(A_F)}(t) = \frac{\operatorname{HP}_{P^0_\infty}(t)}{\operatorname{HP}_{Q^0_\infty}(t)} = \frac{\mathbb{H}(t)^{n - 1}}{(t)_{d - 1}}.
+  \end{equation}
+  \item Viewing $P^0_\infty$ as a graded $Q^0_\infty$-module via $\phi_F$,
+  choose any homogeneous $k$-vector space basis $(e_\alpha)_{\alpha \in \mathcal{I}}$ of $J_\infty^0(A_F)$,
+  and lift each $e_\alpha$ to a homogeneous element $\tilde{e}_\alpha \in P^0_\infty$ of the same weight $w_\alpha = \operatorname{wt}(e_\alpha)$.
+  Then the graded $Q^0_\infty$-linear map
+  \begin{align}
+    \label{eq:Phi-free-iso}
+    \Phi \colon \bigoplus_{\alpha \in \mathcal{I}} Q^0_\infty(-w_\alpha) &\to P^0_\infty, \\
+    \Phi((g_\alpha(V))_{\alpha \in \mathcal{I}}) &= \sum_{\alpha \in \mathcal{I}} \phi_F(g_\alpha(V))\tilde{e}_\alpha \nonumber
+  \end{align}
+  is an isomorphism of graded $Q^0_\infty$-modules
+  (equivalently, $P^0_\infty \cong J_\infty^0(A_F) \otimes_k Q^0_\infty$ as a graded $Q^0_\infty$-module by~\eqref{eq:app-shifted-sum-tensor};
+  see Appendix~\ref{app:graded-tensor-products} for the grading conventions on shifted modules and tensor products).
+  \item For every integer $e \ge 1$, tensoring $\Phi$ with $- \otimes_{Q^0_\infty} J_\infty^0(k[V]/(V^e))$ induces an isomorphism of $\operatorname{wt}_d$-graded $J_\infty^0(k[V]/(V^e))$-modules (and of $\mathbb{N}$-graded $k$-vector spaces)
+  \begin{equation}
+    \label{eq:JN-direct-sum-BnN}
+    J_\infty^0(A_{F, e}) \cong P^0_\infty \otimes_{Q^0_\infty} J_\infty^0\left(k[V]/(V^e)\right) \cong \bigoplus_{\alpha \in \mathcal{I}} J_\infty^0\left(k[V]/(V^e)\right)(-w_\alpha) \cong J_\infty^0(A_F) \otimes_k J_\infty^0\left(k[V]/(V^e)\right),
+  \end{equation}
+  and consequently,
+  by~\eqref{eq:app-hp-tensor-product},
+  \begin{equation}
+    \label{eq:HP-JN-factored}
+    \operatorname{HP}_{J_\infty^0(A_{F, e})}(t) = \operatorname{HP}_{J_\infty^0(A_F)}(t) \cdot \operatorname{HP}_{\left(J_\infty^0(k[V]/(V^e)), \, \operatorname{wt}_d\right)}(t) = \frac{\mathbb{H}(t)^{n - 1}}{(t)_{d - 1}} \cdot \operatorname{HP}_{\left(J_\infty^0(k[V]/(V^e)), \, \operatorname{wt}_d\right)}(t).
+  \end{equation}
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) Fix $N \ge d$.
+For each $l = d, \dots, N$,
+set $M_{l - 1} := P^0_N / (u_d, \dots, u_{l - 1})$ (with $M_{d - 1} := P^0_N$).
+Since $u_l$ is a homogeneous non-zero-divisor of weight $l$ on $M_{l - 1}$,
+the short exact sequence
+\begin{equation*}
+  0 \longrightarrow M_{l - 1}(-l) \xrightarrow{\cdot u_l} M_{l - 1} \longrightarrow M_{l - 1} / u_l M_{l - 1} \longrightarrow 0
+\end{equation*}
+together with~\eqref{eq:app-hp-shift} gives $\operatorname{HP}_{M_l}(t) = (1 - t^l) \operatorname{HP}_{M_{l - 1}}(t)$.
+Applying this $N - d + 1$ times yields~\eqref{eq:HP-RN-quotient},
+and taking the limit $N \to \infty$ in the $(t)$-adic topology via~\eqref{eq:17} gives~\eqref{eq:HP-RF-quotient}.
+
+(2) We first show that $\Phi$ is surjective by induction on the weight $w \ge 0$.
+For $w = 0$,
+$(P^0_\infty)_0 = k$ is spanned by the lift of $1 \in J_\infty^0(A_F)$.
+For $w \ge 1$ and any $x \in (P^0_\infty)_w$,
+since $(e_\alpha)_{w_\alpha = w}$ spans $(J_\infty^0(A_F))_w$,
+there exists a $k$-linear combination $y = \sum_{w_\alpha = w} c_\alpha \tilde{e}_\alpha \in \operatorname{Im}(\Phi)$ such that $x - y \in (u_l \mid l \ge d)_w$.
+Because $\operatorname{wt}(u_l) = l$,
+only generators $u_l$ with $d \le l \le w$ can contribute in weight $w$,
+so we can write
+\begin{equation*}
+  x - y = \sum_{l = d}^w u_l z_{w - l}
+\end{equation*}
+with $z_{w - l} \in (P^0_\infty)_{w - l}$.
+Since $w - l < w$,
+each $z_{w - l}$ lies in $\operatorname{Im}(\Phi)$ by the induction hypothesis;
+since $\operatorname{Im}(\Phi)$ is a $Q^0_\infty$-submodule of $P^0_\infty$,
+each $u_l z_{w - l} = \phi_F(V^{(l - d + 1)}) z_{w - l}$ also lies in $\operatorname{Im}(\Phi)$,
+proving $x \in \operatorname{Im}(\Phi)$.
+
+On the other hand,
+by~\eqref{eq:app-hp-shift} and~\eqref{eq:HP-RF-quotient},
+the Hilbert--Poincaré series of the domain of $\Phi$ is
+\begin{equation*}
+  \operatorname{HP}_{\bigoplus_{\alpha \in \mathcal{I}} Q^0_\infty(-w_\alpha)}(t)
+  = \operatorname{HP}_{Q^0_\infty}(t) \sum_{\alpha \in \mathcal{I}} t^{w_\alpha}
+  = \operatorname{HP}_{Q^0_\infty}(t) \cdot \operatorname{HP}_{J_\infty^0(A_F)}(t)
+  = \operatorname{HP}_{P^0_\infty}(t).
+\end{equation*}
+Hence,
+in every weight $w \ge 0$,
+the restriction $\Phi_w$ is a surjective $k$-linear map between two finite-dimensional $k$-vector spaces of the same dimension,
+and is therefore an isomorphism.
+
+(3) Tensoring the graded $Q^0_\infty$-module isomorphism~\eqref{eq:Phi-free-iso} with $- \otimes_{Q^0_\infty} J_\infty^0(k[V]/(V^e))$ and using~\eqref{eq:JN-quotient-phi},~\eqref{eq:app-shifted-base-change}, and~\eqref{eq:app-shifted-sum-tensor} gives
+\begin{align*}
+  J_\infty^0(A_{F, e}) &\cong P^0_\infty \otimes_{Q^0_\infty} J_\infty^0\left(k[V]/(V^e)\right) \\
+  &\cong \bigoplus_{\alpha \in \mathcal{I}} \left(Q^0_\infty(-w_\alpha) \otimes_{Q^0_\infty} J_\infty^0\left(k[V]/(V^e)\right)\right) \\
+  &\cong \bigoplus_{\alpha \in \mathcal{I}} J_\infty^0\left(k[V]/(V^e)\right)(-w_\alpha) \\
+  &\cong J_\infty^0(A_F) \otimes_k J_\infty^0\left(k[V]/(V^e)\right),
+\end{align*}
+and taking Hilbert--Poincaré series via~\eqref{eq:app-hp-tensor-product} and~\eqref{eq:HP-RF-quotient} immediately yields~\eqref{eq:HP-JN-factored}.
+\end{proof}
+
+We now determine $\operatorname{HP}_{\left(J_\infty^0(k[V]/(V^e)), \, \operatorname{wt}_d\right)}(t)$ for the 1-variable fat-point focussed arc algebra $J_\infty^0(k[V]/(V^e)) = Q^0_\infty / (f_p(V) \mid p \ge e)$ endowed with the shifted grading $\operatorname{wt}_d(V^{(i)}) = i + d - 1$.
+By Lemma~5.3 of~\cite{bruschek_arc_2013},
+$(f_p)_{p \ge e}$ is a Gröbner basis of $I_\infty^0(V^e)$ under the weighted reverse lexicographic order,
+with leading monomials
+\begin{equation}
+  \label{eq:shifted-leading-monomials}
+  \operatorname{lm}(f_{qe + j}) = (V^{(q)})^{e - j} (V^{(q + 1)})^j \qquad (q \ge 1, \; 0 \le j \le e - 1).
+\end{equation}
+Consequently,
+the standard monomials (those not divisible by any $\operatorname{lm}(f_{qe + j})$),
+\begin{equation*}
+  V^{(\lambda_1)} \cdots V^{(\lambda_\ell)} \qquad (\lambda_1 \ge \dots \ge \lambda_\ell \ge 1, \; \lambda_i - \lambda_{i + e - 1} \ge 2),
+\end{equation*}
+form a $k$-vector space basis of $J_\infty^0(k[V]/(V^e))$.
+Under the shifted grading $\operatorname{wt}_d(V^{(i)}) = i + d - 1$,
+each factor $V^{(\lambda_r)}$ has weight $\mu_r := \lambda_r + d - 1 \ge d$,
+so the basis monomial $V^{(\lambda_1)} \cdots V^{(\lambda_\ell)}$ is $\operatorname{wt}_d$-homogeneous of weight $|\mu| = \mu_1 + \dots + \mu_\ell$.
+Re-indexing by the shifted partitions $\mu = (\mu_1, \dots, \mu_\ell)$ (which satisfy $\mu_i - \mu_{i + e - 1} = \lambda_i - \lambda_{i + e - 1} \ge 2$ and $\mu_{\mathrm{min}} \ge d$),
+this basis restricts to a $k$-basis of each $\operatorname{wt}_d$-homogeneous component of $J_\infty^0(k[V]/(V^e))$,
+yielding
+\begin{equation}
+  \label{eq:tau-HP-BnN}
+  \operatorname{HP}_{\left(J_\infty^0(k[V]/(V^e)), \, \operatorname{wt}_d\right)}(t) = \sum_{\substack{\mu \\ \mu_i - \mu_{i + e - 1} \ge 2 \\ \mu_{\mathrm{min}} \ge d}} t^{|\mu|}.
+\end{equation}
 
 \appendix
-\section{Graded Poisson algebras and their modules}
-\label{sec:grad-poiss-algeb}
+\section{Known results on Hilbert--Poincaré series}
+\label{sec:known-results-hilbert}
+
+\section{Regular sequences}
+\label{sec:regular-sequences}
 
 \printindex
 
