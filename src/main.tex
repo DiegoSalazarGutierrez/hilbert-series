@@ -66,10 +66,9 @@
 \section*{Introduction}
 \label{sec:introduction}
 
-Let $k$ be a field of characteristic zero,
-let $e \ge 1$ be an integer,
+Let $e \ge 1$ be an integer,
 and let $s \in \{1, \dots, e\}$.
-For $m \in \mathbb{N}$, let $(t)_m = \prod_{i = 1}^m (1 - t^i)$ denote the $q$-Pochhammer symbol (with $(t)_0 = 1$).
+For $m \in \mathbb{N}$, let $(t)_m = \prod_{i = 1}^m (1 - t^i)$ denote the \defterm{Pochhammer symbol} (with $(t)_0 = 1$).
 The Andrews--Gordon generalization of the Rogers--Ramanujan identities states that
 \begin{equation*}
   \sum_{k = (k_1, \dots, k_{e - 1}) \in \mathbb{N}^{e - 1}}\frac{t^{\frac{1}{2}kG^{(e)}k^\top + kB^{(e)}_{e - s}}}{(t)_{k_1}\dots(t)_{k_{e - 1}}} = \prod^\infty_{\substack{i = 1 \\ i \not\equiv 0, \pm s \bmod 2e + 1}}(1 - t^i)^{-1},
@@ -80,7 +79,9 @@ where
   B^{(e)}_j &= (\underbrace{0, \dots, 0}_{e - 1 - j}, 1, 2, \dots, j)^\top \in \mathbb{N}^{e - 1} \quad \text{for $j = 0, 1, \dots, e - 1$},
 \end{align*}
 and ${}^\top$ denotes the transpose matrix (in particular, $B^{(e)}_0 = (0, \dots, 0)^\top$).
-We denote by $AG_{e, s}(t) \in \mathbb{N}[[t]]$ either side of this identity (though it's probably better to think of the products when doing Hilbert--Poincaré series).
+We denote by $AG_{e, s}(t) \in \mathbb{N}[[t]]$ either side of this identity.
+
+Let $k$ be a field of characteristic zero.
 
 \begin{theorem}[Hilbert--Poincaré Series of $(XY)^e = 0$]
   \label{thm:xye-generalization}
@@ -125,13 +126,13 @@ All rings considered are commutative with identity element $1$, and all ring hom
 The set of natural numbers $\{0, 1, \dots\}$ is denoted by $\mathbb{N}$, and the set of integers is denoted by $\mathbb{Z}$.
 Let $R$ be a ring.
 An \defterm{$R$-algebra} is a ring $S$ equipped with a ring homomorphism $R \to S$.
-An \defterm{$\mathbb{N}$-graded ring} is a ring $R$ together with a family $(R_w)_{w \in \mathbb{N}}$ of additive subgroups of $R$ such that $R = \bigoplus_{w \in \mathbb{N}} R_w$ and $R_{w_1}R_{w_2} \subseteq R_{w_1 + w_2}$.
+An \defterm{$\mathbb{N}$-graded ring} is a ring $R$ together with a family $(R_w)_{w \in \mathbb{N}}$ of additive subgroups of $R$ such that $R = \bigoplus_{w \in \mathbb{N}} R_w$ and $R_{w_1}R_{w_2} \subseteq R_{w_1 + w_2}$ for $w_1, w_2 \in \mathbb{N}$.
 This automatically implies $1 \in R_0$.
 Let $k$ be a field.
 An \defterm{$\mathbb{N}$-graded $k$-algebra} is a $k$-algebra $A = \bigoplus_{w \in \mathbb{N}} A_w$ such that $A$ is an $\mathbb{N}$-graded ring, and each additive subgroup $A_w$ is a subspace of $A$.
 If $a \in A_w$,
 we say that $a$ is \defterm{homogeneous} of \defterm{weight} $w$ and write $\operatorname{wt}(a) = w$.
-A \defterm{homomorphism of $\mathbb{N}$-graded $k$-algebras} is a $k$-algebra homomorphism $\varphi \colon A \to B$ such that $\varphi(A_w) \subseteq B_w$ for all $w \in \mathbb{N}$.
+A \defterm{homomorphism of $\mathbb{N}$-graded $k$-algebras} is a $k$-algebra homomorphism $\varphi \colon A \to B$ such that $\varphi(A_w) \subseteq B_w$ for $w \in \mathbb{N}$.
 
 Let $A$ be an $\mathbb{N}$-graded $k$-algebra such that $A_w$ is finite dimensional for $w \in \mathbb{N}$.
 The \defterm{Hilbert--Poincaré series of $A$} is defined by
@@ -145,16 +146,16 @@ That is, for $A, B \in k\textnormal{-Alg}$, we want the adjunction
   \label{eq:8}
   \operatorname{Hom}_{k\textnormal{-Alg}}(J A, B) \cong \operatorname{Hom}_{k\textnormal{-Alg}}(A, B[[t]]).
 \end{equation}
-Explicitly, if $A \cong k[X_j \mid j \in \Lambda] / (F_r \mid r \in \Gamma)$, where $\Lambda$ and $\Gamma$ are some (not necessarily finite) sets,
+Explicitly, given the presentation $A \cong k[X_j \mid j \in \Lambda] / (F_r \mid r \in \Gamma)$, where $\Lambda$ and $\Gamma$ are some (not necessarily finite) sets,
 we work in the polynomial $k$-algebra $P \coloneq k[X_j^{(i)} \mid j \in \Lambda, i = 0, 1, \dots]$ and define the series
 \begin{equation}
   \label{eq:5}
   X_j(t) \coloneq \sum_{i = 0}^\infty X_j^{(i)}t^i \in P[[t]], \qquad j \in \Lambda.
 \end{equation}
-For $l \in \mathbb{N}$, we denote by $[t^l]$ the \defterm{$t^l$-coefficient extraction map}, and we define the ideal
+For $l = 0, 1, \dots$, we denote by $[t^l]$ the \defterm{$t^l$-coefficient extraction map} and define the ideal
 \begin{equation}
   \label{eq:6}
-  I \coloneq ([t^l]F_r((X_j(t))_{j \in \Lambda}) \mid l \in \mathbb{N}, r \in \Gamma).
+  I \coloneq ([t^l]F_r((X_j(t))_{j \in \Lambda}) \mid l = 0, 1, \dots, r \in \Gamma) \subseteq P.
 \end{equation}
 Then the quotient
 \begin{equation}
@@ -180,7 +181,7 @@ A homomorphism of differential $k$-algebras is a homomorphism of $k$-algebras th
 An \defterm{$\mathbb{N}$-graded differential $k$-algebra} is a differential $k$-algebra $A$ that is also an $\mathbb{N}$-graded $k$-algebra satisfying $\partial(A_w) \subseteq A_{w + 1}$.
 
 From now on, we assume $\operatorname{char}(k) = 0$.
-Let $A \cong k[X_j \mid j \in \Lambda] / (F_r \mid r \in \Gamma)$, where $\Lambda$ and $\Gamma$ are some (not necessarily finite) sets.
+Consider the presentation $A \cong k[X_j \mid j \in \Lambda] / (F_r \mid r \in \Gamma)$, where $\Lambda$ and $\Gamma$ are some (not necessarily finite) sets.
 We now make $J A$ into an $\mathbb{N}$-graded differential $k$-algebra by using its explicit construction \eqref{eq:7}.
 We consider the polynomial $k$-algebra $P = k[X_j^{(i)} \mid j \in \Lambda, i = 0, 1, \dots]$ with derivation $\partial \in \operatorname{Der}_k(P)$ given by
 \begin{equation}
@@ -198,19 +199,19 @@ We wish to have
 Taking $F = X_j$ for $j \in \Lambda$, we get \eqref{eq:9}.
 With this definition, we get \eqref{eq:10} for $F \in k[X_j \mid j \in \Lambda]$.
 Identifying $X_j = X_j^{(0)}$ for $j \in \Lambda$, we have $k[X_j \mid j \in \Lambda]_\partial = P$.
-For $r \in \Gamma$ and $l \in \mathbb{N}$, we define $F^{(l)}_r \coloneq [t^l]F_r((X_j(t))_{j \in \Lambda})$.
-The ideal $I = (F_r^{(l)} \mid l \in \mathbb{N}, r \in \Gamma)$ is differential because $\partial(F_r((X_j(t))_{j \in \Lambda})) = \partial_t(F_r((X_j(t))_{j \in \Lambda}))$ for $r \in \Gamma$ implies
+For $l = 0, 1, \dots, r \in \Gamma$, we define $F^{(l)}_r \coloneq [t^l]F_r((X_j(t))_{j \in \Lambda})$.
+The ideal $I = (F_r^{(l)} \mid l = 0, 1, \dots, r \in \Gamma)$ is differential because $\partial(F_r((X_j(t))_{j \in \Lambda})) = \partial_t(F_r((X_j(t))_{j \in \Lambda}))$ for $r \in \Gamma$ implies
 \begin{equation*}
-  \partial(F_r^{(l)}) = (l + 1)F_r^{(l + 1)}, \qquad l \in \mathbb{N}, r \in \Gamma.
+  \partial(F_r^{(l)}) = (l + 1)F_r^{(l + 1)}, \qquad l = 0, 1, \dots, r \in \Gamma.
 \end{equation*}
 Thus
 \begin{equation*}
-  F_r^{(l)} = \frac{\partial^lF_r^{(0)}}{l!}, \qquad l \in \mathbb{N}, r \in \Gamma.
+  F_r^{(l)} = \frac{\partial^lF_r^{(0)}}{l!}, \qquad l = 0, 1, \dots, r \in \Gamma.
 \end{equation*}
 We see that $F_r^{(0)} = F_r$ for $r \in \Gamma$.
 We have proved that
 \begin{equation*}
-  I = (F_r^{(l)} \mid l \in \mathbb{N}, r \in \Gamma) = (F_r \mid r \in \Gamma)_\partial.
+  I = (F_r^{(l)} \mid l = 0, 1, \dots, r \in \Gamma) = (F_r \mid r \in \Gamma)_\partial.
 \end{equation*}
 Thus, the derivation $\partial$ of $P$ descends to a derivation of $J A \in k\textnormal{-DiffAlg}$, which we also denote by $\partial$.
 For $j \in \Lambda$, we denote by $x_j \coloneq X_j^{(0)} + I \in A \subseteq J A$ the class of $X_j$.
@@ -251,11 +252,12 @@ That is, for $A \in k\textnormal{-Alg}$ and $B \in k\textnormal{-DiffAlg}$, we h
   \operatorname{Hom}_{k\textnormal{-DiffAlg}}(J A, B) \cong \operatorname{Hom}_{k\textnormal{-Alg}}(A, B).
 \end{equation}
 
-Assigning weight $i$ to $X_j^{(i)}$ for $j \in \Lambda$ and $i = 0, 1, \dots$ makes $P$ into an $\mathbb{N}$-graded $k$-algebra in which each generator $F_r^{(l)} = [t^l]F_r((X_j(t))_{j \in \Lambda})$ of $I$ has weight $l$.
+Assigning weight $i$ to $X_j^{(i)}$ for $i = 0, 1, \dots, j \in \Lambda$ makes $P$ into an $\mathbb{N}$-graded $k$-algebra in which each generator $F_r^{(l)} = [t^l]F_r((X_j(t))_{j \in \Lambda})$ of $I$ has weight $l$.
 Since $\partial^i X_j^{(0)} = i!X_j^{(i)}$ has weight $i$, the induced quotient grading on $P / I \cong J A$ is given by
-\begin{equation*}
-  (J A)_w = \operatorname{span}_k\{(\partial^{w_1}a_1)\dots(\partial^{w_s}a_s) \mid s, w_1, \dots, w_s \in \mathbb{N}, a_1, \dots, a_s \in A, w_1 + \dots + w_s = w\},
-\end{equation*}
+\begin{equation}
+  \label{eq:1}
+  (JA)_w = \operatorname{span}_k\{(\partial^{w_1}a_1)\dots(\partial^{w_s}a_s) \mid s, w_1, \dots, w_s \in \mathbb{N}, a_1, \dots, a_s \in A, w_1 + \dots + w_s = w\},
+\end{equation}
 which, since $\partial$ does not depend on the chosen presentation of $A$, shows that the grading is independent of the chosen presentation of $A$.
 Then
 \begin{equation*}
@@ -337,7 +339,7 @@ in the same way we can think of $A$ as
   A = \{(x_1, \dots, x_n) \in k^n \mid 0 = F_r(x_1, \dots, x_n), r = 1, \dots, m\}.
 \end{equation*}
 Of course, this is just an intuition because the $k$-algebra $A$ may be nonreduced.
-For example, if $A = k[X]/(X^2)$ (a case we are interested in), then with this definition, we would get $A = J A = \{0\}$, which we obviously don't want.
+For example, if $A = k[X]/(X^2)$ (a case we are interested in), then with this definition, we would get $A = J A = \{0\}$, which loses the nilpotent structure we want to study.
 
 \begin{example}
   \label{exa:1}
@@ -371,8 +373,7 @@ is the smallest total degree among the non-zero monomials appearing in $F$
 Similarly, for a formal power series $g(t) = \sum_{i = 0}^\infty g_i t^i \in R[[t]]$ over a ring $R$,
 its \defterm{$t$-adic order} is $\operatorname{ord}_t(g(t)) \coloneq \inf\{i \in \mathbb{N} \mid g_i \ne 0\}$ (with $\operatorname{ord}_t(0) \coloneq +\infty$).
 
-More generally, let $F \in k[X_1, \dots, X_n]$ be a non-zero polynomial vanishing at the origin with order $d \coloneq \operatorname{ord}_0(F) \ge 1$,
-and let
+Rather than working directly with $F = X_1 \cdots X_n$, let $F \in k[X_1, \dots, X_n]$ be a non-zero polynomial vanishing at the origin with order $d \coloneq \operatorname{ord}_0(F) \ge 1$, and let
 \begin{equation*}
   A_{F^e} \coloneq k[X_1, \dots, X_n] / (F^e), \qquad e \ge 1,
 \end{equation*}
@@ -390,17 +391,13 @@ and we define the weight-$l$ polynomials
 so that $F(X^0_1(t), \dots, X^0_n(t)) = \sum_{l = d}^\infty u_l t^l$.
 Similarly, $[t^l]F^e(X^0_1(t), \dots, X^0_n(t)) = 0$ for $l < ed$,
 so the focussed jet ideal of $A_{F^e}$ in $P^0$ is
-\begin{align*}
-  I^0(F^e) &\coloneq ([t^l]F^e(X^0_1(t), \dots, X^0_n(t)) \mid l \ge ed), \\
-  J^0(A_{F^e}) &= \frac{P^0}{I^0(F^e)}.
-\end{align*}
-We note that we are not taking the exponent $e$ in the definition of $u_l$ like in the definition of $I^0(F^e)$.
-
-Next, consider the 1-variable $e$-fold point $k[V]/(V^e)$ with focussed jet algebra
 \begin{equation*}
-  J^0(k[V]/(V^e)) = \frac{Q^0}{I^0(V^e)}, \qquad
-  Q^0 \coloneq k[V^{(1)}, V^{(2)}, \dots], \qquad
-  I^0(V^e) \coloneq (f_p(V) \mid p \ge e),
+  J^0(A_{F^e}) = \frac{P^0}{I^0(F^e)} = \frac{P^0}{([t^l]F^e(X^0_1(t), \dots, X^0_n(t)) \mid l \ge ed)}.
+\end{equation*}
+
+Next, let $Q^0 = k[V^{(1)}, V^{(2)}, \dots]$ and consider the 1-variable $e$-fold point $k[V]/(V^e)$ with focussed jet algebra
+\begin{equation*}
+  J^0(k[V]/(V^e)) = \frac{Q^0}{I^0(V^e)} = \frac{Q^0}{(f_p(V) \mid p \ge e)},
 \end{equation*}
 where $V^0(t) \coloneq \sum_{i = 1}^\infty V^{(i)} t^i \in Q^0[[t]]$ and
 \begin{equation*}
@@ -408,32 +405,37 @@ where $V^0(t) \coloneq \sum_{i = 1}^\infty V^{(i)} t^i \in Q^0[[t]]$ and
 \end{equation*}
 Endow $Q^0$ with the shifted grading
 \begin{equation}
-  \operatorname{wt}_d(V^{(i)}) \coloneq i + d - 1, \qquad i \ge 1,
+  \operatorname{wt}_d(V^{(i)}) \coloneq i + d - 1, \qquad i = 1, 2, \dots
 \end{equation}
-whose Hilbert--Poincaré series is
+obtaining an $\mathbb{N}$-graded $k$-algebra $(Q^0, \operatorname{wt}_d)$ whose Hilbert--Poincaré series is
 \begin{equation}
-  \operatorname{HP}_{Q^0}(t) = \prod_{i = 1}^\infty \frac{1}{1 - t^{i + d - 1}} = \prod_{l = d}^\infty \frac{1}{1 - t^l} = (t)_{d - 1} \mathbb{H}(t).
+  \operatorname{HP}_{(Q^0, \, \operatorname{wt}_d)}(t) = \prod_{i = 1}^\infty \frac{1}{1 - t^{i + d - 1}} = \prod_{l = d}^\infty \frac{1}{1 - t^l} = (t)_{d - 1} \mathbb{H}(t).
 \end{equation}
 Under $\operatorname{wt}_d$,
 every monomial $V^{(i_1)} \cdots V^{(i_e)}$ in $f_p(V)$ with $i_1 + \dots + i_e = p$ has weight $\sum_{r = 1}^e (i_r + d - 1) = p + e(d - 1)$,
 so $f_p(V)$ is $\operatorname{wt}_d$-homogeneous of weight $p + e(d - 1)$,
 $I^0(V^e)$ is a $\operatorname{wt}_d$-homogeneous ideal of $Q^0$,
-and its quotient $J^0(k[V]/(V^e)) = Q^0 / I^0(V^e)$ inherits the shifted grading $\operatorname{wt}_d$.
+and its quotient $J^0(k[V]/(V^e)) = Q^0 / I^0(V^e)$ inherits the shifted grading $\operatorname{wt}_d$,
+giving an $\mathbb{N}$-graded $k$-algebra $(J^0(k[V]/(V^e)), \operatorname{wt}_d)$
+(for $d \ge 2$, $\operatorname{wt}_d$ is not the standard jet grading $\operatorname{wt}_1$ induced by~\eqref{eq:1}).
 Now define the homomorphism of $\mathbb{N}$-graded $k$-algebras
 \begin{align*}
-  \phi_F \colon Q^0 &\to P^0, \\
-  \phi_F(V^{(i)}) &\coloneq u_{i + d - 1}, \qquad i \ge 1.
+  \phi_F \colon (Q^0, \operatorname{wt}_d) &\to P^0, \\
+  \phi_F(V^{(i)}) &\coloneq u_{i + d - 1}, \qquad i = 1, 2, \dots
 \end{align*}
-Since $t^{d - 1}\phi_F(V^0(t)) = \sum_{i = 1}^\infty u_{i + d - 1} t^{i + d - 1} = F(X^0_1(t), \dots, X^0_n(t))$,
-raising both sides to the $e$-th power gives
+Extending $\phi_F$ coefficientwise to a homomorphism $Q^0[[t]] \to P^0[[t]]$,
+we have $t^{d - 1}\phi_F(V^0(t)) = \sum_{i = 1}^\infty u_{i + d - 1} t^{i + d - 1} = F(X^0_1(t), \dots, X^0_n(t))$.
+Taking $e$-th powers of the first and last expressions gives
 \begin{equation*}
-  \sum_{p = e}^\infty \phi_F(f_p(V)) t^{p + e(d - 1)} = F^e(X^0_1(t), \dots, X^0_n(t)) = \sum_{l = ed}^\infty ([t^l]F^e(X^0_1(t), \dots, X^0_n(t))) t^l.
+  F^e(X^0_1(t), \dots, X^0_n(t))
+  = \bigl(t^{d - 1}\phi_F(V^0(t))\bigr)^e
+  = t^{e(d - 1)}\phi_F(V^0(t)^e)
+  = \sum_{p = e}^\infty \phi_F(f_p(V)) t^{p + e(d - 1)}.
 \end{equation*}
-Comparing coefficients of $t^l$ for $l = p + e(d - 1) \ge ed$ shows that $\phi_F(f_p(V)) = [t^l]F^e(X^0_1(t), \dots, X^0_n(t))$,
+Extracting $[t^l]$ for $l = p + e(d - 1) \ge ed$ yields $[t^l]F^e(X^0_1(t), \dots, X^0_n(t)) = \phi_F(f_p(V))$,
 and therefore $I^0(F^e) = (\phi_F(I^0(V^e))) \subseteq P^0$.
-Viewing $P^0$ as an $\mathbb{N}$-graded $Q^0$-algebra via $\phi_F$
-(with $\operatorname{wt}_d$ on $Q^0$)
-and equipping the tensor product over $Q^0$ with the grading~\eqref{eq:app-ring-tensor-grading} of \zcref{app:graded-tensor-products},
+Viewing $P^0$ as an $\mathbb{N}$-graded $(Q^0, \operatorname{wt}_d)$-algebra via $\phi_F$
+and equipping the tensor product over $(Q^0, \operatorname{wt}_d)$ with the grading~\eqref{eq:app-ring-tensor-grading} of \zcref{app:graded-tensor-products},
 we obtain a canonical isomorphism of $\mathbb{N}$-graded $J^0(k[V]/(V^e))$-algebras (and of $\mathbb{N}$-graded $k$-algebras)
 \begin{equation}
   \label{eq:JN-quotient-phi}
@@ -454,26 +456,25 @@ we obtain a canonical isomorphism of $\mathbb{N}$-graded $J^0(k[V]/(V^e))$-algeb
   \item The Hilbert--Poincaré series of $J^0(A_F)$ is
     \begin{equation}
       \label{eq:HP-RF-quotient}
-      \operatorname{HP}_{J^0(A_F)}(t) = \frac{\operatorname{HP}_{P^0}(t)}{\operatorname{HP}_{Q^0}(t)} = \frac{\mathbb{H}(t)^{n - 1}}{(t)_{d - 1}}.
+      \operatorname{HP}_{J^0(A_F)}(t) = \frac{\operatorname{HP}_{P^0}(t)}{\operatorname{HP}_{(Q^0, \, \operatorname{wt}_d)}(t)} = \frac{\mathbb{H}(t)^{n - 1}}{(t)_{d - 1}}.
     \end{equation}
-  \item Viewing $P^0$ as a graded $Q^0$-module via $\phi_F$,
-    choose any homogeneous $k$-vector space basis $(e_\alpha)_{\alpha \in \mathcal{I}}$ of $J^0(A_F)$,
-    and lift each $e_\alpha$ to a homogeneous element $\tilde{e}_\alpha \in P^0$ of the same weight $w_\alpha \coloneq \operatorname{wt}(e_\alpha)$.
-    Then the graded $Q^0$-linear map
+  \item Viewing $P^0$ as an $\mathbb{N}$-graded $(Q^0, \operatorname{wt}_d)$-module via $\phi_F$,
+    let $\sigma \colon J^0(A_F) \to P^0$ be any graded $k$-linear section of the quotient map $\pi \colon P^0 \twoheadrightarrow J^0(A_F)$
+    (that is, $\sigma((J^0(A_F))_w) \subseteq (P^0)_w$ for all $w \in \mathbb{N}$ and $\pi \circ \sigma = \operatorname{id}_{J^0(A_F)}$).
+    Then the graded $(Q^0, \operatorname{wt}_d)$-module homomorphism
     \begin{align}
       \label{eq:Phi-free-iso}
-      \Phi \colon \bigoplus_{\alpha \in \mathcal{I}} Q^0(-w_\alpha) &\to P^0, \\
-      \Phi((g_\alpha(V))_{\alpha \in \mathcal{I}}) &\coloneq \sum_{\alpha \in \mathcal{I}} \phi_F(g_\alpha(V))\tilde{e}_\alpha \nonumber
+      \Phi \colon J^0(A_F) \otimes_k (Q^0, \operatorname{wt}_d) &\to P^0, \\
+      \Phi(y \otimes g(V)) &\coloneq \sigma(y)\phi_F(g(V)) \nonumber
     \end{align}
-    is an isomorphism of graded $Q^0$-modules
-    (equivalently, $P^0 \cong J^0(A_F) \otimes_k Q^0$ as a graded $Q^0$-module by~\eqref{eq:app-shifted-sum-tensor};
-    see \zcref{app:graded-tensor-products} for the grading conventions on shifted modules and tensor products).
+    is an isomorphism of $\mathbb{N}$-graded $(Q^0, \operatorname{wt}_d)$-modules
+    (see \zcref{app:graded-tensor-products} for the grading conventions on tensor products).
   \item For every integer $e \ge 1$,
     tensoring $\Phi$ with $- \otimes_{Q^0} J^0(k[V]/(V^e))$ induces an isomorphism of $\mathbb{N}$-graded $J^0(k[V]/(V^e))$-modules (with respect to $\operatorname{wt}_d$ on $J^0(k[V]/(V^e))$),
     and hence of $\mathbb{N}$-graded $k$-vector spaces,
     \begin{equation}
       \label{eq:JN-direct-sum-BnN}
-      J^0(A_{F^e}) \cong P^0 \otimes_{Q^0} J^0(k[V]/(V^e)) \cong \bigoplus_{\alpha \in \mathcal{I}} J^0(k[V]/(V^e))(-w_\alpha) \cong J^0(A_F) \otimes_k J^0(k[V]/(V^e)),
+      J^0(A_{F^e}) \cong P^0 \otimes_{Q^0} J^0(k[V]/(V^e)) \cong J^0(A_F) \otimes_k J^0(k[V]/(V^e)),
     \end{equation}
     and consequently,
     by~\eqref{eq:app-hp-tensor-product},
@@ -503,14 +504,18 @@ we obtain a canonical isomorphism of $\mathbb{N}$-graded $J^0(k[V]/(V^e))$-algeb
   so $\operatorname{HP}_{J^0(A_F)}(t) - \operatorname{HP}_{M_N}(t) \in t^{N + 1}\mathbb{Z}[[t]]$.
   Taking $N \to \infty$ in the $(t)$-adic topology on $\mathbb{Z}[[t]]$ gives~\eqref{eq:HP-RF-quotient}.
 
-  (ii) We first show that $\Phi$ is surjective by induction on the weight $w \ge 0$.
-  For $w = 0$,
-  since $(u_l \mid l \ge d)_0 = 0$,
-  the quotient map $(P^0)_0 \to (J^0(A_F))_0$ is an isomorphism of $1$-dimensional $k$-vector spaces,
-  so the unique weight-$0$ basis lift $\tilde{e}_{\alpha_0} \in k^\times$ spans $(P^0)_0 = k$.
-  For $w \ge 1$ and any $x \in (P^0)_w$,
-  since $(e_\alpha)_{w_\alpha = w}$ spans $(J^0(A_F))_w$,
-  there exists a $k$-linear combination $y = \sum_{w_\alpha = w} c_\alpha \tilde{e}_\alpha \in \operatorname{Im}(\Phi)$ such that $x - y \in (u_l \mid l \ge d)_w$.
+  (ii) Since $\sigma$ and $\phi_F$ are graded $k$-linear maps and $(Q^0, \operatorname{wt}_d)$ acts on $J^0(A_F) \otimes_k (Q^0, \operatorname{wt}_d)$ via multiplication on the second factor and on $P^0$ via $\phi_F$,
+  $\Phi$ is a well-defined graded $(Q^0, \operatorname{wt}_d)$-module homomorphism.
+  We first show that $\Phi$ is surjective by strong induction on the weight $w \ge 0$.
+  For the base cases $0 \le w < d$,
+  we have $\ker(\pi)_w = (u_l \mid l \ge d)_w = 0$,
+  so $\pi_w \colon (P^0)_w \to (J^0(A_F))_w$ is an isomorphism with inverse $\sigma_w$;
+  hence every $x \in (P^0)_w$ satisfies $x = \sigma(\pi(x)) = \Phi(\pi(x) \otimes 1) \in \operatorname{Im}(\Phi)$.
+  Now let $w \ge d$ and assume $(P^0)_v \subseteq \operatorname{Im}(\Phi)$ for all $0 \le v < w$.
+  For any $x \in (P^0)_w$,
+  set $y \coloneq \sigma(\pi(x)) = \Phi(\pi(x) \otimes 1) \in \operatorname{Im}(\Phi) \cap (P^0)_w$.
+  Since $\pi(x - y) = \pi(x) - (\pi \circ \sigma)(\pi(x)) = 0$,
+  we have $x - y \in \ker(\pi)_w = (u_l \mid l \ge d)_w$.
   Because $\operatorname{wt}(u_l) = l$,
   only generators $u_l$ with $d \le l \le w$ can contribute in weight $w$,
   so we can write
@@ -518,19 +523,18 @@ we obtain a canonical isomorphism of $\mathbb{N}$-graded $J^0(k[V]/(V^e))$-algeb
     x - y = \sum_{l = d}^w u_l z_{w - l}
   \end{equation*}
   with $z_{w - l} \in (P^0)_{w - l}$.
-  Since $w - l < w$,
+  Since $0 \le w - l < w$,
   each $z_{w - l}$ lies in $\operatorname{Im}(\Phi)$ by the induction hypothesis;
   since $\operatorname{Im}(\Phi)$ is a $Q^0$-submodule of $P^0$,
   each $u_l z_{w - l} = \phi_F(V^{(l - d + 1)}) z_{w - l}$ also lies in $\operatorname{Im}(\Phi)$,
-  proving $x \in \operatorname{Im}(\Phi)$.
+  and therefore $x = y + \sum_{l = d}^w u_l z_{w - l} \in \operatorname{Im}(\Phi)$.
 
   On the other hand,
-  by~\eqref{eq:app-hp-shift} and~\eqref{eq:HP-RF-quotient},
+  by~\eqref{eq:app-hp-tensor-product} and~\eqref{eq:HP-RF-quotient},
   the Hilbert--Poincaré series of the domain of $\Phi$ is
   \begin{equation*}
-    \operatorname{HP}_{\bigoplus_{\alpha \in \mathcal{I}} Q^0(-w_\alpha)}(t)
-    = \operatorname{HP}_{Q^0}(t) \sum_{\alpha \in \mathcal{I}} t^{w_\alpha}
-    = \operatorname{HP}_{Q^0}(t) \cdot \operatorname{HP}_{J^0(A_F)}(t)
+    \operatorname{HP}_{J^0(A_F) \otimes_k (Q^0, \, \operatorname{wt}_d)}(t)
+    = \operatorname{HP}_{J^0(A_F)}(t) \cdot \operatorname{HP}_{(Q^0, \, \operatorname{wt}_d)}(t)
     = \operatorname{HP}_{P^0}(t).
   \end{equation*}
   Hence,
@@ -538,11 +542,10 @@ we obtain a canonical isomorphism of $\mathbb{N}$-graded $J^0(k[V]/(V^e))$-algeb
   the restriction $\Phi_w$ is a surjective $k$-linear map between two finite-dimensional $k$-vector spaces of the same dimension,
   and is therefore an isomorphism.
 
-  (iii) Tensoring the graded $Q^0$-module isomorphism~\eqref{eq:Phi-free-iso} with $- \otimes_{Q^0} J^0(k[V]/(V^e))$ and using~\eqref{eq:JN-quotient-phi},~\eqref{eq:app-shifted-base-change}, and~\eqref{eq:app-shifted-sum-tensor} gives
+  (iii) Tensoring the $\mathbb{N}$-graded $(Q^0, \operatorname{wt}_d)$-module isomorphism~\eqref{eq:Phi-free-iso} with $- \otimes_{Q^0} J^0(k[V]/(V^e))$ and using~\eqref{eq:JN-quotient-phi} and~\eqref{eq:app-vector-space-base-change} gives
   \begin{align*}
     J^0(A_{F^e}) &\cong P^0 \otimes_{Q^0} J^0(k[V]/(V^e)) \\
-                 &\cong \bigoplus_{\alpha \in \mathcal{I}} (Q^0(-w_\alpha) \otimes_{Q^0} J^0(k[V]/(V^e))) \\
-                 &\cong \bigoplus_{\alpha \in \mathcal{I}} J^0(k[V]/(V^e))(-w_\alpha) \\
+                 &\cong \bigl(J^0(A_F) \otimes_k (Q^0, \operatorname{wt}_d)\bigr) \otimes_{Q^0} J^0(k[V]/(V^e)) \\
                  &\cong J^0(A_F) \otimes_k J^0(k[V]/(V^e)),
   \end{align*}
   and taking Hilbert--Poincaré series via~\eqref{eq:app-hp-tensor-product} and~\eqref{eq:HP-RF-quotient} immediately yields~\eqref{eq:HP-JN-factored}.
@@ -669,10 +672,11 @@ which have order of vanishing $d = n$.
 \end{corollary}
 
 \begin{proof}
-  By Proposition~3.9 of~\cite{bruschek_arc_2013} (citing Theorem~2.2 of Goward and Smith~\cite{goward_smith_2006}) and \zcref{prop:app-reg-seq-height} in \zcref{sec:regular-sequences}
-  (see also \zcref{cor:app-normal-crossings-reg} for a direct self-contained proof),
+  By \zcref{cor:app-normal-crossings-reg} in \zcref{sec:regular-sequences},
   for every integer $N \ge n$,
-  the polynomials $u_l = [t^l](X^0_1(t) \cdots X^0_n(t))$ for $n \le l \le N$ form a regular sequence $(u_n, u_{n + 1}, \dots, u_N)$ in $P^0$.
+  the polynomials $u_l = [t^l](X^0_1(t) \cdots X^0_n(t))$ for $n \le l \le N$ form a regular sequence $(u_n, u_{n + 1}, \dots, u_N)$ in $P^0$
+  (cf.\ the proof of Proposition~3.9 of~\cite{bruschek_arc_2013},
+  where this is deduced, for $k$ algebraically closed, from the dimension count in Theorem~2.2 of Goward and Smith~\cite{goward_smith_2006}).
   Applying \zcref{thm:general-regular-germs} to $F(X_1, \dots, X_n) = X_1 \cdots X_n$ with $d = n$ immediately yields~(i)--(iii).
 \end{proof}
 
@@ -688,8 +692,7 @@ We now prove the theorems stated in the introduction.
 \end{proof}
 
 \begin{proof}[Proof of \zcref{thm:normal-crossings}]
-  Part~(i) is proved in \zcref{cor:app-normal-crossings-reg}
-  (and in the proof of \zcref{cor:normal-crossings-notes} via Proposition~3.9 of~\cite{bruschek_arc_2013} and \zcref{prop:app-reg-seq-height}),
+  Part~(i) is \zcref{cor:app-normal-crossings-reg},
   while parts~(ii) and~(iii) are parts~(i) and~(iii) of \zcref{cor:normal-crossings-notes} for $e \ge 2$.
 \end{proof}
 
@@ -723,14 +726,23 @@ We now prove the theorems stated in the introduction.
     (for example, for three distinct lines $F(X, Y) = X Y (X + Y)$ in $k[X, Y]$, we have $d = 3 > n = 2$, and at $N = 5$ the three polynomials $u_3, u_4, u_5$ all lie in the prime ideal $(X^{(1)}, Y^{(1)})$ of height $2 < 3$).
 
   \item \textbf{Formal invariance and plane curves ($n = 2$):}
-    Whether $(u_d, \dots, u_N)$ is a regular sequence depends only on the formal germ of $F = 0$ at the origin:
-    a formal coordinate change $\hat{X}_j = \Psi_j(X_1, \dots, X_n)$ with $\Psi = (\Psi_1, \dots, \Psi_n)$, $\Psi(0) = 0$, and invertible Jacobian at $0$ induces a graded algebra automorphism of $P^0$,
+    Whether $(u_d, \dots, u_N)$ is a regular sequence depends only on the formal germ of $F = 0$ at the origin.
+    Since $\operatorname{ord}_t X^0_j(t) \ge 1$ for every $1 \le j \le n$,
+    any formal power series $H \in k[[X_1, \dots, X_n]]$ has a well-defined evaluation $H(X^0_1(t), \dots, X^0_n(t)) \in P^0[[t]]$,
+    with $[t^m]H(X^0_1(t), \dots, X^0_n(t)) \in (P^0)_m$ depending only on the terms of $H$ of total degree at most $m$.
+    Thus a formal coordinate change $\hat{X}_j = \Psi_j(X_1, \dots, X_n)$ with $\Psi = (\Psi_1, \dots, \Psi_n)$, $\Psi(0) = 0$, and invertible Jacobian at $0$ induces a graded algebra automorphism of $P^0$ via $X_j^{(i)} \mapsto [t^i]\Psi_j(X^0_1(t), \dots, X^0_n(t))$,
     and multiplying $F$ by a formal unit $U(X) \in k[[X_1, \dots, X_n]]^\times$ ($c_0 \coloneq U(0) \in k^\times$) replaces $u_l$ by $\tilde{u}_l = c_0 u_l + c_1 u_{l - 1} + \dots + c_{l - d} u_d$,
     where $c_m \coloneq [t^m]U(X^0_1(t), \dots, X^0_n(t)) \in (P^0)_m$ for $m \ge 1$,
-    so $(u_d, \dots, u_l) = (\tilde{u}_d, \dots, \tilde{u}_l)$ in $P^0$ for every $l \ge d$.
+    so $(u_d, \dots, u_l) = (\tilde{u}_d, \dots, \tilde{u}_l)$ in $P^0$ for every $l \ge d$
+    (cf.\ Proposition~3.3 of~\cite{bruschek_arc_2013}).
+    For $X_1 \cdots X_d$ with $1 \le d \le n$,
+    the polynomials $u_l$ only involve the variables $X_j^{(i)}$ with $1 \le j \le d$,
+    so $(u_d, \dots, u_N)$ is a regular sequence in $k[X_j^{(i)} \mid 1 \le j \le d,\; i \ge 1]$ by \zcref{cor:app-normal-crossings-reg} (with $d$ in place of $n$),
+    and hence also in its faithfully flat polynomial extension $P^0$ (as in the proof of \zcref{prop:app-reg-seq-height}(ii)).
     Consequently,
-    \zcref{prop:graded-freeness-finite} and \zcref{thm:general-regular-germs} (and in particular \zcref{cor:normal-crossings-notes}) apply to any $F$ formally isomorphic at $0$ to $X_1 \cdots X_d$ ($d \le n$),
-    i.e., any normal crossings divisor with $d \le n$ smooth branches meeting transversely at the origin.
+    \zcref{prop:graded-freeness-finite} and \zcref{thm:general-regular-germs} apply to any polynomial $F \in k[X_1, \dots, X_n]$ formally isomorphic at $0$ to $X_1 \cdots X_d$ ($1 \le d \le n$),
+    i.e., any normal crossings divisor with $d \le n$ smooth branches meeting transversely at the origin,
+    and in particular \zcref{cor:normal-crossings-notes} applies when $d = n$.
     When $n = 2$,
     a plane curve $F(X, Y) = 0$ satisfies the regularity condition for all $N \ge d$ if and only if $(0, 0)$ is either a smooth point ($d = 1$) or an ordinary double point ($d = 2$ with non-degenerate quadratic part:
     if split over $k$, it is formally isomorphic to $X Y = 0$,
@@ -748,8 +760,8 @@ We now prove the theorems stated in the introduction.
     A monomial $F = X_1^{a_1} \cdots X_n^{a_n}$ ($d = a_1 + \dots + a_n \ge 1$) satisfies the regularity condition for all $N \ge d$ if and only if $F$ is squarefree ($a_j \in \{0, 1\}$ for all $j$).
     Indeed,
     if $F$ is squarefree,
-    then up to relabeling variables $F = X_1 \cdots X_d$ with $d \le n$,
-    which is covered by Proposition~3.9 of~\cite{bruschek_arc_2013} (as in the proof of \zcref{cor:normal-crossings-notes}).
+    then up to relabeling variables $F = X_1 \cdots X_d$ with $1 \le d \le n$,
+    so regularity holds for all $N \ge d$ by item~(ii).
     Conversely,
     if some exponent satisfies $a_1 \ge 2$,
     then $X_1^{(1)}$ appears to the power $a_1 \ge 2$ in $u_d = [t^d]F(X^0_1(t), \dots, X^0_n(t))$ and to the power at least $a_1 - 1 \ge 1$ in every term of $u_{d + 1} = [t^{d + 1}]F(X^0_1(t), \dots, X^0_n(t))$;
@@ -772,26 +784,33 @@ We now prove the theorems stated in the introduction.
   and $(u_3, \dots, u_N)$ is not a regular sequence in $P^0$.
 
   Explicitly,
-  $u_3 = (X^{(1)})^2 Y^{(1)}$ (of weight $3$) and $u_4 = X^{(1)}(2X^{(2)}Y^{(1)} + X^{(1)}Y^{(2)})$ (of weight $4$) share the common factor $X^{(1)}Y^{(1)}$ and satisfy the weight-$6$ relation
+  $u_3 = (X^{(1)})^2 Y^{(1)}$ (of weight $3$) and $u_4 = X^{(1)}(2X^{(2)}Y^{(1)} + X^{(1)}Y^{(2)})$ (of weight $4$) have greatest common divisor $X^{(1)}$:
+  we have $u_3 = X^{(1)} g_4$ and $u_4 = X^{(1)} g_3$,
+  where
   \begin{equation*}
-    g_3 u_3 - g_4 u_4 = 0, \qquad
-    g_3 \coloneq 2X^{(2)}Y^{(1)} + X^{(1)}Y^{(2)}, \quad
+    g_3 \coloneq 2X^{(2)}Y^{(1)} + X^{(1)}Y^{(2)}, \qquad
     g_4 \coloneq X^{(1)}Y^{(1)}.
+  \end{equation*}
+  Hence $u_3$ and $u_4$ satisfy the weight-$6$ relation
+  \begin{equation*}
+    g_3 u_3 - g_4 u_4 = X^{(1)} g_3 g_4 - X^{(1)} g_4 g_3 = 0.
   \end{equation*}
   Here $g_4$ has weight $2$ and $g_3$ has weight $3$.
   Since $(u_l \mid l \ge 3)_2 = 0$,
-  the class $e_{\alpha_4} \coloneq \overline{g_4}$ is a non-zero element of $\left(J^0(A_F)\right)_2$;
+  the class $\overline{g_4} \coloneq \pi(g_4)$ is a non-zero element of $\left(J^0(A_F)\right)_2$;
   and since $g_3 \notin k \cdot u_3 = (u_l \mid l \ge 3)_3$,
-  the class $e_{\alpha_3} \coloneq \overline{g_3}$ is a non-zero element of $\left(J^0(A_F)\right)_3$.
-  Choosing $e_{\alpha_4}$ and $e_{\alpha_3}$ among the homogeneous basis elements $(e_\alpha)_{\alpha \in \mathcal{I}}$ of $J^0(A_F)$ with lifts $\tilde{e}_{\alpha_4} \coloneq g_4$ and $\tilde{e}_{\alpha_3} \coloneq g_3$,
-  the tuple $(g_\alpha(V))_{\alpha \in \mathcal{I}} \in \bigoplus_{\alpha \in \mathcal{I}} Q^0(-w_\alpha)$ with $g_{\alpha_3}(V) = V^{(1)}$, $g_{\alpha_4}(V) = -V^{(2)}$, and $g_\alpha(V) = 0$ for $\alpha \ne \alpha_3, \alpha_4$
-  (corresponding under~\eqref{eq:app-shifted-sum-tensor} to $e_{\alpha_3} \otimes V^{(1)} - e_{\alpha_4} \otimes V^{(2)} \in J^0(A_F) \otimes_k Q^0$)
+  the class $\overline{g_3} \coloneq \pi(g_3)$ is a non-zero element of $\left(J^0(A_F)\right)_3$.
+  Choosing any graded $k$-linear section $\sigma \colon J^0(A_F) \to P^0$ of $\pi$ with $\sigma(\overline{g_4}) = g_4$ and $\sigma(\overline{g_3}) = g_3$,
+  the element
+  \begin{equation*}
+    \overline{g_3} \otimes V^{(1)} - \overline{g_4} \otimes V^{(2)} \in \bigl(J^0(A_F) \otimes_k (Q^0, \operatorname{wt}_d)\bigr)_6
+  \end{equation*}
   is a non-zero element of $\ker(\Phi)_6$,
-  since $\Phi$ maps it to $\phi_F(V^{(1)})g_3 - \phi_F(V^{(2)})g_4 = u_3 g_3 - u_4 g_4 = 0$.
+  since $\Phi$ maps it to $g_3 \phi_F(V^{(1)}) - g_4 \phi_F(V^{(2)}) = g_3 u_3 - g_4 u_4 = 0$.
   Equivalently,
-  $\dim_k\left(J^0(A_F)\right)_w$ agrees with $[t^w](\operatorname{HP}_{P^0}(t)/\operatorname{HP}_{Q^0}(t))$ for $w \le 5$,
-  but in weight $6$ we have $\dim_k\left(J^0(A_F)\right)_6 = 48 > 47 = [t^6](\operatorname{HP}_{P^0}(t)/\operatorname{HP}_{Q^0}(t))$.
-  Thus the domain of $\Phi$ has weight-$6$ dimension $[t^6]\left(\operatorname{HP}_{Q^0}(t)\operatorname{HP}_{J^0(A_F)}(t)\right) = 66$,
+  $\dim_k\left(J^0(A_F)\right)_w$ agrees with $[t^w](\operatorname{HP}_{P^0}(t)/\operatorname{HP}_{(Q^0, \, \operatorname{wt}_d)}(t))$ for $w \le 5$,
+  but in weight $6$ we have $\dim_k\left(J^0(A_F)\right)_6 = 48 > 47 = [t^6](\operatorname{HP}_{P^0}(t)/\operatorname{HP}_{(Q^0, \, \operatorname{wt}_d)}(t))$.
+  Thus the domain of $\Phi$ has weight-$6$ dimension $[t^6]\left(\operatorname{HP}_{(Q^0, \, \operatorname{wt}_d)}(t)\operatorname{HP}_{J^0(A_F)}(t)\right) = 66$,
   whereas the target $(P^0)_6$ has dimension $65$.
   Since $\Phi$ is surjective
   (the surjectivity argument in the proof of \zcref{prop:graded-freeness-finite}(ii) does not require regularity),
@@ -803,37 +822,47 @@ We now prove the theorems stated in the introduction.
 \section{Graded modules and tensor products}
 \label{app:graded-tensor-products}
 
-Let $R = \bigoplus_{w \in \mathbb{N}} R_w$ be an $\mathbb{N}$-graded ring as in~\zcref{sec:jet-algebr-focuss}
-(with the convention that $R_w = 0$ for integers $w < 0$).
-An \defterm{$\mathbb{N}$-graded $R$-module} is an $R$-module $M$ equipped with a direct sum decomposition into additive subgroups
+A \defterm{$\mathbb{Z}$-graded ring} is a ring $R$ together with a family $(R_w)_{w \in \mathbb{Z}}$ of additive subgroups of $R$ such that $R = \bigoplus_{w \in \mathbb{Z}} R_w$ and $R_i R_j \subseteq R_{i + j}$ for all $i, j \in \mathbb{Z}$;
+this implies $1 \in R_0$,
+so $R_0$ is a subring of $R$.
+An $\mathbb{N}$-graded ring as in~\zcref{sec:jet-algebr-focuss} is identified with a $\mathbb{Z}$-graded ring satisfying $R_w = 0$ for all $w < 0$.
+Let $R = \bigoplus_{w \in \mathbb{Z}} R_w$ be a $\mathbb{Z}$-graded ring.
+A \defterm{$\mathbb{Z}$-graded $R$-module} is an $R$-module $M$ equipped with a direct sum decomposition into additive subgroups
 \begin{equation*}
-  M = \bigoplus_{w \in \mathbb{N}} M_w
+  M = \bigoplus_{w \in \mathbb{Z}} M_w
 \end{equation*}
-(with $M_w = 0$ for integers $w < 0$)
-such that $R_i M_j \subseteq M_{i + j}$ for all $i, j \in \mathbb{N}$.
+such that $R_i M_j \subseteq M_{i + j}$ for all $i, j \in \mathbb{Z}$.
 In particular, $R_0 M_w \subseteq M_w$, so each homogeneous component $M_w$ is an $R_0$-submodule of $M$.
-As for $\mathbb{N}$-graded rings,
+We say that $M$ is \defterm{bounded below} if there exists $w_0 \in \mathbb{Z}$ such that $M_w = 0$ for all $w < w_0$,
+and \defterm{$\mathbb{N}$-graded} if $M_w = 0$ for all $w < 0$
+(in particular, every $\mathbb{N}$-graded $R$-module is bounded below).
+As for graded rings,
 an element $m \in M_w$ is homogeneous of weight $w$,
 written $\operatorname{wt}(m) = w$.
-An $R$-linear map $\varphi \colon M \to N$ between $\mathbb{N}$-graded $R$-modules is a \defterm{graded homomorphism} (of weight $0$) if $\varphi(M_w) \subseteq N_w$ for all $w \in \mathbb{N}$.
-An \defterm{$\mathbb{N}$-graded $R$-algebra} is an $\mathbb{N}$-graded ring $B = \bigoplus_{w \in \mathbb{N}} B_w$ equipped with a ring homomorphism $R \to B$ sending $R_w$ into $B_w$ for all $w \in \mathbb{N}$;
-in particular, $B$ is an $\mathbb{N}$-graded $R$-module.
-A \defterm{homomorphism of $\mathbb{N}$-graded $R$-algebras} is an $R$-algebra homomorphism $\varphi \colon A \to B$ such that $\varphi(A_w) \subseteq B_w$ for all $w \in \mathbb{N}$.
+An $R$-linear map $\varphi \colon M \to N$ between $\mathbb{Z}$-graded $R$-modules is a \defterm{graded homomorphism} (of weight $0$) if $\varphi(M_w) \subseteq N_w$ for all $w \in \mathbb{Z}$.
+A \defterm{$\mathbb{Z}$-graded $R$-algebra} is a $\mathbb{Z}$-graded ring $B = \bigoplus_{w \in \mathbb{Z}} B_w$ equipped with a ring homomorphism $R \to B$ sending $R_w$ into $B_w$ for all $w \in \mathbb{Z}$;
+in particular, $B$ is a $\mathbb{Z}$-graded $R$-module,
+and $B$ is an $\mathbb{N}$-graded $R$-algebra when both $R$ and $B$ are $\mathbb{N}$-graded.
+A \defterm{homomorphism of $\mathbb{Z}$-graded $R$-algebras} is an $R$-algebra homomorphism $\varphi \colon A \to B$ such that $\varphi(A_w) \subseteq B_w$ for all $w \in \mathbb{Z}$.
 
-Given an $\mathbb{N}$-graded $R$-module $M$ and an integer $s \in \mathbb{N}$,
-the \defterm{shifted graded module} $M(-s)$ is the same underlying $R$-module $M$ endowed with the shifted grading
+Given a $\mathbb{Z}$-graded $R$-module $M$ and an integer $s \in \mathbb{Z}$,
+the \defterm{shifted graded module} $M(s)$ is the same underlying $R$-module $M$ endowed with the shifted grading
 \begin{equation}
   \label{eq:app-shifted-grading}
-  M(-s)_w \coloneq M_{w - s} \qquad (w \in \mathbb{N}),
+  M(s)_w \coloneq M_{w + s} \qquad (w \in \mathbb{Z}).
 \end{equation}
-where $M_{w - s} = 0$ for $w < s$.
-Thus a homogeneous element $m \in M_j$ has weight $w = j + s$ when viewed as an element of $M(-s)$.
+Thus a homogeneous element $m \in M_j$ has weight $w = j - s$ when viewed as an element of $M(s)$
+(and weight $j + s$ when viewed as an element of $M(-s)$).
+If $M$ is bounded below (say $M_w = 0$ for $w < w_0$),
+then $M(s)$ is also bounded below (with $M(s)_w = 0$ for $w < w_0 - s$);
+in particular, if $M$ is $\mathbb{N}$-graded and $s \in \mathbb{N}$,
+then $M(-s)$ is again $\mathbb{N}$-graded with $M(-s)_w = 0$ for $w < s$.
 
-Now let $M = \bigoplus_{i \in \mathbb{N}} M_i$ and $N = \bigoplus_{j \in \mathbb{N}} N_j$ be $\mathbb{N}$-graded $R$-modules.
+Now let $M = \bigoplus_{i \in \mathbb{Z}} M_i$ and $N = \bigoplus_{j \in \mathbb{Z}} N_j$ be $\mathbb{Z}$-graded $R$-modules.
 Since each $M_i$ and $N_j$ is an $R_0$-submodule of $M$ and $N$ and the tensor product over $R_0$ distributes over direct sums,
-$M \otimes_{R_0} N$ is an $\mathbb{N}$-graded $R_0$-module with homogeneous components
+$M \otimes_{R_0} N$ is a $\mathbb{Z}$-graded $R_0$-module with homogeneous components
 \begin{equation*}
-  M \otimes_{R_0} N = \bigoplus_{w \in \mathbb{N}} (M \otimes_{R_0} N)_w, \qquad
+  M \otimes_{R_0} N = \bigoplus_{w \in \mathbb{Z}} (M \otimes_{R_0} N)_w, \qquad
   (M \otimes_{R_0} N)_w \coloneq \bigoplus_{i + j = w} M_i \otimes_{R_0} N_j.
 \end{equation*}
 Viewing $R$ as an $R_0$-algebra,
@@ -844,115 +873,125 @@ $R_0$-bilinearity shows that $K$ is generated by the homogeneous differences
 \begin{equation*}
   (r m) \otimes n - m \otimes (r n) \in (M_{d + i} \otimes_{R_0} N_j) + (M_i \otimes_{R_0} N_{d + j}) \subseteq (M \otimes_{R_0} N)_{d + i + j}
 \end{equation*}
-for $r \in R_d$, $m \in M_i$, and $n \in N_j$.
-Hence $K = \bigoplus_{w \in \mathbb{N}} K_w$ with $K_w \coloneq K \cap (M \otimes_{R_0} N)_w$,
-and the quotient $M \otimes_R N \cong (M \otimes_{R_0} N) / K$ inherits the $\mathbb{N}$-grading
+for $r \in R_d$, $m \in M_i$, and $n \in N_j$ ($d, i, j \in \mathbb{Z}$).
+Hence $K = \bigoplus_{w \in \mathbb{Z}} K_w$ with $K_w \coloneq K \cap (M \otimes_{R_0} N)_w$,
+and the quotient $M \otimes_R N \cong (M \otimes_{R_0} N) / K$ inherits the $\mathbb{Z}$-grading
 \begin{equation}
   \label{eq:app-ring-tensor-grading}
-  M \otimes_R N = \bigoplus_{w \in \mathbb{N}} (M \otimes_R N)_w,
+  M \otimes_R N = \bigoplus_{w \in \mathbb{Z}} (M \otimes_R N)_w,
 \end{equation}
 where $(M \otimes_R N)_w \coloneq \tau((M \otimes_{R_0} N)_w) \cong (M \otimes_{R_0} N)_w / K_w$ is the $R_0$-submodule of $M \otimes_R N$ generated by all pure tensors $m \otimes n$ with $m \in M_i$, $n \in N_j$, and $i + j = w$.
 With the $R$-action $r \cdot (m \otimes n) \coloneq (r m) \otimes n = m \otimes (r n)$,
-$M \otimes_R N$ is an $\mathbb{N}$-graded $R$-module.
-In particular, if $R = R_0$ is concentrated in weight $0$ ($R_d = 0$ for $d \ge 1$),
+$M \otimes_R N$ is a $\mathbb{Z}$-graded $R$-module.
+If $M$ and $N$ are bounded below (say $M_i = 0$ for $i < i_0$ and $N_j = 0$ for $j < j_0$),
+then $(M \otimes_R N)_w = 0$ for all $w < i_0 + j_0$,
+so $M \otimes_R N$ is bounded below;
+in particular, if $M$ and $N$ are $\mathbb{N}$-graded,
+then $M \otimes_R N$ is $\mathbb{N}$-graded.
+Moreover, if $R = R_0$ is concentrated in weight $0$ ($R_d = 0$ for $d \ne 0$),
 then $\tau$ is the identity map ($K = 0$), so
 \begin{equation}
   \label{eq:app-r0-direct-sum}
-  (M \otimes_R N)_w \cong \bigoplus_{i + j = w} M_i \otimes_R N_j \qquad (w \in \mathbb{N}).
+  (M \otimes_R N)_w \cong \bigoplus_{i + j = w} M_i \otimes_R N_j \qquad (w \in \mathbb{Z}).
 \end{equation}
 
-We now describe \defterm{base change} (or \defterm{extension of scalars}) along an $\mathbb{N}$-graded $R$-algebra $S = \bigoplus_{j \in \mathbb{N}} S_j$ with structural homomorphism $\varphi \colon R \to S$:
+We now describe \defterm{base change} (or \defterm{extension of scalars}) along a $\mathbb{Z}$-graded $R$-algebra $S = \bigoplus_{j \in \mathbb{Z}} S_j$ with structural homomorphism $\varphi \colon R \to S$:
 \begin{enumerate}
-\item \emph{Base change of $\mathbb{N}$-graded $R$-modules.}
-  For any $\mathbb{N}$-graded $R$-module $M = \bigoplus_{i \in \mathbb{N}} M_i$,
+\item \emph{Base change of $\mathbb{Z}$-graded $R$-modules.}
+  For any $\mathbb{Z}$-graded $R$-module $M = \bigoplus_{i \in \mathbb{Z}} M_i$,
   the tensor product $M \otimes_R S$ becomes an $S$-module via multiplication in the ring $S$ on the second factor:
   \begin{equation*}
     s \cdot (m \otimes s') \coloneq m \otimes (s s') \qquad (s, s' \in S,\; m \in M).
   \end{equation*}
   For homogeneous elements $s \in S_d$, $m \in M_i$, and $s' \in S_j$,
   we have $s s' \in S_{d + j}$ and thus $s \cdot (m \otimes s') = m \otimes (s s') \in (M \otimes_R S)_{d + i + j}$.
-  Hence $S_d (M \otimes_R S)_w \subseteq (M \otimes_R S)_{d + w}$ for all $d, w \in \mathbb{N}$,
-  so $M \otimes_R S$ is an $\mathbb{N}$-graded $S$-module
-  (and each homogeneous component $(M \otimes_R S)_w$ is an $S_0$-submodule).
-  Moreover, for any shift $s \in \mathbb{N}$,
-  the canonical $S$-module isomorphism $R \otimes_R S \cong S$ respects the gradings~\eqref{eq:app-ring-tensor-grading} and~\eqref{eq:app-shifted-grading},
-  yielding an isomorphism of $\mathbb{N}$-graded $S$-modules
+  Hence $S_d (M \otimes_R S)_w \subseteq (M \otimes_R S)_{d + w}$ for all $d, w \in \mathbb{Z}$,
+  so $M \otimes_R S$ is a $\mathbb{Z}$-graded $S$-module
+  (each homogeneous component $(M \otimes_R S)_w$ is an $S_0$-submodule,
+  and $M \otimes_R S$ is $\mathbb{N}$-graded whenever $M$ and $S$ are $\mathbb{N}$-graded).
+  Moreover, for any $\mathbb{Z}$-graded $S$-module $N = \bigoplus_{l \in \mathbb{Z}} N_l$
+  (viewed as a $\mathbb{Z}$-graded $R$-module via $\varphi$),
+  the canonical associativity isomorphism~\cite[Proposition~(8.9)]{altman_kleiman_2021}
   \begin{equation}
-    \label{eq:app-shifted-base-change}
-    R(-s) \otimes_R S \xrightarrow{\;\sim\;} S(-s), \qquad
-    r \otimes x \longmapsto \varphi(r) x,
+    \label{eq:app-assoc-base-change}
+    (M \otimes_R S) \otimes_S N \xrightarrow{\;\sim\;} M \otimes_R N, \qquad
+    (m \otimes s) \otimes n \longmapsto m \otimes (s n),
   \end{equation}
-  since for $r \in R_i = R(-s)_{i + s}$ and $x \in S_j$,
-  the product $\varphi(r) x \in S_{i + j} = S(-s)_{i + j + s}$ has weight $(i + s) + j$ in both modules,
-  and the inverse $x \mapsto 1 \otimes x$ sends $S(-s)_w = S_{w - s}$ into $(R(-s) \otimes_R S)_w$ because $1 \in R_0 = R(-s)_s$ has weight $s$.
-\item \emph{Base change of $\mathbb{N}$-graded $R$-algebras.}
-  If $B = \bigoplus_{i \in \mathbb{N}} B_i$ is also an $\mathbb{N}$-graded $R$-algebra,
+  with inverse $m \otimes n \mapsto (m \otimes 1) \otimes n$,
+  preserves weights on homogeneous pure tensors
+  (since $\operatorname{wt}((m \otimes s) \otimes n) = i + j + l = \operatorname{wt}(m \otimes (s n))$ for $m \in M_i$, $s \in S_j$, and $n \in N_l$)
+  and is therefore an isomorphism of $\mathbb{Z}$-graded $S$-modules
+  (and of $\mathbb{Z}$-graded $N$-modules when $N$ is a $\mathbb{Z}$-graded $S$-algebra).
+\item \emph{Base change of $\mathbb{Z}$-graded $R$-algebras.}
+  If $B = \bigoplus_{i \in \mathbb{Z}} B_i$ is also a $\mathbb{Z}$-graded $R$-algebra,
   then $B \otimes_R S$ is a ring with multiplication $(b \otimes s)(b' \otimes s') \coloneq (bb') \otimes (ss')$ satisfying $(B \otimes_R S)_{w_1}(B \otimes_R S)_{w_2} \subseteq (B \otimes_R S)_{w_1 + w_2}$.
   The canonical ring homomorphism
   \begin{equation*}
     S \longrightarrow B \otimes_R S, \qquad s \longmapsto 1 \otimes s,
   \end{equation*}
   sends $S_w$ into $(B \otimes_R S)_w$ and induces the same $S$-module action $s \cdot (b \otimes s') = (1 \otimes s)(b \otimes s') = b \otimes (s s')$,
-  making $B \otimes_R S$ into an $\mathbb{N}$-graded $S$-algebra (as well as an $\mathbb{N}$-graded $R$-algebra).
+  making $B \otimes_R S$ into a $\mathbb{Z}$-graded $S$-algebra (as well as a $\mathbb{Z}$-graded $R$-algebra,
+  and an $\mathbb{N}$-graded $S$-algebra whenever $B$ and $S$ are $\mathbb{N}$-graded).
   In particular,
   if $R = R_0$ and $S = S_0$ are concentrated in weight $0$
   (for example, $R = A$, $S = \kappa(\mathfrak{p})$, and $B = J A$ in~\eqref{eq:12}),
   only $j = 0$ survives in~\eqref{eq:app-r0-direct-sum},
-  so $B \otimes_R S$ is an $\mathbb{N}$-graded $S$-algebra whose weight-$w$ component is the $S$-submodule
+  so $B \otimes_R S$ is a $\mathbb{Z}$-graded $S$-algebra whose weight-$w$ component is the $S$-submodule
   \begin{equation}
     \label{eq:app-ring-tensor-weight0}
-    (B \otimes_R S)_w = B_w \otimes_R S \qquad (w \in \mathbb{N}).
+    (B \otimes_R S)_w = B_w \otimes_R S \qquad (w \in \mathbb{Z}).
   \end{equation}
 \end{enumerate}
 
-Now let $k$ be a field, viewed as an $\mathbb{N}$-graded ring concentrated in weight $0$ ($k_0 = k$ and $k_w = 0$ for $w \ge 1$).
-An $\mathbb{N}$-graded $k$-module is then an \defterm{$\mathbb{N}$-graded $k$-vector space} $V = \bigoplus_{w \in \mathbb{N}} V_w$,
+Now let $k$ be a field, viewed as a $\mathbb{Z}$-graded ring concentrated in weight $0$ ($k_0 = k$ and $k_w = 0$ for $w \ne 0$).
+A $\mathbb{Z}$-graded $k$-module is then a \defterm{$\mathbb{Z}$-graded $k$-vector space} $V = \bigoplus_{w \in \mathbb{Z}} V_w$,
 and an $\mathbb{N}$-graded $k$-algebra in the sense above agrees with the definition in~\zcref{sec:jet-algebr-focuss}.
-When each homogeneous component $V_w$ is finite-dimensional over $k$,
+When $V$ is bounded below and each homogeneous component $V_w$ is finite-dimensional over $k$,
 the Hilbert--Poincaré series of $V$ is defined by
 \begin{equation*}
-  \operatorname{HP}_V(t) \coloneq \sum_{w \in \mathbb{N}} \dim_k(V_w) t^w \in \mathbb{Z}[[t]].
+  \operatorname{HP}_V(t) \coloneq \sum_{w \in \mathbb{Z}} \dim_k(V_w) t^w \in \mathbb{Z}((t)),
 \end{equation*}
-If $M$ is an $\mathbb{N}$-graded $k$-vector space (for example, an $\mathbb{N}$-graded $R$-module over an $\mathbb{N}$-graded $k$-algebra $R$) with each $M_w$ finite-dimensional over $k$,
-re-indexing~\eqref{eq:app-shifted-grading} gives
+which lies in $\mathbb{Z}[[t]]$ whenever $V$ is $\mathbb{N}$-graded.
+If $M$ is a bounded-below $\mathbb{Z}$-graded $k$-vector space (for example, a bounded-below $\mathbb{Z}$-graded $R$-module over a $\mathbb{Z}$-graded $k$-algebra $R$) with each $M_w$ finite-dimensional over $k$,
+then for every $s \in \mathbb{Z}$ the shifted space $M(s)$ is also bounded below with finite-dimensional homogeneous components,
+and re-indexing~\eqref{eq:app-shifted-grading} gives
 \begin{equation}
   \label{eq:app-hp-shift}
-  \operatorname{HP}_{M(-s)}(t) = \sum_{w = s}^\infty \dim_k(M_{w - s}) t^w = t^s \operatorname{HP}_M(t).
+  \operatorname{HP}_{M(s)}(t) = \sum_{w \in \mathbb{Z}} \dim_k(M_{w + s}) t^w = t^{-s} \operatorname{HP}_M(t)
 \end{equation}
-In particular,
-$k(-s)$ is a $1$-dimensional $k$-vector space concentrated in weight $s$ with $\operatorname{HP}_{k(-s)}(t) = t^s$.
+(in particular, $\operatorname{HP}_{M(-l)}(t) = t^l \operatorname{HP}_M(t)$ for every $l \in \mathbb{Z}$).
 
-For two $\mathbb{N}$-graded $k$-vector spaces $A = \bigoplus_{i \in \mathbb{N}} A_i$ and $B = \bigoplus_{j \in \mathbb{N}} B_j$,
+For two $\mathbb{Z}$-graded $k$-vector spaces $A = \bigoplus_{i \in \mathbb{Z}} A_i$ and $B = \bigoplus_{j \in \mathbb{Z}} B_j$,
 taking $R = k$ in~\eqref{eq:app-r0-direct-sum} yields the \defterm{tensor product grading} on $A \otimes_k B$:
 \begin{equation}
   \label{eq:app-tensor-grading}
-  (A \otimes_k B)_w = \bigoplus_{i + j = w} A_i \otimes_k B_j \qquad (w \in \mathbb{N}),
+  (A \otimes_k B)_w = \bigoplus_{i + j = w} A_i \otimes_k B_j \qquad (w \in \mathbb{Z}),
 \end{equation}
 so $\operatorname{wt}(a \otimes b) = \operatorname{wt}(a) + \operatorname{wt}(b) = i + j$ on homogeneous pure tensors $a \in A_i$ and $b \in B_j$.
-When each $A_i$ and $B_j$ is finite-dimensional over $k$,
-taking dimensions in~\eqref{eq:app-tensor-grading} yields the Cauchy product formula
+When $A$ and $B$ are bounded below (say $A_i = 0$ for $i < i_0$ and $B_j = 0$ for $j < j_0$) and each $A_i$ and $B_j$ is finite-dimensional over $k$,
+only the finitely many indices $i$ with $i_0 \le i \le w - j_0$ contribute to~\eqref{eq:app-tensor-grading} for each $w \in \mathbb{Z}$ (and $(A \otimes_k B)_w = 0$ for $w < i_0 + j_0$).
+Thus $A \otimes_k B$ is bounded below with finite-dimensional homogeneous components satisfying the Cauchy product formula
 \begin{equation*}
   \dim_k((A \otimes_k B)_w) = \sum_{i + j = w} \dim_k(A_i) \dim_k(B_j),
 \end{equation*}
-so the Hilbert--Poincaré series of $A \otimes_k B$ factors as the product
+so the Hilbert--Poincaré series of $A \otimes_k B$ factors in $\mathbb{Z}((t))$ as the product
 \begin{equation}
   \label{eq:app-hp-tensor-product}
   \operatorname{HP}_{A \otimes_k B}(t) = \operatorname{HP}_A(t) \cdot \operatorname{HP}_B(t).
 \end{equation}
 
-Finally, let $V$ be an $\mathbb{N}$-graded $k$-vector space and let $S$ be an $\mathbb{N}$-graded $k$-algebra.
-By item~(i) above (with $R = k$),
-the base change $V \otimes_k S$ is an $\mathbb{N}$-graded $S$-module with the grading~\eqref{eq:app-tensor-grading} and the $S$-action $s \cdot (v \otimes s') = v \otimes (s s')$.
-Choosing any homogeneous $k$-vector space basis $(e_\alpha)_{\alpha \in \mathcal{I}}$ of $V$ with $w_\alpha \coloneq \operatorname{wt}(e_\alpha)$ decomposes $V$ into $1$-dimensional shifted subspaces:
-\begin{equation*}
-  V = \bigoplus_{\alpha \in \mathcal{I}} k \cdot e_\alpha \cong \bigoplus_{\alpha \in \mathcal{I}} k(-w_\alpha).
-\end{equation*}
-Applying~\eqref{eq:app-shifted-base-change} (with $R = k$) to each summand $k(-w_\alpha) \otimes_k S \cong S(-w_\alpha)$ gives a canonical isomorphism of $\mathbb{N}$-graded $S$-modules
+Finally, let $V$ be a $\mathbb{Z}$-graded $k$-vector space,
+let $S$ be a $\mathbb{Z}$-graded $k$-algebra,
+and let $T$ be a $\mathbb{Z}$-graded $S$-algebra.
+By item~(i) above (with $R = k$, $M = V$, and $N = T$),
+the base change $V \otimes_k S$ is a $\mathbb{Z}$-graded $S$-module with the grading~\eqref{eq:app-tensor-grading} and the $S$-action $s \cdot (v \otimes s') = v \otimes (s s')$,
+and~\eqref{eq:app-assoc-base-change} gives a canonical isomorphism of $\mathbb{Z}$-graded $T$-modules (and hence of $\mathbb{Z}$-graded $k$-vector spaces)
 \begin{equation}
-  \label{eq:app-shifted-sum-tensor}
-  \bigoplus_{\alpha \in \mathcal{I}} S(-w_\alpha) \xrightarrow{\;\sim\;} V \otimes_k S, \qquad
-  (s_\alpha)_{\alpha \in \mathcal{I}} \longmapsto \sum_{\alpha \in \mathcal{I}} e_\alpha \otimes s_\alpha.
+  \label{eq:app-vector-space-base-change}
+  (V \otimes_k S) \otimes_S T \xrightarrow{\;\sim\;} V \otimes_k T, \qquad
+  (v \otimes s) \otimes x \longmapsto v \otimes (s x)
 \end{equation}
+(with all terms $\mathbb{N}$-graded whenever $V$, $S$, and $T$ are $\mathbb{N}$-graded).
 
 \section{Regular sequences}
 \label{sec:regular-sequences}
@@ -995,22 +1034,56 @@ endowed with the grading $\operatorname{wt}(X_j^{(i)}) = i$.
 \end{proposition}
 
 \begin{proof}
-  (i) Since $P^0 = P^0_{\le N}[X_j^{(i)} \mid 1 \le j \le n,\; i > N]$ is a polynomial ring over $P^0_{\le N}$,
-  $P^0$ is a free (hence faithfully flat) $P^0_{\le N}$-module.
+  (i) Let $R$ denote either $P^0$ or $P^0_{\le M}$ for an integer $M \ge N$.
+  Since $R$ is a polynomial ring over $P^0_{\le N}$,
+  $R$ is a free (hence faithfully flat) $P^0_{\le N}$-module.
   For any prime ideal $\mathfrak{q} \subseteq P^0_{\le N}$,
-  the quotient $P^0 / \mathfrak{q} P^0 \cong (P^0_{\le N} / \mathfrak{q})[X_j^{(i)} \mid 1 \le j \le n,\; i > N]$ is an integral domain,
-  so $\mathfrak{q} P^0$ is a prime ideal of $P^0$ with $\mathfrak{q} P^0 \cap P^0_{\le N} = \mathfrak{q}$.
-  Any chain of prime ideals $\mathfrak{q}_0 \subsetneq \dots \subsetneq \mathfrak{q}_h = \mathfrak{q}$ in $P^0_{\le N}$ extends to a chain $\mathfrak{q}_0 P^0 \subsetneq \dots \subsetneq \mathfrak{q}_h P^0 = \mathfrak{q} P^0$ in $P^0$,
-  so $\operatorname{ht}_{P^0}(\mathfrak{q} P^0) \ge \operatorname{ht}_{P^0_{\le N}}(\mathfrak{q})$.
-  Conversely, for any prime ideal $\mathfrak{Q} \subseteq P^0$ containing $J P^0$,
-  its contraction $\mathfrak{q} \coloneq \mathfrak{Q} \cap P^0_{\le N}$ is a prime ideal of $P^0_{\le N}$ containing $J$ with $\mathfrak{q} P^0 \subseteq \mathfrak{Q}$;
+  the quotient $R / \mathfrak{q} R$ is a polynomial ring over the integral domain $P^0_{\le N} / \mathfrak{q}$ and is therefore an integral domain,
+  so $\mathfrak{q} R$ is a prime ideal of $R$ with $\mathfrak{q} R \cap P^0_{\le N} = \mathfrak{q}$
+  (in particular, distinct prime ideals of $P^0_{\le N}$ have distinct extensions to $R$).
+  If $\mathfrak{Q} \subseteq R$ is a prime ideal containing $J R$,
+  then its contraction $\mathfrak{q} \coloneq \mathfrak{Q} \cap P^0_{\le N}$ is a prime ideal of $P^0_{\le N}$ containing $J$,
+  so $\mathfrak{q}$ contains a minimal prime ideal $\mathfrak{q}_0$ of $J$ in $P^0_{\le N}$,
+  yielding $J R \subseteq \mathfrak{q}_0 R \subseteq \mathfrak{q} R \subseteq \mathfrak{Q}$.
+  Hence every minimal prime ideal of $J R$ in $R$ is of the form $\mathfrak{q}_0 R$ for a minimal prime ideal $\mathfrak{q}_0$ of $J$ in $P^0_{\le N}$.
+  Conversely, if $\mathfrak{q}_0$ is a minimal prime ideal of $J$ in $P^0_{\le N}$ and $\mathfrak{Q} \subseteq \mathfrak{q}_0 R$ is a prime ideal of $R$ containing $J R$,
+  then $J \subseteq \mathfrak{Q} \cap P^0_{\le N} \subseteq \mathfrak{q}_0 R \cap P^0_{\le N} = \mathfrak{q}_0$,
+  so minimality of $\mathfrak{q}_0$ forces $\mathfrak{Q} \cap P^0_{\le N} = \mathfrak{q}_0$ and hence $\mathfrak{Q} = \mathfrak{q}_0 R$.
+  Thus the minimal prime ideals of $J R$ in $R$ are precisely the extensions $\mathfrak{q} R$ of the minimal prime ideals $\mathfrak{q}$ of $J$ in $P^0_{\le N}$.
+
+  For any prime ideal $\mathfrak{Q} \subseteq P^0$ containing $J P^0$,
+  its contraction $\mathfrak{q} \coloneq \mathfrak{Q} \cap P^0_{\le N}$ is a prime ideal of $P^0_{\le N}$ containing $J$;
   by flatness of $P^0_{\le N} \hookrightarrow P^0$ (the going-down theorem~\cite[Lemma~10.11]{eisenbud_commalg_1995}),
   any strictly increasing chain of primes in $P^0_{\le N}$ ending at $\mathfrak{q}$ lifts to a chain of the same length in $P^0$ ending at $\mathfrak{Q}$,
   giving $\operatorname{ht}_{P^0}(\mathfrak{Q}) \ge \operatorname{ht}_{P^0_{\le N}}(\mathfrak{q}) \ge \operatorname{ht}_{P^0_{\le N}}(J)$.
-  In particular, taking $\mathfrak{Q} = \mathfrak{q} P^0$ gives $\operatorname{ht}_{P^0}(\mathfrak{q} P^0) = \operatorname{ht}_{P^0_{\le N}}(\mathfrak{q})$,
-  and taking the infimum over $\mathfrak{Q} \supseteq J P^0$ yields~\eqref{eq:app-height-extension}.
-  When $\mathfrak{p} = (X_{j_1}^{(i_1)}, \dots, X_{j_r}^{(i_r)}) \subseteq P^0$ with $i_1, \dots, i_r \le N$,
-  $\mathfrak{p}$ is the extension of the prime ideal generated by $r$ variables in the Noetherian polynomial ring $P^0_{\le N}$,
+  In particular, $\operatorname{ht}_{P^0}(J P^0) \ge \operatorname{ht}_{P^0_{\le N}}(J)$,
+  and $\operatorname{ht}_{P^0}(\mathfrak{q} P^0) \ge \operatorname{ht}_{P^0_{\le N}}(\mathfrak{q})$ for every prime ideal $\mathfrak{q} \subseteq P^0_{\le N}$.
+
+  To prove the reverse inequality $\operatorname{ht}_{P^0}(\mathfrak{q} P^0) \le \operatorname{ht}_{P^0_{\le N}}(\mathfrak{q})$ for any prime ideal $\mathfrak{q} \subseteq P^0_{\le N}$,
+  set $c \coloneq \operatorname{ht}_{P^0_{\le N}}(\mathfrak{q})$.
+  If $c = 0$,
+  then $\mathfrak{q} = (0)$ and $\operatorname{ht}_{P^0}(\mathfrak{q} P^0) = 0$ because $P^0$ is an integral domain.
+  Suppose $c \ge 1$.
+  By the converse to Krull's principal ideal theorem~\cite[Theorem~10.2]{eisenbud_commalg_1995} in the Noetherian ring $P^0_{\le N}$,
+  $\mathfrak{q}$ is a minimal prime ideal of some $c$-generated ideal $K = (a_1, \dots, a_c) \subseteq P^0_{\le N}$.
+  Given any strictly increasing chain of prime ideals $\mathfrak{Q}_0 \subsetneq \dots \subsetneq \mathfrak{Q}_h = \mathfrak{q} P^0$ in $P^0$,
+  choose elements $g_s \in \mathfrak{Q}_s \setminus \mathfrak{Q}_{s - 1}$ for $1 \le s \le h$ and pick an integer $M \ge N$ large enough that $g_1, \dots, g_h \in P^0_{\le M}$.
+  Since $P^0$ is a polynomial ring over $P^0_{\le M}$,
+  we have $\mathfrak{q} P^0 \cap P^0_{\le M} = (\mathfrak{q} P^0_{\le M}) P^0 \cap P^0_{\le M} = \mathfrak{q} P^0_{\le M}$,
+  so contracting to $P^0_{\le M}$ produces a strictly increasing chain of prime ideals
+  \begin{equation*}
+    \mathfrak{Q}_0 \cap P^0_{\le M} \subsetneq \dots \subsetneq \mathfrak{Q}_h \cap P^0_{\le M} = \mathfrak{q} P^0_{\le M}
+  \end{equation*}
+  in the Noetherian ring $P^0_{\le M}$.
+  By the minimal-primes correspondence proved above (with $K$ in place of $J$ and $R = P^0_{\le M}$),
+  $\mathfrak{q} P^0_{\le M}$ is a minimal prime ideal of $K P^0_{\le M} = (a_1, \dots, a_c) P^0_{\le M}$ in $P^0_{\le M}$.
+  Krull's principal ideal theorem~\cite[Theorem~10.2]{eisenbud_commalg_1995} in $P^0_{\le M}$ therefore gives $h \le \operatorname{ht}_{P^0_{\le M}}(\mathfrak{q} P^0_{\le M}) \le c$.
+  Taking the supremum over all chains ending at $\mathfrak{q} P^0$ yields $\operatorname{ht}_{P^0}(\mathfrak{q} P^0) \le c$,
+  and hence $\operatorname{ht}_{P^0}(\mathfrak{q} P^0) = \operatorname{ht}_{P^0_{\le N}}(\mathfrak{q})$.
+  Choosing a prime ideal $\mathfrak{q} \subseteq P^0_{\le N}$ containing $J$ with $\operatorname{ht}_{P^0_{\le N}}(\mathfrak{q}) = \operatorname{ht}_{P^0_{\le N}}(J)$ gives $\operatorname{ht}_{P^0}(J P^0) \le \operatorname{ht}_{P^0}(\mathfrak{q} P^0) = \operatorname{ht}_{P^0_{\le N}}(J)$,
+  completing the proof of~\eqref{eq:app-height-extension}.
+  When $\mathfrak{p} = (X_{j_1}^{(i_1)}, \dots, X_{j_r}^{(i_r)}) \subseteq P^0$ is generated by $r$ distinct variables,
+  choosing $M \ge \max(\{N\} \cup \{i_1, \dots, i_r\})$ and applying~\eqref{eq:app-height-extension} with $P^0_{\le M}$ in place of $P^0_{\le N}$ shows that $\mathfrak{p}$ is the extension of the prime ideal generated by $r$ variables in the Noetherian polynomial ring $P^0_{\le M}$,
   which has height $r$.
 
   (ii) Because $f_1, \dots, f_m$ are homogeneous of positive weight,
