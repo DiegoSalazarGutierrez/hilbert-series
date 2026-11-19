@@ -9,5 +9,6 @@
 * Links in workspace `.md` files must use relative paths (e.g., `../notes/file.tex#L42`), not absolute `file:///` URIs (links in model artifacts may use `file:///` URIs).
 * The workflow is write → review → correct → commit → write → review → ... (the commit step is strictly manual).
 * Use `\operatorname` or `\operatorname*` when defining a function or mathematical operator (e.g., $\operatorname{rank}$, $\operatorname{Tr}$, $\operatorname{diag}$, $\operatorname*{argmin}$, $\operatorname{Var}$).
-* Use `\mathrm` for labels, descriptive subscripts, units, and non-operator symbols (e.g., $E_{\mathrm{kin}}$, $\mathrm{d}x$, $\mathrm{e}$, $\mathrm{kg}$).
+* Use `\mathrm` for non-operator math symbols, units, and single-word descriptive subscripts/superscripts (e.g., $E_{\mathrm{kin}}$, $\mu_{\mathrm{min}}$, $\mathrm{d}x$, $\mathrm{e}$, $\mathrm{kg}$).
+* Use `\textnormal` (not `\text`, which inherits theorem italics) for hyphenated or multi-word text labels in math mode such as category names (e.g., $k\textnormal{-Alg}$, $k\textnormal{-DiffAlg}$).
 * Don't use `\DeclareMathOperator` in `.tex` files. It can cause poor model support.
